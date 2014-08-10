@@ -28,6 +28,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 TAG_FEED_ATOM = 'feeds/%s.atom.xml'
 TAG_CLOUD_STEPS = 4
+TAG_CLOUD_MAX_ITEMS = 100
 
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
@@ -35,6 +36,7 @@ LINKS =  (('Pelican', 'http://getpelican.com/'),
 
 # Social widget
 SOCIAL = (('新浪微博', 'http://weibo.com/ulzzz'),
+          ('GitHub', 'https://github.com/x7hub'),
           )
 #SOCIAL = (('新浪微博', 'http://weibo.com/ulzzz'),
 #          )
