@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7hub.github.io/" rel="alternate"></link><link href="http://x7hub.github.io/feeds/latex.atom.xml" rel="self"></link><id>http://x7hub.github.io/</id><updated>2014-03-17T00:00:00+08:00</updated><entry><title>Linux系统中LaTeX的安装与使用</title><link href="http://x7hub.github.io/pages/latex_on_linux.html" rel="alternate"></link><updated>2014-03-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7hub.github.io,2014-03-17:pages/latex_on_linux.html</id><summary type="html">&lt;h3&gt;安装&lt;/h3&gt;
+&lt;p&gt;针对Archlinux，需要&lt;a href="https://wiki.archlinux.org/index.php/TeX_Live"&gt;TeX Live&lt;/a&gt;，首先要编译LaTeX文件需要这个包&lt;code&gt;texlive-bin&lt;/code&gt;，有一些图片字体之类的依赖，在这一组包里&lt;code&gt;texlive-most&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。&lt;/p&gt;
+&lt;p&gt;Linux下的LaTeX编辑器&lt;a href="https://wiki.archlinux.org/index.php/Latex"&gt;有很多&lt;/a&gt;，我使用的是&lt;code&gt;Kile&lt;/code&gt;，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。&lt;/p&gt;
+&lt;h3&gt;使用&lt;/h3&gt;
+&lt;p&gt;LaTeX文件后缀通常为&lt;code&gt;.tex&lt;/code&gt;。可以在命令行直接编译，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;latex source.tex
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;用&lt;code&gt;Kile&lt;/code&gt;编辑文件，可以直接通过''QuickBuild''编译生成pdf并直接打开预览。&lt;/p&gt;
+&lt;h4&gt;Helloworld&lt;/h4&gt;
+&lt;p&gt;简单测试代码，很容易理解，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="na"&gt;[11pt]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;cite&lt;span class="nb"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;document&lt;span class="nb"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;\title&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;My Article&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\author&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Nobody Jr.&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\date&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Today&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\maketitle&lt;/span&gt;
+
+Blablabla said Nobody ~&lt;span class="k"&gt;\cite&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Nobody06&lt;span class="nb"&gt;}&lt;/span&gt;.
+
+&lt;span class="k"&gt;\bibliographystyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;IEEEtran&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\bibliography&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;mybib&lt;span class="nb"&gt;}{}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;document&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;生成的pdf是这样的，&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Hello world 的编译结果" src="http://x7hub.github.io/images/latex_on_linux-01.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;使用模板&lt;/h4&gt;
+&lt;p&gt;虽然语法不是太难理解，但是要自己编辑一篇文章符合投稿的各种格式需求还是相当困难的，所以要套用模板，比如&lt;a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html"&gt;这里&lt;/a&gt;可以下载IEEE的模板，包括四个tex文件，bare_conf是会议，bare_jrnl和bare_jrnl_compsoc一个是for Computer Society Journals一个是for journals，bare_adv是Bare Advanced Demo of IEEEtran.cls for Computer Society Journals。&lt;/p&gt;
+&lt;h4&gt;插入图片&lt;/h4&gt;
+&lt;p&gt;首先发表的论文中需要使用eps格式的图片的文件。matlab可以直接保存为eps格式。如果是visio图，需要先保存为pdf，再在acrobat中选择tools-&amp;gt;print production-&amp;gt;set page boxes-&amp;gt;勾选remove white margins-&amp;gt;OK，然后再保存为eps格式。&lt;/p&gt;
+&lt;p&gt;根据IEEE提供的模板，插入图片很简单，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;graphicx&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;figure&lt;span class="nb"&gt;}&lt;/span&gt;[!t]
+&lt;span class="k"&gt;\centering&lt;/span&gt;
+&lt;span class="k"&gt;\includegraphics&lt;/span&gt;&lt;span class="na"&gt;[width=2.5in]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;myfigure&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;% where an .eps filename suffix will be assumed under latex, &lt;/span&gt;
+&lt;span class="c"&gt;% and a .pdf suffix will be assumed for pdflatex; or what has been declared&lt;/span&gt;
+&lt;span class="c"&gt;% via \DeclareGraphicsExtensions.&lt;/span&gt;
+&lt;span class="k"&gt;\caption&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Simulation Results&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig&lt;span class="nb"&gt;_&lt;/span&gt;sim&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;figure&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中，&lt;code&gt;\begin{figure}[!t]&lt;/code&gt;，&lt;code&gt;figure&lt;/code&gt;后可以加&lt;code&gt;*&lt;/code&gt;表示图片跨栏，&lt;code&gt;t&lt;/code&gt;参数表示图片的位置，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;h: 直接放在目前所处位置&lt;/li&gt;
+&lt;li&gt;t:  top，置顶&lt;/li&gt;
+&lt;li&gt;b: bottom，置底&lt;/li&gt;
+&lt;li&gt;p: 插入空白页之后h&lt;/li&gt;
+&lt;li&gt;!: 让latex决定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果要插入多张并列的一组图片，模板中提供了&lt;code&gt;subfloat&lt;/code&gt;的方法，不过似乎给出的语法有误。可以用下边的方法实现，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;figure*&lt;span class="nb"&gt;}&lt;/span&gt;[!t]
+&lt;span class="k"&gt;\centering&lt;/span&gt;
+&lt;span class="k"&gt;\subfigure&lt;/span&gt;&lt;span class="na"&gt;[]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\includegraphics&lt;/span&gt;&lt;span class="na"&gt;[width=1.5in]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig2a.eps&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig&lt;span class="nb"&gt;_&lt;/span&gt;moreuser&lt;span class="nb"&gt;_&lt;/span&gt;a&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\hfil&lt;/span&gt;
+&lt;span class="k"&gt;\subfigure&lt;/span&gt;&lt;span class="na"&gt;[]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\includegraphics&lt;/span&gt;&lt;span class="na"&gt;[width=1.5in]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig2b.eps&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig&lt;span class="nb"&gt;_&lt;/span&gt;moreuser&lt;span class="nb"&gt;_&lt;/span&gt;b&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\hfil&lt;/span&gt;
+&lt;span class="k"&gt;\subfigure&lt;/span&gt;&lt;span class="na"&gt;[]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\includegraphics&lt;/span&gt;&lt;span class="na"&gt;[width=1.5in]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig2c.eps&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig&lt;span class="nb"&gt;_&lt;/span&gt;moreuser&lt;span class="nb"&gt;_&lt;/span&gt;c&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\caption&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;More users can achieve more effective network utilization in 3G/4G network&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fig&lt;span class="nb"&gt;_&lt;/span&gt;moreuser&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;figure*&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;插入表格&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;table&lt;span class="nb"&gt;}&lt;/span&gt;[!t]
+&lt;span class="c"&gt;% increase table row spacing, adjust to taste&lt;/span&gt;
+&lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\arraystretch&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;1.3&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;% if using array.sty, it might be a good idea to tweak the value of&lt;/span&gt;
+&lt;span class="c"&gt;% \extrarowheight as needed to properly center the text within the cells&lt;/span&gt;
+&lt;span class="k"&gt;\caption&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;An Example of a Table&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;table&lt;span class="nb"&gt;_&lt;/span&gt;example&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\centering&lt;/span&gt;
+&lt;span class="c"&gt;% Some packages, such as MDW tools, offer better commands for making tables&lt;/span&gt;
+&lt;span class="c"&gt;% than the plain LaTeX2e tabular which is used here.&lt;/span&gt;
+&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tabular&lt;span class="nb"&gt;}{&lt;/span&gt;|c|c|&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\hline&lt;/span&gt;
+One &lt;span class="nb"&gt;&amp;amp;&lt;/span&gt; Two&lt;span class="k"&gt;\\&lt;/span&gt;
+&lt;span class="k"&gt;\hline&lt;/span&gt;
+Three &lt;span class="nb"&gt;&amp;amp;&lt;/span&gt; Four&lt;span class="k"&gt;\\&lt;/span&gt;
+&lt;span class="k"&gt;\hline&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;tabular&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;table&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="插入表格" src="http://x7hub.github.io/images/latex_on_linux-02.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;插入算法&lt;/h4&gt;
+&lt;p&gt;算法不是用表格填写的，而是有专门的语法，很方便，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithm&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithm&lt;span class="nb"&gt;}&lt;/span&gt;[!t]
+&lt;span class="k"&gt;\caption&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Hello&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;alg&lt;span class="nb"&gt;_&lt;/span&gt;hello&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;[1]
+&lt;span class="k"&gt;\WHILE&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;while&lt;span class="nb"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="err"&gt;\&lt;/span&gt;
+    &lt;span class="k"&gt;\IF&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;if&lt;span class="nb"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="err"&gt;\&lt;/span&gt;
+    &lt;span class="k"&gt;\ENDIF&lt;/span&gt;
+&lt;span class="k"&gt;\ENDWHILE&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithm&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="插入算法" src="http://x7hub.github.io/images/latex_on_linux-03.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;插入参考文献&lt;/h4&gt;
+&lt;p&gt;有两种方式。&lt;/p&gt;
+&lt;h5&gt;thebibliography&lt;/h5&gt;
+&lt;p&gt;参考模板中给出的格式，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;thebibliography&lt;span class="nb"&gt;}{&lt;/span&gt;1&lt;span class="nb"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;\bibitem&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;IEEEhowto:kopka&lt;span class="nb"&gt;}&lt;/span&gt;
+H.~Kopka and P.~W. Daly, &lt;span class="k"&gt;\emph&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;A Guide to &lt;span class="k"&gt;\LaTeX&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;, 3rd~ed.&lt;span class="k"&gt;\hskip&lt;/span&gt; 1em plus
+  0.5em minus 0.4em&lt;span class="k"&gt;\relax&lt;/span&gt; Harlow, England: Addison-Wesley, 1999.
+
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;thebibliography&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;bibtex&lt;/h5&gt;
+&lt;p&gt;正文中这样声明文件名，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\bibliographystyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;IEEEtran&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\bibliography&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;IEEEabrv,mybib&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;创建&lt;code&gt;mybib.bib&lt;/code&gt;文件，格式是这个样子的，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;misc&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;Nobody06&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Nobody Jr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;My Article&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2006&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以在google scholar中生成bibtex的文件格式，cite-&amp;gt;import into bibtex&lt;/p&gt;
+&lt;h4&gt;IEEE模板的段间距问题&lt;/h4&gt;
+&lt;p&gt;在&lt;a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html"&gt;上述地址&lt;/a&gt;下载到的模板显示是&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;%% IEEEtran.cls 2011/11/03 version V1.8 based on&lt;/p&gt;
+&lt;p&gt;%% IEEEtran.cls 2007/03/05 version V1.7a&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个版本的conf模板生成的pdf文件会有较大的段落间距，但是注意到现在可以检索到的IEEE的文章多数都是没有段间距的。&lt;a href="http://blog.sciencenet.cn/blog-264887-725786.html"&gt;有人&lt;/a&gt;提到可以用另一个版本的模板代替官网上下载的版本，但是尝试后可以发现这个版本与官方版本的页边距等参数是不同的，为了避免其他问题，下面给出了避免段间距的办法。&lt;/p&gt;
+&lt;p&gt;避免分段，当需要分段时，用&lt;code&gt;\\&lt;/code&gt;换行，再在下一行行首缩进固定的长度即可。&lt;/p&gt;
+&lt;p&gt;本来的分段的写法，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;This demo file is intended to serve as a ``starter file&amp;#39;&amp;#39;
+for IEEE conference papers produced under &lt;span class="k"&gt;\LaTeX\ &lt;/span&gt;using
+IEEEtran.cls version 1.7 and later.
+
+I wish you the best of success.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="有段间距" src="http://x7hub.github.io/images/latex_on_linux-04.png" /&gt;&lt;/p&gt;
+&lt;p&gt;用换行和缩进避免段间距，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;This demo file is intended to serve as a ``starter file&amp;#39;&amp;#39;
+for IEEE conference papers produced under &lt;span class="k"&gt;\LaTeX\ &lt;/span&gt;using
+IEEEtran.cls version 1.7 and later.&lt;span class="k"&gt;\\&lt;/span&gt;
+&lt;span class="k"&gt;\hspace*&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;0.5cm&lt;span class="nb"&gt;}&lt;/span&gt;I wish you the best of success.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</summary><category term="latex"></category><category term="linux"></category></entry></feed>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>x7's blog</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="..">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content">
+<h2>Articles in the latex category</h2>
+
+
+   <div class="row">
+
+
+        <div class="eleven columns">
+		         <ol id="post-list">
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Linux系统中LaTeX的安装与使用</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2014-03-17T00:00:00"> Mon 17 March 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <h3>安装</h3>
+<p>针对Archlinux，需要<a href="https://wiki.archlinux.org/index.php/TeX_Live">TeX Live</a>，首先要编译LaTeX文件需要这个包<code>texlive-bin</code>，有一些图片字体之类的依赖，在这一组包里<code>texlive-most</code>。</p>
+<p>如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。</p>
+<p>Linux下的LaTeX编辑器<a href="https://wiki.archlinux.org/index.php/Latex">有很多</a>，我使用的是<code>Kile</code>，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。</p>
+<h3>使用</h3>
+<p>LaTeX文件后缀通常为<code>.tex</code>。可以在命令行直接编译，</p>
+<div class="highlight"><pre>latex source.tex
+</pre></div>
+
+
+<p>用<code>Kile</code>编辑文件，可以直接通过''QuickBuild''编译生成pdf并直接打开预览。</p>
+<h4>Helloworld</h4>
+<p>简单测试代码，很容易理解，</p>
+<div class="highlight"><pre><span class="k">\documentclass</span><span class="na">[11pt]</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>cite<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\title</span><span class="nb">{</span>My Article<span class="nb">}</span>
+<span class="k">\author</span><span class="nb">{</span>Nobody Jr.<span class="nb">}</span>
+<span class="k">\date ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/latex.html">latex</a>
+											<a class="danger label" href="../tag/linux.html">linux</a>
+								</div>
+
+
+
+				        </article></li>
+				</ol><!-- /#posts-list -->
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">latex</a></li>
+		<li><a href="../category/linux.html">linux</a></li>
+		<li><a href="../category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+</section><!-- /#content -->
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

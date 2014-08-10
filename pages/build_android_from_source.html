@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>从源码编译Android系统</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="..">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="../pages/build_android_from_source.html" rel="bookmark"
+                   title="Permalink to 从源码编译Android系统">从源码编译Android系统</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2013-07-29T00:00:00">
+                Mon 29 July 2013
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="../author/x7.html">x7</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
+<p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Android">Android - ArchWiki</a></p>
+<p><a href="http://source.android.com/source/initializing.html">Initializing a Build Environment | Android Developers</a></p>
+<p><a href="http://forum.xda-developers.com/showthread.php?t=2259929">[TUT] Configuring Arch Linux to build Android - xda-developers</a></p>
+<p>首先在32位archlinux上尝试，最后发现必须要64位的才行。。。最后转战到ubuntu 10.04 server</p>
+<h3>arch上的尝试：</h3>
+<ul>
+<li>系统需求，32位系统需要这么一堆东西：</li>
+</ul>
+<div class="highlight"><pre>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
+</pre></div>
+
+
+<p>64位系统还需要：</p>
+<div class="highlight"><pre>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib gcc-multilib lib32-gcc-libs
+</pre></div>
+
+
+<ul>
+<li>
+<p>需要<code>jdk6</code>，古董级别的，源里和AUR里都没有了，去王八壳网站<a href="http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html">下载</a>。</p>
+</li>
+<li>
+<p>下好了放到<code>/opt</code>下，给<code>x</code>权限，执行,安装到<code>/opt/jdk1.6.0_45</code>。</p>
+</li>
+</ul>
+<div class="highlight"><pre>sudo chmod +x jdk-6u45-linux-i586.bin
+sudo ./jdk-6u45-linux-i586.bin
+</pre></div>
+
+
+<ul>
+<li>然后搞<code>python2</code>，为了让系统默认<code>python</code>为<code>python2</code>，需要修改<code>PATH</code>，顺道把<code>java</code>也改了。</li>
+</ul>
+<div class="highlight"><pre>mkdir android-build
+<span class="nb">cd </span>android-build
+ln -s <span class="k">$(</span>which python2<span class="k">)</span> python
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/android-build:/opt/jdk1.6.0_45/bin:$PATH&quot;</span>
+</pre></div>
+
+
+<ul>
+<li>进到源码目录，执行Google提供的设定环境变量的脚本,非让我用<code>bash</code>，<code>zsh</code>不给用。</li>
+</ul>
+<div class="highlight"><pre>bash
+<span class="nb">source </span>build/envsetup.sh
+</pre></div>
+
+
+<ul>
+<li><code>lunch</code>，然后就杯具了。。。</li>
+</ul>
+<div class="highlight"><pre>/bin/bash: prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-gcc: cannot execute binary file
+</pre></div>
+
+
+<p>谷了一歌，说需要x64系统。。。。闹哪样 要x64你就别提供x86的包啊，唬我呢。。。</p>
+<h3>于是吧源码搞到服务器上去</h3>
+<ul>
+<li>装这么一堆依赖：</li>
+</ul>
+<div class="highlight"><pre>apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown libxml2-utils xsltproc
+</pre></div>
+
+
+<ul>
+<li>重新下载64位的王八壳的java（openjdk不让，必须oracel的），和前边一样，然后改<code>PATH</code></li>
+</ul>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/jdk1.6.0_45/bin:$PATH&quot;</span>
+</pre></div>
+
+
+<ul>
+<li>配置<code>ccache</code></li>
+</ul>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">USE_CCACHE</span><span class="o">=</span>1
+<span class="nb">export </span><span class="nv">CCACHE_DIR</span><span class="o">=</span>/root/android-build/ccache
+prebuilts/misc/linux-x86/ccache/ccache -M 50G
+</pre></div>
+
+
+<ul>
+<li>编译,就可以了</li>
+</ul>
+<div class="highlight"><pre>make -j4
+</pre></div>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "pages/build_android_from_source.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://x7qus.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">latex</a></li>
+		<li><a href="../category/linux.html">linux</a></li>
+		<li><a href="../category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

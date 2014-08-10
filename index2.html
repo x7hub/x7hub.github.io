@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>x7's blog</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
+
+        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href=".">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href=".">Home</a></li>
+
+                <li><a href="./pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content">
+
+
+
+   <div class="row">
+
+
+        <div class="eleven columns">
+		         <ol id="post-list">
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="./pages/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Android禁止安装360手机助手</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-08-07T00:00:00"> Wed 07 August 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="./author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html">以前的新浪博客</a>～</p>
+<p>360太讨厌了，还老有人用我手机调试，一插他们电脑，马上就要给我装上360,于是就有了下边的招：</p>
+<p>android程序在手机上在<code>/data/app/</code>目录下，考虑在此位置放一个360相同包名的文件，想让它安装的时候不能覆盖</p>
+<div class="highlight"><pre>adb shell
+su
+touch /data/app/com.qihoo.appstore-1.apk
+chattr +i /data/app/com.qihoo.appstore-1.apk
+</pre></div>
+
+
+<p>尝试安装，软件装到手机时成功的禁止掉，但是还是能被安装到sd卡，于是采取占用<code>data</code>文件夹的方式：</p>
+<div class="highlight"><pre>adb shell
+su
+touch /data/data/com.qihoo.appstore
+chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="./pages/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="./tag/android.html">android</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="./pages/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">从源码编译Android系统</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-07-29T00:00:00"> Mon 29 July 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="./author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
+<p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Android">Android - ArchWiki</a></p>
+<p><a href="http://source.android.com/source/initializing.html">Initializing a Build Environment | Android Developers</a></p>
+<p><a href="http://forum.xda-developers.com/showthread.php?t=2259929">[TUT] Configuring Arch Linux to build Android - xda-developers</a></p>
+<p>首先在32位archlinux上尝试，最后发现必须要64位的才行。。。最后转战到ubuntu 10.04 server</p>
+<h3>arch上的尝试：</h3>
+<ul>
+<li>系统需求，32位系统需要这么一堆东西：</li>
+</ul>
+<div class="highlight"><pre>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
+</pre></div>
+
+
+<p>64位系统还需要：</p>
+<div class="highlight"><pre>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib ...</pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="./pages/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="./tag/android.html">android</a>
+											<a class="danger label" href="./tag/linux.html">linux</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="./pages/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">hadoop on archlinux</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-06-21T00:00:00"> Fri 21 June 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="./author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
+<p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Hadoop">Hadoop - ArchWiki</a></p>
+<p><a href="http://hadoop.apache.org/docs/stable/single_node_setup.html">Single Node Setup</a></p>
+<ul>
+<li>安装：</li>
+</ul>
+<div class="highlight"><pre>yaourt hadoop
+</pre></div>
+
+
+<ul>
+<li>主要目录是这个：</li>
+</ul>
+<div class="highlight"><pre>/etc/hadoop/
+</pre></div>
+
+
+<ul>
+<li>当然配置文件还是在这里。</li>
+</ul>
+<div class="highlight"><pre>/etc/hadoop/
+</pre></div>
+
+
+<ul>
+<li>检查java环境配置。</li>
+</ul>
+<div class="highlight"><pre><span class="nb">echo</span> <span class="nv">$JAVA_HOME</span>
+</pre></div>
+
+
+<ul>
+<li>
+<p>安装时生成了rsa密钥一对，还需要将本地用户的公钥添加到<code>/etc/hadoop/.ssh/authorized_keys</code>,用于<code>ssh</code>验证。</p>
+</li>
+<li>
+<p>格式化新的分布式文件系统</p>
+</li>
+</ul>
+<div class="highlight"><pre>hadoop namenode -format
+</pre></div>
+
+
+<ul>
+<li>启动服务,需要防火墙打开<code>9000</code>和<code>9001</code>端口，即使单机hadoop也需要，不明</li>
+</ul>
+<div class="highlight"><pre>bin/start-all.sh
+</pre></div>
+
+
+<p>或者启动<code>systemd</code>的一排service</p>
+<ul>
+<li>启动后运行example测试，首先把测试用的文件写到<code>hadoop ...</code></li></ul> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="./pages/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="./tag/linux.html">linux</a>
+											<a class="danger label" href="./tag/hadoop.html">hadoop</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="./pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-01-22T00:00:00"> Tue 22 January 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="./author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
+<p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
+<div class="highlight"><pre><span class="nl">root:</span><span class="o">/</span><span class="n">sources</span><span class="o">/</span><span class="n">shadow</span><span class="o">-</span><span class="mf">4.1.5.1</span><span class="err">#</span> <span class="n">passwd</span> <span class="n">root</span>
+<span class="n">Changing</span> <span class="n">password</span> <span class="k">for</span> <span class="n">root</span>
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">new</span> <span class="n">password</span> <span class="p">(</span><span class="n">minimum</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">characters</span><span class="p">)</span>
+<span class="n">Please</span> <span class="n">use</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">upper</span> <span class="n">and</span> <span class="n">lower</span> <span class="k">case</span> <span class="n">letters</span> <span class="n">and</span> <span class="n">numbers</span><span class="p">.</span>
+<span class="n">Bad</span> <span class="n">password</span><span class="o">:</span> <span class="n">too</span> <span class="kt">short</span><span class="p">.</span>  
+<span class="nl">Warning:</span> <span class="n">weak</span> <span class="n">password</span> <span class="p">(</span><span class="n">enter</span> <span class="n">it ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="./pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="./tag/linux.html">linux</a>
+											<a class="danger label" href="./tag/lfs.html">lfs</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="./pages/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2012-11-25T00:00:00"> Sun 25 November 2012 </abbr>
+<address class="vcard author">By <a class="url fn" href="./author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
+<p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
+<p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
+<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?f=139&amp;t=393256">打造自己的多功能USB启动盘——grub2引导WinPE、Archlinux安装镜像和Ubuntu liveCD</a></p>
+<h3>U盘准备</h3>
+<p>格式fat32，卷标 zzz。</p>
+<div class="highlight"><pre>sudo grub-install --boot-directory<span class="o">=</span> --no-floppy --target<span class="o">=</span>i386-pc --recheck /dev/sd
+</pre></div>
+
+
+<h3>目录放置</h3>
+<ul>
+<li>
+<p>考虑到方便win下使用没有分两个区。</p>
+</li>
+<li>
+<p><code>/livecd</code>需要引导的iso镜像 不必解压  暂时只用到arch ubuntu</p>
+</li>
+<li>
+<p><code>/livecd/grub</code>在arch中用grub-install安装的grub2文件</p>
+</li>
+<li>
+<p><code>/livecd/grub4dos</code>用于引导windows镜像</p>
+</li>
+</ul>
+<h3>配置文件</h3>
+<ul>
+<li><code>grub.cfg</code>:</li>
+</ul>
+<div class="highlight"><pre><span class="cp"># grub.cfg</span>
+<span class="cp"># for ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="./pages/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="./tag/linux.html">linux</a>
+											<a class="danger label" href="./tag/grub2.html">grub2</a>
+								</div>
+
+
+
+				        </article></li>
+				</ol><!-- /#posts-list -->
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="./pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="./category/android.html">android</a></li>
+		<li><a href="./category/blog.html">blog</a></li>
+		<li><a href="./category/latex.html">latex</a></li>
+		<li><a href="./category/linux.html">linux</a></li>
+		<li><a href="./category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="./tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="./tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="./tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="./tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="./tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="./tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="./tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="./tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="./tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="./tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="./tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+<p class="paginator">
+            <a href="./index.html"><i class="icon-arrow-left"></i></a>
+    Page 2 / 2
+</p>
+</section><!-- /#content -->
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="./theme/js/libs/gumby.min.js"></script>
+  <script src="./theme/js/plugins.js"></script>
+</body>
+</html>

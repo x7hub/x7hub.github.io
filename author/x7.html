@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>x7's blog - Articles by x7</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="..">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content">
+<h2>Articles by x7</h2>
+
+
+   <div class="row">
+
+
+        <div class="eleven columns">
+		         <ol id="post-list">
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2014-05-29T00:00:00"> Thu 29 May 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p><a href="http://blog.csdn.net/chen_linbo/article/details/6396122">oracle union all和order by一起使用</a></p>
+<p>需求是这样的，有类似如下的表，</p>
+<div class="highlight"><pre><span class="o">+--------+------+-----+-----+------+---------+----------+</span>
+<span class="o">|</span> <span class="n">userid</span> <span class="o">|</span> <span class="n">imei</span> <span class="o">|</span> <span class="n">lat</span> <span class="o">|</span> <span class="n">lon</span> <span class="o">|</span> <span class="n">addr</span> <span class="o">|</span> <span class="n">network</span> <span class="o">|</span> <span class="n">operator</span> <span class="o">|</span>
+<span class="o">+--------+------+-----+-----+------+---------+----------+</span>
+<span class="o">|</span> <span class="mi">122</span>    <span class="o">|</span> <span class="mi">343</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12344</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">123</span>    <span class="o">|</span> <span class="mi">345</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">124</span>    <span class="o">|</span> <span class="mi">346</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">125</span>    <span class="o">|</span> <span class="mi">347</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">126</span>    <span class="o">|</span> <span class="mi">348</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12346</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">127</span>    <span class="o">|</span> <span class="mi">349</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12347</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">128</span>    <span class="o">|</span> <span class="mi">350</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12343</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">129 ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/sql.html">sql</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Linux系统中LaTeX的安装与使用</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2014-03-17T00:00:00"> Mon 17 March 2014 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <h3>安装</h3>
+<p>针对Archlinux，需要<a href="https://wiki.archlinux.org/index.php/TeX_Live">TeX Live</a>，首先要编译LaTeX文件需要这个包<code>texlive-bin</code>，有一些图片字体之类的依赖，在这一组包里<code>texlive-most</code>。</p>
+<p>如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。</p>
+<p>Linux下的LaTeX编辑器<a href="https://wiki.archlinux.org/index.php/Latex">有很多</a>，我使用的是<code>Kile</code>，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。</p>
+<h3>使用</h3>
+<p>LaTeX文件后缀通常为<code>.tex</code>。可以在命令行直接编译，</p>
+<div class="highlight"><pre>latex source.tex
+</pre></div>
+
+
+<p>用<code>Kile</code>编辑文件，可以直接通过''QuickBuild''编译生成pdf并直接打开预览。</p>
+<h4>Helloworld</h4>
+<p>简单测试代码，很容易理解，</p>
+<div class="highlight"><pre><span class="k">\documentclass</span><span class="na">[11pt]</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="k">\usepackage</span><span class="nb">{</span>cite<span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\title</span><span class="nb">{</span>My Article<span class="nb">}</span>
+<span class="k">\author</span><span class="nb">{</span>Nobody Jr.<span class="nb">}</span>
+<span class="k">\date ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/latex.html">latex</a>
+											<a class="danger label" href="../tag/linux.html">linux</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">用Pelican构建博客上传到Github Pages出错</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-12-04T00:00:00"> Wed 04 December 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a></p>
+<h3>出错情况</h3>
+<p>上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。</p>
+<p>用<code>pelican</code>和<code>markdown</code>本地编译成功，但是用<code>git</code>提交到<code>Github</code>时，收到了这么一封邮件，</p>
+<blockquote>
+<p>From:  GitHub (noreply@github.com) This sender is in your safe list.</p>
+<p>Sent:  Saturday, November 30, 2013 1:06:57 PM</p>
+<p>To:    x7hub (x7.0@outlook.com)</p>
+<p>The page build ...</p></blockquote> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/github.html">github</a>
+											<a class="danger label" href="../tag/pelican.html">pelican</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-11-30T00:00:00"> Sat 30 November 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p>Linux Shell脚本攻略 人民邮电出版社</p>
+<h3>数组</h3>
+<p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
+<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
+</pre></div>
+
+
+<p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
+<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="k">}</span>
+1
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="k">}</span>
+1
+</pre></div>
+
+
+<p>但是，在<code>zsh ...</code></p> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/linux.html">linux</a>
+											<a class="danger label" href="../tag/shell.html">shell</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">对Service中弹出的Dialog设置主题</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-11-05T00:00:00"> Tue 05 November 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p><a href="http://blog.csdn.net/huxueyan521/article/details/8954844">service中显示一个dialog</a></p>
+<p><a href="http://www.cnblogs.com/noTice520/archive/2011/02/01/1948738.html">android UI进阶之style和theme的使用</a></p>
+<h3>简介</h3>
+<p>有一个Dialog需要在多个应用中的多个位置调用，需要用Intent调起，于是想出的办法是Intent调起一个Service，重写这个Service的<code>onStartCommand</code>方法在其中弹出Dialog。弹出Dialog后发现主题与软件整体采用的<code>Theme.Holo.Light</code>不一致，于是找到了为弹出的对话框设置主题的方法，在文中给出。</p>
+<h3>Services中弹出Dialog</h3>
+<p>新建一个Service并在<code>AndroidManifest.xml</code>中声明<code>Service</code>和<code>intent-filter</code>，在需要的地方用Intent调起，不谈。</p>
+<p>用<code>startService(intent)</code>调起Service后的操作需要重写<code>onStartCommand</code>方法，在其中尝试按照平常的方法调起Dialog：</p>
+<div class="highlight"><pre><span class="n">Dialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+<span class="n">dialog</span><span class="o">.</span><span class="na">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">something</span><span class="o">);</span>
+<span class="n">dialog</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+</pre></div>
+
+
+<p>这样尝试调起Dialog会引起错误：</p>
+<div class="highlight"><pre><span class="mi">11</span><span class="o">-</span><span class="mo">05 ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/android.html">android</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-10-09T00:00:00"> Wed 09 October 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考:</p>
+<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
+<p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
+<h3>简介:</h3>
+<p>学校实验室的项目，其中一部分需求要修改原生的Android日历应用，加入部分额外的功能。本文介绍对Android源码中日历模块的分析，另外简单实现了农历的显示。<a href="https://github.com/x7hub/Calendar_lunar">部分修改的源码</a>上传到了github，由于参加与公司的合作项目，所以只提交了完成农历显示的版本，之后的版本不便给出。</p>
+<p>本文日历模块特指Android 4.1源码中的<code>com.android.calendar</code>，没有对calendar provider做分析。</p>
+<h3>主要结构</h3>
+<p>首先需要说明，在Google给出的Android代码中单独取出Calendar模块，是不能在eclipse中直接编译运行的。单独编译运行的方法参考<a href="http://x7hub.github.io/pages/android_app_compile.html">另一篇博文</a>。</p>
+<ul>
+<li>
+<p>日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。</p>
+<p><img alt="月视图" src="http://x7hub.github.io/images/small-android_calendar-02.png" />
+<img alt="周视图" src="http://x7hub.github.io/images/small-android_calendar-03.png" />
+<img alt="日视图" src="http://x7hub.github.io/images/small-android_calendar-04.png" />
+<img alt="日程视图" src="http://x7hub.github.io/images/small-android_calendar-05.png" /></p>
+<p>四个视图对应4个Fragment，都附着于<code>AllInOneActivity</code>。</p>
+<p>月视图：<code>month/MonthByWeekFragment.java</code></p>
+<p>日视图和周视图：<code>DayFragment.java</code></p>
+<p>日程视图 ...</p></li></ul> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/android.html">android</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-10-08T00:00:00"> Tue 08 October 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考:</p>
+<p><a href="http://blog.csdn.net/xixinyan/article/details/6942074">在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)</a></p>
+<p><a href="http://blog.csdn.net/zhu_apollo/article/details/8760025">android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一</a></p>
+<h3>Android 源码下载：</h3>
+<p>利用<code>repo</code>工具下载Google原生的Android源码。参考<a href="http://source.android.com/source/downloading.html">Google官方文档</a>。</p>
+<p>高通芯片对应的Android<a href="https://www.codeaurora.org/xwiki/bin/QRD-Android/">源码下载</a>。</p>
+<h3>Android源码结构：</h3>
+<p>Google提供的Android包含了：Android源代码，工具链，基础C库，仿真环境，开发环境等。</p>
+<p>第一级别的目录和文件如下所示：</p>
+<div class="highlight"><pre>　　<span class="o">----------------</span>
+　　　<span class="o">|--</span> <span class="n">Makefile</span>            <span class="err">全局的</span><span class="n">Makefile</span>
+　　　<span class="o">|--</span> <span class="n">build</span>               <span class="err">系统编译规则和配置所需要的脚本和工具</span>
+　　<span class="o">----------------</span>
+　　　<span class="o">|--</span> <span class="n">prebuilt</span>        <span class="err">各种平台编译工具链</span>
+　　　<span class="o">|--</span> <span class="n">bionic</span>              <span class="err">基础</span><span class="n">C</span><span class="err">库源代码</span>
+　　<span class="o">----------------</span>
+　　　<span class="o">|--</span> <span class="n">frameworks</span> <span class="o">*</span>        <span class="n">Android</span><span class="err">应用程序的核心框架层</span><span class="p">(</span><span class="n">java</span><span class="err">及</span><span class="n">C</span><span class="o">++</span><span class="err">语言</span><span class="p">)</span>
+　　　<span class="o">|--</span> <span class="n">system</span>     <span class="o">*</span>        <span class="err">底层文件系统</span><span class="o">/</span><span class="err">库</span><span class="o">/</span><span class="err">应用及组件</span><span class="p">(</span><span class="n">C</span><span class="err">语言 ...</span></pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/android.html">android</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-09-29T00:00:00"> Sun 29 September 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
+<p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
+<h3>dnsmasq</h3>
+<p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
+<h3>配置</h3>
+<ul>
+<li>首先安装：</li>
+</ul>
+<div class="highlight"><pre>pacman -S dnsmasq
+</pre></div>
+
+
+<ul>
+<li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
+</ul>
+<div class="highlight"><pre><span class="n">resolv</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv_dnsmasq</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+
+
+<ul>
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager ...</code></li></ul> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/linux.html">linux</a>
+											<a class="danger label" href="../tag/dns.html">dns</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-09-08T00:00:00"> Sun 08 September 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
+<div class="highlight"><pre><span class="cp"># github</span>
+<span class="mf">207.97.227.239</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">65.74.177.129</span> <span class="n">www</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">207.97.227.252</span> <span class="n">nodeload</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">207.97.227.243</span> <span class="n">raw</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">204.232.175.78</span> <span class="n">documentcloud</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="mf">204.232.175.78</span> <span class="n">pages</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+</pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/linux.html">linux</a>
+											<a class="danger label" href="../tag/hosts.html">hosts</a>
+								</div>
+
+
+
+				        </article></li>
+				        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="../pages/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-08-27T00:00:00"> Tue 27 August 2013 </abbr>
+<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考:</p>
+<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
+<p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
+<p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
+<h3>搭建环境</h3>
+<p>在Linux环境下搭建，我使用的是Archlinux i686，使用其它发行版过程基本相同。</p>
+<h3>Github Pages</h3>
+<ul>
+<li>注册Github,注册和配置SSH密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
+<li>在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。</li>
+<li>Setting -&gt; Automatic page generator -&gt; Continue to layout，选择一个模板，并发布。</li>
+</ul>
+<p>这时在username.github.io页面就已经生成了一个页面。</p>
+<h3>本地搭建</h3>
+<ul>
+<li>安装pelican和markdown：</li>
+</ul>
+<div class="highlight"><pre>yaourt pelican
+yaourt markdown
+</pre></div>
+
+
+<ul>
+<li>搭建目录：</li>
+</ul>
+<div class="highlight"><pre>mkdir blog
+<span class="nb">cd </span>blog
+pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="../pages/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+										<span>Tagged as : </span>
+											<a class="danger label" href="../tag/blog.html">blog</a>
+											<a class="danger label" href="../tag/github.html">github</a>
+											<a class="danger label" href="../tag/pelican.html">pelican</a>
+								</div>
+
+
+
+				        </article></li>
+				</ol><!-- /#posts-list -->
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">latex</a></li>
+		<li><a href="../category/linux.html">linux</a></li>
+		<li><a href="../category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+<p class="paginator">
+    Page 1 / 2
+        <a href="../author/x72.html"><i class="icon-arrow-right"></i></a>
+</p>
+</section><!-- /#content -->
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7hub.github.io/" rel="alternate"></link><link href="http://x7hub.github.io/feeds/dns.atom.xml" rel="self"></link><id>http://x7hub.github.io/</id><updated>2013-09-29T00:00:00+08:00</updated><entry><title>在本地建立DNS缓存</title><link href="http://x7hub.github.io/pages/local_dns.html" rel="alternate"></link><updated>2013-09-29T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7hub.github.io,2013-09-29:pages/local_dns.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Dnsmasq"&gt;dnsmasq - ArchWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://tieba.baidu.com/p/1034963853"&gt;用dnsmasq加速你的网络!!!&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;dnsmasq&lt;/h3&gt;
+&lt;p&gt;Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。&lt;/p&gt;
+&lt;h3&gt;配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;首先安装：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pacman -S dnsmasq
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;修改配置文件&lt;code&gt;/etc/dnsmasq.conf&lt;/code&gt;。指定用于域名查询的配置文件，反注释并修改这一行：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;resolv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;resolv_dnsmasq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;这个文件不存在啊？当然是需要自己创建的，复制前要保证&lt;code&gt;/etc/resolv.conf&lt;/code&gt;是原本配置好的或者被&lt;code&gt;networkmanager&lt;/code&gt;等应用自动生成的，没被修改过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo cp /etc/resolv.conf /etc/resolv_dnsmasq.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;启用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;修改系统dns服务器地址设置。如果使用了&lt;code&gt;networkmanager&lt;/code&gt;等管理网络的应用，在其中修改使用的网络连接，取消自动获取dns服务器的选框，设定&lt;code&gt;127.0.0.1&lt;/code&gt;为默认dns。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果没有使用，那么系统是通过直接读取用户设置的&lt;code&gt;/etc/resolv.conf&lt;/code&gt;来获取dns服务器，那么直接修改这个文件即可：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;nameserver&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;然后启动dnsmasq服务：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo systemctl start dnsmasq.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;测试&lt;/h3&gt;
+&lt;p&gt;开启后测试一下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dig g.cn
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到这么一行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;;;&lt;/span&gt; &lt;span class="n"&gt;SERVER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;127.0.0.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这就成功了。由于使用本地的缓存，就不必担心学校的dns服务器再瘫掉导致没法上网了。或者还可以使用8.8.8.8作为dnsmasq的上游，更稳定，不过会导致解析学校的登陆网关出问题。&lt;/p&gt;
+&lt;p&gt;另外，&lt;a href="https://wiki.archlinux.org/index.php/Dnsmasq#DNS_Caching"&gt;archwiki&lt;/a&gt;上有这么一段：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To do a lookup speed test choose a website that has not been visited since dnsmasq has been started (dig is part of the dnsutils package):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ dig archlinux.org | grep "Query time"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Running the command again will use the cached DNS IP and result in a faster lookup time if dnsmasq is setup correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;于是就试了一下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~ % dig archlinux.org | grep &lt;span class="s2"&gt;&amp;quot;Query time&amp;quot;&lt;/span&gt;              commander@myhost pts/2 19:11 
+;; Query &lt;span class="nb"&gt;time&lt;/span&gt;: 315 msec
+~ % dig archlinux.org | grep &lt;span class="s2"&gt;&amp;quot;Query time&amp;quot;&lt;/span&gt;              commander@myhost pts/2 19:12 
+;; Query &lt;span class="nb"&gt;time&lt;/span&gt;: 0 msec
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;确实效果明显。但是，关掉了dnsmasq并设置使用自动获取的dns服务，一样也是这样的效果，看来学校给的dns服务器也是大概使用了这种缓存机制吧。&lt;/p&gt;</summary><category term="linux"></category><category term="dns"></category></entry></feed>

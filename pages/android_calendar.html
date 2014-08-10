@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>Android原生日历应用分析和简单扩展</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="..">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="../pages/android_calendar.html" rel="bookmark"
+                   title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2013-10-09T00:00:00">
+                Wed 09 October 2013
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="../author/x7.html">x7</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>参考:</p>
+<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
+<p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
+<h3>简介:</h3>
+<p>学校实验室的项目，其中一部分需求要修改原生的Android日历应用，加入部分额外的功能。本文介绍对Android源码中日历模块的分析，另外简单实现了农历的显示。<a href="https://github.com/x7hub/Calendar_lunar">部分修改的源码</a>上传到了github，由于参加与公司的合作项目，所以只提交了完成农历显示的版本，之后的版本不便给出。</p>
+<p>本文日历模块特指Android 4.1源码中的<code>com.android.calendar</code>，没有对calendar provider做分析。</p>
+<h3>主要结构</h3>
+<p>首先需要说明，在Google给出的Android代码中单独取出Calendar模块，是不能在eclipse中直接编译运行的。单独编译运行的方法参考<a href="http://x7hub.github.io/pages/android_app_compile.html">另一篇博文</a>。</p>
+<ul>
+<li>
+<p>日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。</p>
+<p><img alt="月视图" src="http://x7hub.github.io/images/small-android_calendar-02.png" />
+<img alt="周视图" src="http://x7hub.github.io/images/small-android_calendar-03.png" />
+<img alt="日视图" src="http://x7hub.github.io/images/small-android_calendar-04.png" />
+<img alt="日程视图" src="http://x7hub.github.io/images/small-android_calendar-05.png" /></p>
+<p>四个视图对应4个Fragment，都附着于<code>AllInOneActivity</code>。</p>
+<p>月视图：<code>month/MonthByWeekFragment.java</code></p>
+<p>日视图和周视图：<code>DayFragment.java</code></p>
+<p>日程视图：<code>agenda/AgendaFragment.java</code></p>
+</li>
+<li>
+<p>其他重要视图对应的代码文件：</p>
+<p>日程新建、编辑：<code>event/EditEventFragment.java</code></p>
+<p>日程详细信息：<code>EventInfoActivity.java</code></p>
+<p>设置：<code>CalendarSettingActivity.java</code></p>
+<p><img alt="日程新建、编辑" src="http://x7hub.github.io/images/small-android_calendar-06.png" />
+<img alt="日程详细信息" src="http://x7hub.github.io/images/small-android_calendar-07.png" /> 
+<img alt="设置" src="http://x7hub.github.io/images/small-android_calendar-08.png" /></p>
+</li>
+</ul>
+<h3>加入农历显示功能</h3>
+<p>在google-code上找到了一段计算农历的代码，引用的位置<a href="https://code.google.com/p/android-project-sse-ustc/">在这里</a>。</p>
+<p>农历的计算使用代码中的<a href="https://github.com/x7hub/Calendar_lunar/blob/master/src/edu/bupt/calendar/lunar/Lunar.java">Lunar.java</a>文件。简单看了一下，并没有真的使用复杂的农历算法，而是利用一个数组预存了每一年的初一与1900年1月1日的差数，利用这个数组再做计算。具体参看代码不谈。</p>
+<div class="highlight"><pre>    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">lunarInfo</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">19416</span><span class="o">,</span> <span class="mi">19168</span><span class="o">,</span> <span class="mi">42352</span><span class="o">,</span> <span class="mi">21717</span><span class="o">,</span> <span class="mi">53856</span><span class="o">,</span> <span class="mi">55632</span><span class="o">,</span> <span class="mi">91476</span><span class="o">,</span> <span class="mi">22176</span><span class="o">,</span> <span class="mi">39632</span><span class="o">,</span> <span class="mi">21970</span><span class="o">,</span> <span class="mi">19168</span><span class="o">,</span> <span class="mi">42422</span><span class="o">,</span> <span class="mi">42192</span><span class="o">,</span> <span class="mi">53840</span><span class="o">,</span> <span class="mi">119381</span><span class="o">,</span> <span class="mi">46400</span><span class="o">,</span> <span class="mi">54944</span><span class="o">,</span> <span class="mi">44450</span><span class="o">,</span> <span class="mi">38320</span><span class="o">,</span> <span class="mi">84343</span><span class="o">,</span> <span class="mi">18800</span><span class="o">,</span> <span class="mi">42160</span><span class="o">,</span> <span class="mi">46261</span><span class="o">,</span> <span class="mi">27216</span><span class="o">,</span> <span class="mi">27968</span><span class="o">,</span> <span class="mi">109396</span><span class="o">,</span> <span class="mi">11104</span><span class="o">,</span> <span class="mi">38256</span><span class="o">,</span> <span class="mi">21234</span><span class="o">,</span> <span class="mi">18800</span><span class="o">,</span> <span class="mi">25958</span><span class="o">,</span> <span class="mi">54432</span><span class="o">,</span> <span class="mi">59984</span><span class="o">,</span> <span class="mi">28309</span><span class="o">,</span> <span class="mi">23248</span><span class="o">,</span> <span class="mi">11104</span><span class="o">,</span> <span class="mi">100067</span><span class="o">,</span> <span class="mi">37600</span><span class="o">,</span> <span class="mi">116951</span><span class="o">,</span> <span class="mi">51536</span><span class="o">,</span> <span class="mi">54432</span><span class="o">,</span> <span class="mi">120998</span><span class="o">,</span> <span class="mi">46416</span><span class="o">,</span> <span class="mi">22176</span><span class="o">,</span> <span class="mi">107956</span><span class="o">,</span> <span class="mi">9680</span><span class="o">,</span> <span class="mi">37584</span><span class="o">,</span> <span class="mi">53938</span><span class="o">,</span> <span class="mi">43344</span><span class="o">,</span> <span class="mi">46423</span><span class="o">,</span> <span class="mi">27808</span><span class="o">,</span> <span class="mi">46416</span><span class="o">,</span> <span class="mi">86869</span><span class="o">,</span> <span class="mi">19872</span><span class="o">,</span> <span class="mi">42448</span><span class="o">,</span> <span class="mi">83315</span><span class="o">,</span> <span class="mi">21200</span><span class="o">,</span> <span class="mi">43432</span><span class="o">,</span> <span class="mi">59728</span><span class="o">,</span> <span class="mi">27296</span><span class="o">,</span> <span class="mi">44710</span><span class="o">,</span> <span class="mi">43856</span><span class="o">,</span> <span class="mi">19296</span><span class="o">,</span> <span class="mi">43748</span><span class="o">,</span> <span class="mi">42352</span><span class="o">,</span> <span class="mi">21088</span><span class="o">,</span> <span class="mi">62051</span><span class="o">,</span> <span class="mi">55632</span><span class="o">,</span> <span class="mi">23383</span><span class="o">,</span> <span class="mi">22176</span><span class="o">,</span> <span class="mi">38608</span><span class="o">,</span> <span class="mi">19925</span><span class="o">,</span> <span class="mi">19152</span><span class="o">,</span> <span class="mi">42192</span><span class="o">,</span> <span class="mi">54484</span><span class="o">,</span> <span class="mi">53840</span><span class="o">,</span> <span class="mi">54616</span><span class="o">,</span> <span class="mi">46400</span><span class="o">,</span> <span class="mi">46496</span><span class="o">,</span> <span class="mi">103846</span><span class="o">,</span> <span class="mi">38320</span><span class="o">,</span> <span class="mi">18864</span><span class="o">,</span> <span class="mi">43380</span><span class="o">,</span> <span class="mi">42160</span><span class="o">,</span> <span class="mi">45690</span><span class="o">,</span> <span class="mi">27216</span><span class="o">,</span> <span class="mi">27968</span><span class="o">,</span> <span class="mi">44870</span><span class="o">,</span> <span class="mi">43872</span><span class="o">,</span> <span class="mi">38256</span><span class="o">,</span> <span class="mi">19189</span><span class="o">,</span> <span class="mi">18800</span><span class="o">,</span> <span class="mi">25776</span><span class="o">,</span> <span class="mi">29859</span><span class="o">,</span> <span class="mi">59984</span><span class="o">,</span> <span class="mi">27480</span><span class="o">,</span> <span class="mi">21952</span><span class="o">,</span> <span class="mi">43872</span><span class="o">,</span> <span class="mi">38613</span><span class="o">,</span> <span class="mi">37600</span><span class="o">,</span> <span class="mi">51552</span><span class="o">,</span> <span class="mi">55636</span><span class="o">,</span> <span class="mi">54432</span><span class="o">,</span> <span class="mi">55888</span><span class="o">,</span> <span class="mi">30034</span><span class="o">,</span> <span class="mi">22176</span><span class="o">,</span> <span class="mi">43959</span><span class="o">,</span> <span class="mi">9680</span><span class="o">,</span> <span class="mi">37584</span><span class="o">,</span> <span class="mi">51893</span><span class="o">,</span> <span class="mi">43344</span><span class="o">,</span> <span class="mi">46240</span><span class="o">,</span> <span class="mi">47780</span><span class="o">,</span> <span class="mi">44368</span><span class="o">,</span> <span class="mi">21977</span><span class="o">,</span> <span class="mi">19360</span><span class="o">,</span> <span class="mi">42416</span><span class="o">,</span> <span class="mi">86390</span><span class="o">,</span> <span class="mi">21168</span><span class="o">,</span> <span class="mi">43312</span><span class="o">,</span> <span class="mi">31060</span><span class="o">,</span> <span class="mi">27296</span><span class="o">,</span> <span class="mi">44368</span><span class="o">,</span> <span class="mi">23378</span><span class="o">,</span> <span class="mi">19296</span><span class="o">,</span> <span class="mi">42726</span><span class="o">,</span> <span class="mi">42208</span><span class="o">,</span> <span class="mi">53856</span><span class="o">,</span> <span class="mi">60005</span><span class="o">,</span> <span class="mi">54576</span><span class="o">,</span> <span class="mi">23200</span><span class="o">,</span> <span class="mi">30371</span><span class="o">,</span> <span class="mi">38608</span><span class="o">,</span> <span class="mi">19415</span><span class="o">,</span> <span class="mi">19152</span><span class="o">,</span> <span class="mi">42192</span><span class="o">,</span> <span class="mi">118966</span><span class="o">,</span> <span class="mi">53840</span><span class="o">,</span> <span class="mi">54560</span><span class="o">,</span> <span class="mi">56645</span><span class="o">,</span> <span class="mi">46496</span><span class="o">,</span> <span class="mi">22224</span><span class="o">,</span> <span class="mi">21938</span><span class="o">,</span> <span class="mi">18864</span><span class="o">,</span> <span class="mi">42359</span><span class="o">,</span> <span class="mi">42160</span><span class="o">,</span> <span class="mi">43600</span><span class="o">,</span> <span class="mi">111189</span><span class="o">,</span> <span class="mi">27936</span><span class="o">,</span> <span class="mi">44448</span> <span class="o">};</span>
+</pre></div>
+
+
+<p>在原本的代码中加入两个静态方法，方便在日历需要显示农历的地方调用。</p>
+<div class="highlight"><pre>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setLunar</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="kt">int</span> <span class="n">month</span><span class="o">,</span> <span class="kt">int</span> <span class="n">day</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">SharedPreferences</span> <span class="n">prefs</span> <span class="o">=</span> <span class="n">GeneralPreferences</span>
+                <span class="o">.</span><span class="na">getSharedPreferences</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+        <span class="n">setShowLunch</span><span class="o">(</span><span class="n">prefs</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span><span class="n">GeneralPreferences</span><span class="o">.</span><span class="na">KEY_SHOW_LUNAR</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>
+
+        <span class="c1">// if (!isSetShowLunar) {</span>
+        <span class="c1">// return;</span>
+        <span class="c1">// }</span>
+        <span class="n">syear</span> <span class="o">=</span> <span class="n">year</span><span class="o">;</span>
+        <span class="n">smonth</span> <span class="o">=</span> <span class="n">month</span><span class="o">;</span>
+        <span class="n">sday</span> <span class="o">=</span> <span class="n">day</span><span class="o">;</span>
+
+        <span class="n">Date</span> <span class="n">sDObj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">syear</span> <span class="o">-</span> <span class="mi">1900</span><span class="o">,</span> <span class="n">smonth</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">sday</span><span class="o">);</span>
+        <span class="n">Lunar1</span><span class="o">(</span><span class="n">sDObj</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getLunar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isSetShowLunar</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">sy</span> <span class="o">=</span> <span class="o">(</span><span class="n">year</span> <span class="o">-</span> <span class="mi">4</span><span class="o">)</span> <span class="o">%</span> <span class="mi">12</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;农历 【&quot;</span> <span class="o">+</span> <span class="n">Animals</span><span class="o">[</span><span class="n">sy</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;】&quot;</span> <span class="o">+</span> <span class="n">cYear</span><span class="o">(</span><span class="n">getYear</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot;年&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="o">((</span><span class="n">getIsLeap</span><span class="o">())</span> <span class="o">?</span> <span class="s">&quot;闰&quot;</span> <span class="o">:</span> <span class="s">&quot;&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="n">monthNong</span><span class="o">[</span><span class="n">getMonth</span><span class="o">()]</span> <span class="o">+</span> <span class="s">&quot;月&quot;</span>
+                <span class="o">+</span> <span class="o">((!</span><span class="n">getIsBig</span><span class="o">())</span> <span class="o">?</span> <span class="s">&quot;小&quot;</span> <span class="o">:</span> <span class="s">&quot;大&quot;</span><span class="o">);</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">cDay</span><span class="o">(</span><span class="n">getDay</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">cyclical</span><span class="o">(</span><span class="n">getYearCyl</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot;年&quot;</span> <span class="o">+</span> <span class="n">cyclical</span><span class="o">(</span><span class="n">getMonCyl</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot;月&quot;</span>
+                <span class="o">+</span> <span class="n">cyclical</span><span class="o">(</span><span class="n">getDayCyl</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot;日&quot;</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
+
+
+<p>在需要显示农历时，通过<code>Lunar.java</code>计算农历。比如<code>month/SimpleWeekView.java</code>的<code>setWeekParams</code>方法遍历<code>mNumCells</code>的过程中加入，</p>
+<div class="highlight"><pre>        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">getContext</span><span class="o">();</span>
+        <span class="n">Lunar</span><span class="o">.</span><span class="na">setLunar</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">time</span><span class="o">.</span><span class="na">year</span><span class="o">,</span> <span class="n">time</span><span class="o">.</span><span class="na">month</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">time</span><span class="o">.</span><span class="na">monthDay</span><span class="o">);</span>
+        <span class="n">mLunarNumbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Lunar</span><span class="o">.</span><span class="na">getLunarDayForDisplay</span><span class="o">();</span>
+</pre></div>
+
+
+<p>然后在<code>month/MonthWeekEventsView.java</code>中<code>drawWeekNums</code>方法中遍历<code>numCount</code>时加入，</p>
+<div class="highlight"><pre>        <span class="n">canvas</span><span class="o">.</span><span class="na">drawText</span><span class="o">(</span><span class="n">mLunarNumbers</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">25</span><span class="o">,</span> <span class="n">mMonthNumPaint</span><span class="o">);</span>
+</pre></div>
+
+
+<p>类似地，可以在<code>CalendarViewAdapter.java</code>和<code>agenda/AgendaByDayAdapter.java</code>中加入农历显示。</p>
+<h3>加入VCalendar文件分享功能</h3>
+<p>在<code>EventInfoFragment.java</code>中，添加了分享日程的功能，打包成VCalendar类型的vcs文件，通过<code>Intent.ACTION_SEND</code>发送到彩信或者邮件应用。</p>
+<p>Android源码中包括了一个<code>ICalendar</code>类，用于处理VCalendar文件，但是并没有实现(或者是没有保留？)导入导出的功能。<code>ICanlendar</code>类内部实现就是对字符串的处理，使用也很简单，导出功能可以用以下代码实现，</p>
+<div class="highlight"><pre>    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span> <span class="n">component</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span><span class="o">(</span>
+            <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span><span class="o">.</span><span class="na">VCALENDAR</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span> <span class="n">child</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span><span class="o">(</span>
+            <span class="n">ICalendar</span><span class="o">.</span><span class="na">Component</span><span class="o">.</span><span class="na">VEVENT</span><span class="o">,</span> <span class="n">component</span><span class="o">);</span>
+
+    <span class="n">String</span> <span class="n">tzid</span> <span class="o">=</span> <span class="c1">//</span>
+    <span class="n">Utils</span><span class="o">.</span><span class="na">getSharedPreference</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span>
+            <span class="n">GeneralPreferences</span><span class="o">.</span><span class="na">KEY_HOME_TZ_ENABLED</span><span class="o">,</span>
+            <span class="kc">false</span><span class="o">)</span> <span class="o">?</span> <span class="c1">//</span>
+    <span class="n">Utils</span><span class="o">.</span><span class="na">getSharedPreference</span><span class="o">(</span>
+            <span class="c1">//</span>
+            <span class="n">mContext</span><span class="o">,</span> <span class="n">GeneralPreferences</span><span class="o">.</span><span class="na">KEY_HOME_TZ</span><span class="o">,</span>
+            <span class="n">TimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">getID</span><span class="o">())</span> <span class="o">:</span> <span class="c1">//</span>
+            <span class="n">TimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">getID</span><span class="o">();</span>
+
+    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span> <span class="n">dtstart_prop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span><span class="o">(</span>
+            <span class="s">&quot;DTSTART&quot;</span><span class="o">,</span><span class="c1">//</span>
+            <span class="k">new</span> <span class="nf">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;yyyyMMdd&#39;T&#39;HHmmss&quot;</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">mStartMillis</span><span class="o">));</span>
+    <span class="n">dtstart_prop</span><span class="o">.</span><span class="na">addParameter</span><span class="o">(</span><span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Parameter</span><span class="o">(</span><span class="s">&quot;TZID&quot;</span><span class="o">,</span> <span class="n">tzid</span><span class="o">));</span>
+    <span class="n">child</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="n">dtstart_prop</span><span class="o">);</span>
+
+    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span> <span class="n">dtend_prop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span><span class="o">(</span>
+            <span class="s">&quot;DTEND&quot;</span><span class="o">,</span><span class="c1">//</span>
+            <span class="k">new</span> <span class="nf">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;yyyyMMdd&#39;T&#39;HHmmss&quot;</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">mEndMillis</span><span class="o">));</span>
+    <span class="n">dtend_prop</span><span class="o">.</span><span class="na">addParameter</span><span class="o">(</span><span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Parameter</span><span class="o">(</span><span class="s">&quot;TZID&quot;</span><span class="o">,</span> <span class="n">tzid</span><span class="o">));</span>
+    <span class="n">child</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="n">dtend_prop</span><span class="o">);</span>
+
+    <span class="n">child</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span><span class="o">(</span><span class="s">&quot;SUMMARY&quot;</span><span class="o">,</span>
+            <span class="n">mTitle</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+    <span class="n">child</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span><span class="o">(</span>
+            <span class="s">&quot;LOCATION&quot;</span><span class="o">,</span> <span class="n">mWhere</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+    <span class="n">child</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="k">new</span> <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span><span class="o">(</span>
+            <span class="s">&quot;DISCRIPTION&quot;</span><span class="o">,</span> <span class="n">mDesc</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+
+    <span class="n">component</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;info_action_share&quot;</span><span class="o">,</span> <span class="n">component</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</pre></div>
+
+
+<p>导入时，同样使用<code>ICalendar</code>类，</p>
+<div class="highlight"><pre>    <span class="n">event_title</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getFirstProperty</span><span class="o">(</span><span class="s">&quot;SUMMARY&quot;</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
+
+    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span> <span class="n">dtstart_prop</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getFirstProperty</span><span class="o">(</span><span class="s">&quot;DTSTART&quot;</span><span class="o">);</span>
+    <span class="n">ICalendar</span><span class="o">.</span><span class="na">Property</span> <span class="n">dtend_prop</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getFirstProperty</span><span class="o">(</span><span class="s">&quot;DTEND&quot;</span><span class="o">);</span>
+    <span class="n">event_tz</span> <span class="o">=</span> <span class="n">dtstart_prop</span><span class="o">.</span><span class="na">getFirstParameter</span><span class="o">(</span><span class="s">&quot;TZID&quot;</span><span class="o">).</span><span class="na">value</span><span class="o">;</span>
+    <span class="n">SimpleDateFormat</span> <span class="n">simpleDateFormat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span>
+            <span class="s">&quot;yyyyMMdd&#39;T&#39;HHmmss&quot;</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">event_datetime</span> <span class="o">=</span> <span class="n">simpleDateFormat</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">dtstart_prop</span><span class="o">.</span><span class="na">getValue</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+        <span class="n">event_dateendtime</span> <span class="o">=</span> <span class="n">simpleDateFormat</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">dtend_prop</span><span class="o">.</span><span class="na">getValue</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="n">event_where</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="na">getFirstProperty</span><span class="o">(</span><span class="s">&quot;LOCATION&quot;</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
+    <span class="n">event_disc</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="na">getFirstProperty</span><span class="o">(</span><span class="s">&quot;DISCRIPTION&quot;</span><span class="o">).</span><span class="na">getValue</span><span class="o">();</span>
+</pre></div>
+
+
+<p>保存日程，</p>
+<div class="highlight"><pre>    <span class="n">ContentValues</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContentValues</span><span class="o">();</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;title&quot;</span><span class="o">,</span> <span class="n">event_title</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="n">event_disc</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;eventLocation&quot;</span><span class="o">,</span> <span class="n">event_where</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;calendar_id&quot;</span><span class="o">,</span> <span class="n">calId</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;dtstart&quot;</span><span class="o">,</span> <span class="n">event_datetime</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;dtend&quot;</span><span class="o">,</span> <span class="n">event_dateendtime</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;hasAlarm&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;eventTimezone&quot;</span><span class="o">,</span> <span class="n">event_tz</span><span class="o">);</span>
+    <span class="n">event</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;eventStatus&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">Uri</span> <span class="n">newEvent</span> <span class="o">=</span> <span class="n">getContentResolver</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span>
+            <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;content://com.android.calendar/events&quot;</span><span class="o">),</span> <span class="n">event</span><span class="o">);</span>
+</pre></div>
+
+
+<h3>其他</h3>
+<p>其他还做了很多修改，暂时还不便给出，以后有机会会放到github上。</p>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "pages/android_calendar.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://x7qus.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">latex</a></li>
+		<li><a href="../category/linux.html">linux</a></li>
+		<li><a href="../category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

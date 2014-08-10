@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>用Pelican构建博客上传到Github Pages出错</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('send', 'pageview');
+
+              </script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="..">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="../pages/page_build_failed.html" rel="bookmark"
+                   title="Permalink to 用Pelican构建博客上传到Github Pages出错">用Pelican构建博客上传到Github Pages出错</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2013-12-04T00:00:00">
+                Wed 04 December 2013
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="../author/x7.html">x7</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>参考：</p>
+<p><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a></p>
+<h3>出错情况</h3>
+<p>上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。</p>
+<p>用<code>pelican</code>和<code>markdown</code>本地编译成功，但是用<code>git</code>提交到<code>Github</code>时，收到了这么一封邮件，</p>
+<blockquote>
+<p>From:  GitHub (noreply@github.com) This sender is in your safe list.</p>
+<p>Sent:  Saturday, November 30, 2013 1:06:57 PM</p>
+<p>To:    x7hub (x7.0@outlook.com)</p>
+<p>The page build failed with the following error:</p>
+<p>page build failed</p>
+<p>For information on troubleshooting Jekyll see:</p>
+<p>https://help.github.com/articles/using-jekyll-with-pages#troubleshooting</p>
+<p>If you have any questions please contact us at https://github.com/contact.</p>
+</blockquote>
+<p>错误信息就只有<code>page build failed</code>，给出的帮助链接指向的是<code>Jekyll</code>，我用的是<code>Pelican</code>啊，很苦恼啊。于是尝试了删除新添加的博文，尝试了回退到之前的版本，尝试更新系统软件，都不起作用，每次提交都会收到上面那封邮件。无奈之下求助邮件中的第二个链接，就是<a href="https://github.com/contact">Github的帮助</a>。</p>
+<h3>求助Github</h3>
+<p>帮助页面写着，</p>
+<blockquote>
+<p>We’re here to help with any questions or comments. If you just want to say hi, that's cool too.</p>
+</blockquote>
+<p>简单说明了问题以后，几分钟内就收到了答复邮件，</p>
+<blockquote>
+<p>Sorry about this. We are currently working on improving these error messages.</p>
+<p>The actual error found in the page build logs is as follows:</p>
+<p>No submodule mapping found in .gitmodules for path 'pelican-plugins'</p>
+<p>Please take a look at our Help article on using Git submodules with GitHub Pages:</p>
+<p>https://help.github.com/articles/using-submodules-with-pages</p>
+<p>That should help you sort out the issue.</p>
+</blockquote>
+<p><code>No submodule mapping found in .gitmodules for path 'pelican-plugins'</code>这个就是问题所在了。因为我的博客目录下有<code>pelican-plugins</code>和<code>pelican-themes</code>两个submodule，之前也没有在<code>.gitmodules</code>中声明，现在他们不认了。</p>
+<p>自己也不会写<code>.gitmodules</code>，所以还是交给<code>git</code>自动添加吧，</p>
+<div class="highlight"><pre>rm -rf pelican-plugins
+rm -rf pelican-themes
+ga . -A
+gc -m <span class="s2">&quot;remove 2 submodule dirs &quot;</span>
+git submodule add  https://github.com/getpelican/pelican-plugins pelican-plugins
+git submodule add  https://github.com/getpelican/pelican-themes pelican-themes
+</pre></div>
+
+
+<p>现在<code>.gitmodules</code>是这样的了，</p>
+<div class="highlight"><pre><span class="k">[submodule &quot;pelican-plugins&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">pelican-plugins</span>
+<span class="s">    url = https://github.com/getpelican/pelican-plugins</span>
+<span class="k">[submodule &quot;pelican-themes&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">pelican-themes</span>
+<span class="s">    url = https://github.com/getpelican/pelican-themes</span>
+</pre></div>
+
+
+<p>再次提交，没有收到报错的邮件，很快就在页面上看到更新了。</p>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "pages/page_build_failed.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://x7qus.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">latex</a></li>
+		<li><a href="../category/linux.html">linux</a></li>
+		<li><a href="../category/sql.html">sql</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
+	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
+	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
+	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
+	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
+	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
+	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
+	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
+	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
+	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
+	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

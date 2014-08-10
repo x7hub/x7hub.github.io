@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+        
+        <title>x7's blog - linux dns</title>
+        <meta charset="utf-8" />
+                                                                
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+          
+
+
+
+        </head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="">Home</a></li>
+
+                                                  
+              </ul>
+            </div>
+
+          <section id="content">
+
+
+
+   <div class="row">
+
+
+        <div class="eleven columns">
+		         <ol id="post-list">
+								        <li><article class="hentry">
+				                <header> <h2 class="entry-title"><a href="/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
+				                <footer class="post-info">
+				                    <abbr class="published" title="2013-09-29T00:00:00"> Sun 29 September 2013 </abbr>
+				                    <address class="vcard author">By <a class="url fn" href="/author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
+				                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
+<p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
+<h3>dnsmasq</h3>
+<p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
+<h3>配置</h3>
+<ul>
+<li>首先安装：</li>
+</ul>
+<div class="highlight"><pre>pacman -S dnsmasq
+</pre></div>
+
+
+<ul>
+<li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
+</ul>
+<div class="highlight"><pre><span class="n">resolv</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv_dnsmasq</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+
+
+<ul>
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager ...</code></li></ul> </div><!-- /.entry-content -->
+
+								<div class="medium primary btn"><a href="/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+								<div class="row tag-row">
+																			<span>Tagged as : </span>
+																					<a class="danger label" href="/tag/linux-dns.html">linux dns</a>
+																											</div>
+
+
+
+				        </article></li>
+								</ol><!-- /#posts-list -->
+
+        </div><!-- /.eleven.columns -->
+        
+     <div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+            </ul>
+
+<h4>Categories</h4>
+<ul>
+			<li><a href="/category/blog.html">blog</a></li>
+			<li><a href="/category/linux.html">linux</a></li>
+	</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+		    <li class="tag-4"><a href="/tag/blog-github-pelican.html">blog github pelican</a></li>
+		    <li class="tag-4"><a href="/tag/linux-hosts.html">linux hosts</a></li>
+		    <li class="tag-4"><a href="/tag/linux-dns.html">linux dns</a></li>
+	</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+      <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+    </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+<p class="paginator">
+        Page 1 / 1
+    </p>
+</section><!-- /#content -->
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+
+</body>
+</html>
