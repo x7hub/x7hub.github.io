@@ -5,17 +5,17 @@ from __future__ import unicode_literals
 AUTHOR = 'x7'
 AUTHOR_EMAIL = 'x7.0@outlook.com'
 SITENAME = 'x7\'s blog'
-SITEURL = 'http://x7hub.github.io'
+SITEURL = 'http://x7res.info'
 TIMEZONE = 'Asia/Shanghai'
 DEFAULT_LANG = 'zhs'
 
 #THEME = 'tuxlite_tbs'
-THEME = 'pelican-themes/bootstrap2-dark'
+THEME = 'gum'
 
 GITHUB_URL = 'https://github.com/x7hub'
 DISQUS_SITENAME = 'x7qus'
 GOOGLE_ANALYTICS_ID = 'UA-44068198-1'
-GOOGLE_ANALYTICS_SITENAME = 'x7hub.github.io'
+GOOGLE_ANALYTICS_SITENAME = 'x7res.info'
 
 OUTPUT_PATH = '.'
 ARCHIVES_URL = 'archives.html'
