@@ -1,7 +1,7 @@
 Date: 2013-08-27
 Title: 在Github Pages上搭建个人博客
 Category: blog
-Tags: blog, github, pelican
+Tags: blog, GitHub, Pelican
 Slug: build_my_blog
 
 参考:

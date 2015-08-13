@@ -1,7 +1,7 @@
 Date: 2014-5-29
 Title: SQL中利用case语句根据多列排序
-Category: sql
-Tags: sql
+Category: SQL
+Tags: SQL
 Slug: mysql_sort_using_case
 
 参考：

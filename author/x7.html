@@ -4,6 +4,7 @@
 
         <title>x7's blog - Articles by x7</title>
         <meta charset="utf-8" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -22,12 +23,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -40,14 +39,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -62,45 +61,52 @@
 
 
         <div class="eleven columns">
-		         <ol id="post-list">
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-05-29T00:00:00"> Thu 29 May 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                 <ol id="post-list">
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2014-05-29T00:00:00+08:00"> Thu 29 May 2014 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="http://blog.csdn.net/chen_linbo/article/details/6396122">oracle union all和order by一起使用</a></p>
 <p>需求是这样的，有类似如下的表，</p>
-<div class="highlight"><pre><span class="o">+--------+------+-----+-----+------+---------+----------+</span>
-<span class="o">|</span> <span class="n">userid</span> <span class="o">|</span> <span class="n">imei</span> <span class="o">|</span> <span class="n">lat</span> <span class="o">|</span> <span class="n">lon</span> <span class="o">|</span> <span class="n">addr</span> <span class="o">|</span> <span class="n">network</span> <span class="o">|</span> <span class="n">operator</span> <span class="o">|</span>
-<span class="o">+--------+------+-----+-----+------+---------+----------+</span>
-<span class="o">|</span> <span class="mi">122</span>    <span class="o">|</span> <span class="mi">343</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12344</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">123</span>    <span class="o">|</span> <span class="mi">345</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">124</span>    <span class="o">|</span> <span class="mi">346</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">125</span>    <span class="o">|</span> <span class="mi">347</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">126</span>    <span class="o">|</span> <span class="mi">348</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12346</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">127</span>    <span class="o">|</span> <span class="mi">349</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12347</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">128</span>    <span class="o">|</span> <span class="mi">350</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12343</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">129 ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345 ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/sql.html">sql</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Linux系统中LaTeX的安装与使用</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-03-17T00:00:00"> Mon 17 March 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <h3>安装</h3>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/sql.html">SQL</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Linux系统中LaTeX的安装与使用</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2014-03-17T00:00:00+08:00"> Mon 17 March 2014 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <h3>安装</h3>
 <p>针对Archlinux，需要<a href="https://wiki.archlinux.org/index.php/TeX_Live">TeX Live</a>，首先要编译LaTeX文件需要这个包<code>texlive-bin</code>，有一些图片字体之类的依赖，在这一组包里<code>texlive-most</code>。</p>
 <p>如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。</p>
 <p>Linux下的LaTeX编辑器<a href="https://wiki.archlinux.org/index.php/Latex">有很多</a>，我使用的是<code>Kile</code>，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。</p>
@@ -122,25 +128,28 @@
 <span class="k">\author</span><span class="nb">{</span>Nobody Jr.<span class="nb">}</span>
 <span class="k">\date ...</span></pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/latex_on_linux.html" rel="bookmark" title="Permalink to Linux系统中LaTeX的安装与使用">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/latex.html">latex</a>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/latex.html">LaTeX</a>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">用Pelican构建博客上传到Github Pages出错</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-12-04T00:00:00"> Wed 04 December 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">用Pelican构建博客上传到Github Pages出错</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-12-04T00:00:00+08:00"> Wed 04 December 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a></p>
 <h3>出错情况</h3>
 <p>上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。</p>
@@ -151,62 +160,68 @@
 <p>To:    x7hub (x7.0@outlook.com)</p>
 <p>The page build ...</p></blockquote> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/github.html">github</a>
-											<a class="danger label" href="../tag/pelican.html">pelican</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/github.html">GitHub</a>
+                                            <a class="danger label" href="../tag/pelican.html">Pelican</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-11-30T00:00:00"> Sat 30 November 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-11-30T00:00:00+08:00"> Sat 30 November 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p>Linux Shell脚本攻略 人民邮电出版社</p>
 <h3>数组</h3>
 <p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
-<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
+<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
 </pre></div>
 
 
 <p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
-<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="k">}</span>
+<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
 1
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="k">}</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
 1
 </pre></div>
 
 
 <p>但是，在<code>zsh ...</code></p> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/shell.html">shell</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/shell.html">shell</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">对Service中弹出的Dialog设置主题</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-11-05T00:00:00"> Tue 05 November 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">对Service中弹出的Dialog设置主题</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-11-05T00:00:00+08:00"> Tue 05 November 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="http://blog.csdn.net/huxueyan521/article/details/8954844">service中显示一个dialog</a></p>
 <p><a href="http://www.cnblogs.com/noTice520/archive/2011/02/01/1948738.html">android UI进阶之style和theme的使用</a></p>
 <h3>简介</h3>
@@ -223,24 +238,27 @@
 <p>这样尝试调起Dialog会引起错误：</p>
 <div class="highlight"><pre><span class="mi">11</span><span class="o">-</span><span class="mo">05 ...</span></pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/android.html">android</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/android.html">Android</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-10-09T00:00:00"> Wed 09 October 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考:</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-10-09T00:00:00+08:00"> Wed 09 October 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考:</p>
 <p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
 <p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
 <h3>简介:</h3>
@@ -260,24 +278,27 @@
 <p>日视图和周视图：<code>DayFragment.java</code></p>
 <p>日程视图 ...</p></li></ul> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/android.html">android</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/android.html">Android</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-10-08T00:00:00"> Tue 08 October 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考:</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-10-08T00:00:00+08:00"> Tue 08 October 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考:</p>
 <p><a href="http://blog.csdn.net/xixinyan/article/details/6942074">在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)</a></p>
 <p><a href="http://blog.csdn.net/zhu_apollo/article/details/8760025">android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一</a></p>
 <h3>Android 源码下载：</h3>
@@ -286,34 +307,42 @@
 <h3>Android源码结构：</h3>
 <p>Google提供的Android包含了：Android源代码，工具链，基础C库，仿真环境，开发环境等。</p>
 <p>第一级别的目录和文件如下所示：</p>
-<div class="highlight"><pre>　　<span class="o">----------------</span>
-　　　<span class="o">|--</span> <span class="n">Makefile</span>            <span class="err">全局的</span><span class="n">Makefile</span>
-　　　<span class="o">|--</span> <span class="n">build</span>               <span class="err">系统编译规则和配置所需要的脚本和工具</span>
-　　<span class="o">----------------</span>
-　　　<span class="o">|--</span> <span class="n">prebuilt</span>        <span class="err">各种平台编译工具链</span>
-　　　<span class="o">|--</span> <span class="n">bionic</span>              <span class="err">基础</span><span class="n">C</span><span class="err">库源代码</span>
-　　<span class="o">----------------</span>
-　　　<span class="o">|--</span> <span class="n">frameworks</span> <span class="o">*</span>        <span class="n">Android</span><span class="err">应用程序的核心框架层</span><span class="p">(</span><span class="n">java</span><span class="err">及</span><span class="n">C</span><span class="o">++</span><span class="err">语言</span><span class="p">)</span>
-　　　<span class="o">|--</span> <span class="n">system</span>     <span class="o">*</span>        <span class="err">底层文件系统</span><span class="o">/</span><span class="err">库</span><span class="o">/</span><span class="err">应用及组件</span><span class="p">(</span><span class="n">C</span><span class="err">语言 ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre>　　----------------
+　　　|-- Makefile            全局的Makefile
+　　　|-- build               系统编译规则和配置所需要的脚本和工具
+　　----------------
+　　　|-- prebuilt        各种平台编译工具链
+　　　|-- bionic              基础C库源代码
+　　----------------
+　　　|-- frameworks *        Android应用程序的核心框架层(java及C++语言)
+　　　|-- system     *        底层文件系统/库/应用及组件(C语言)
+　　　|-- dalvik              JAVA虚拟机
+　　　|-- external            android使用的一些额外开源库
+　　　|-- libcore             与媒体播放框架代码相关
+　　----------------
+　　　|-- packages ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/android.html">android</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-09-29T00:00:00"> Sun 29 September 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/android.html">Android</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-29T00:00:00+08:00"> Sun 29 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
 <p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
 <h3>dnsmasq</h3>
@@ -329,60 +358,66 @@
 <ul>
 <li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
 </ul>
-<div class="highlight"><pre><span class="n">resolv</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv_dnsmasq</span><span class="p">.</span><span class="n">conf</span>
+<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
 </pre></div>
 
 
 <ul>
-<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager ...</code></li></ul> </div><!-- /.entry-content -->
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 ...</li></ul> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/dns.html">dns</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-09-08T00:00:00"> Sun 08 September 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
-<div class="highlight"><pre><span class="cp"># github</span>
-<span class="mf">207.97.227.239</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">65.74.177.129</span> <span class="n">www</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">207.97.227.252</span> <span class="n">nodeload</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">207.97.227.243</span> <span class="n">raw</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">204.232.175.78</span> <span class="n">documentcloud</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">204.232.175.78</span> <span class="n">pages</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/dns.html">dns</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-08T00:00:00+08:00"> Sun 08 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
+<div class="highlight"><pre># github
+207.97.227.239 github.com
+65.74.177.129 www.github.com
+207.97.227.252 nodeload.github.com
+207.97.227.243 raw.github.com
+204.232.175.78 documentcloud.github.com
+204.232.175.78 pages.github.com
 </pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/hosts.html">hosts</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/hosts.html">hosts</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-08-27T00:00:00"> Tue 27 August 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考:</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-08-27T00:00:00+08:00"> Tue 27 August 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考:</p>
 <p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
 <p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
 <p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
@@ -411,21 +446,21 @@ yaourt markdown
 <span class="nb">cd </span>blog
 pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/blog.html">blog</a>
-											<a class="danger label" href="../tag/github.html">github</a>
-											<a class="danger label" href="../tag/pelican.html">pelican</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/blog.html">blog</a>
+                                            <a class="danger label" href="../tag/github.html">GitHub</a>
+                                            <a class="danger label" href="../tag/pelican.html">Pelican</a>
+                                </div>
 
 
 
-				        </article></li>
-				</ol><!-- /#posts-list -->
+                        </article></li>
+                </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
         
@@ -439,29 +474,16 @@ pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -470,6 +492,9 @@ pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -506,8 +531,11 @@ pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>

@@ -1,7 +1,7 @@
 Date: 2013-01-22
 Title: LFS编译shadow之后设置root密码出错解决
-Category: linux
-Tags: linux, lfs
+Category: Linux
+Tags: Linux, lfs
 Slug: lfs_root_passwd
 
 搬迁自[以前的新浪博客](http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html)～

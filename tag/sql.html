@@ -2,9 +2,9 @@
 <html lang="zhs">
 <head>
 
-        <title>x7's blog - sql</title>
+        <title>x7's blog - SQL</title>
         <meta charset="utf-8" />
-        <link href="http://x7hub.github.io/feeds/sql.atom.xml" type="application/atom+xml" rel="alternate" title="x7's blog Tags Atom Feed" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -23,12 +23,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -41,14 +39,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -63,40 +61,44 @@
 
 
         <div class="eleven columns">
-		         <ol id="post-list">
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2014-05-29T00:00:00"> Thu 29 May 2014 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                 <ol id="post-list">
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2014-05-29T00:00:00+08:00"> Thu 29 May 2014 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="http://blog.csdn.net/chen_linbo/article/details/6396122">oracle union all和order by一起使用</a></p>
 <p>需求是这样的，有类似如下的表，</p>
-<div class="highlight"><pre><span class="o">+--------+------+-----+-----+------+---------+----------+</span>
-<span class="o">|</span> <span class="n">userid</span> <span class="o">|</span> <span class="n">imei</span> <span class="o">|</span> <span class="n">lat</span> <span class="o">|</span> <span class="n">lon</span> <span class="o">|</span> <span class="n">addr</span> <span class="o">|</span> <span class="n">network</span> <span class="o">|</span> <span class="n">operator</span> <span class="o">|</span>
-<span class="o">+--------+------+-----+-----+------+---------+----------+</span>
-<span class="o">|</span> <span class="mi">122</span>    <span class="o">|</span> <span class="mi">343</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12344</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">123</span>    <span class="o">|</span> <span class="mi">345</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">124</span>    <span class="o">|</span> <span class="mi">346</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="n">Wi</span><span class="o">-</span><span class="n">Fi</span>   <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">125</span>    <span class="o">|</span> <span class="mi">347</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12345</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">126</span>    <span class="o">|</span> <span class="mi">348</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12346</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">127</span>    <span class="o">|</span> <span class="mi">349</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12347</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">128</span>    <span class="o">|</span> <span class="mi">350</span>  <span class="o">|</span>     <span class="o">|</span>     <span class="o">|</span>      <span class="o">|</span> <span class="mi">3</span><span class="n">G</span>      <span class="o">|</span> <span class="mi">12343</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">129 ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345 ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/sql.html">sql</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				</ol><!-- /#posts-list -->
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/sql.html">SQL</a>
+                                </div>
+
+
+
+                        </article></li>
+                </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
         
@@ -110,29 +112,16 @@
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -141,6 +130,9 @@
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -176,8 +168,11 @@
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>

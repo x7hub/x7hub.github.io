@@ -1,7 +1,7 @@
 Date: 2013-12-4
 Title: 用Pelican构建博客上传到Github Pages出错
 Category: blog
-Tags: github, pelican
+Tags: GitHub, Pelican
 Slug: page_build_failed
 
 参考：

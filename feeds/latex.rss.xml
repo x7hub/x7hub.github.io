@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7hub.github.io/" rel="alternate"></link><link href="http://x7hub.github.io/feeds/latex.atom.xml" rel="self"></link><id>http://x7hub.github.io/</id><updated>2014-03-17T00:00:00+08:00</updated><entry><title>Linux系统中LaTeX的安装与使用</title><link href="http://x7hub.github.io/pages/latex_on_linux.html" rel="alternate"></link><updated>2014-03-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7hub.github.io,2014-03-17:pages/latex_on_linux.html</id><summary type="html">&lt;h3&gt;安装&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>x7's blog</title><link>http://x7res.info/</link><description></description><atom:link href="http://x7res.info/feeds/latex.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 17 Mar 2014 00:00:00 +0800</lastBuildDate><item><title>Linux系统中LaTeX的安装与使用</title><link>http://x7res.info/archives/latex_on_linux.html</link><description>&lt;h3&gt;安装&lt;/h3&gt;
 &lt;p&gt;针对Archlinux，需要&lt;a href="https://wiki.archlinux.org/index.php/TeX_Live"&gt;TeX Live&lt;/a&gt;，首先要编译LaTeX文件需要这个包&lt;code&gt;texlive-bin&lt;/code&gt;，有一些图片字体之类的依赖，在这一组包里&lt;code&gt;texlive-most&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。&lt;/p&gt;
 &lt;p&gt;Linux下的LaTeX编辑器&lt;a href="https://wiki.archlinux.org/index.php/Latex"&gt;有很多&lt;/a&gt;，我使用的是&lt;code&gt;Kile&lt;/code&gt;，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。&lt;/p&gt;
@@ -110,9 +110,9 @@ Three &lt;span class="nb"&gt;&amp;amp;&lt;/span&gt; Four&lt;span class="k"&gt;\\
 &lt;span class="k"&gt;\label&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;alg&lt;span class="nb"&gt;_&lt;/span&gt;hello&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;[1]
 &lt;span class="k"&gt;\WHILE&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;while&lt;span class="nb"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="err"&gt;\&lt;/span&gt;
+    &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="k"&gt;\&lt;/span&gt;
     &lt;span class="k"&gt;\IF&lt;/span&gt; &lt;span class="nb"&gt;{&lt;/span&gt;if&lt;span class="nb"&gt;}&lt;/span&gt;
-        &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="err"&gt;\&lt;/span&gt;
+        &lt;span class="k"&gt;\STATE&lt;/span&gt; state;&lt;span class="k"&gt;\&lt;/span&gt;
     &lt;span class="k"&gt;\ENDIF&lt;/span&gt;
 &lt;span class="k"&gt;\ENDWHILE&lt;/span&gt;
 &lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;
@@ -143,10 +143,10 @@ H.~Kopka and P.~W. Daly, &lt;span class="k"&gt;\emph&lt;/span&gt;&lt;span class=
 
 
 &lt;p&gt;创建&lt;code&gt;mybib.bib&lt;/code&gt;文件，格式是这个样子的，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;misc&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;Nobody06&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Nobody Jr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;My Article&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2006&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;@misc{ Nobody06,
+    author = &amp;quot;Nobody Jr&amp;quot;,
+    title = &amp;quot;My Article&amp;quot;,
+    year = &amp;quot;2006&amp;quot; }
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -177,4 +177,4 @@ IEEEtran.cls version 1.7 and later.&lt;span class="k"&gt;\\&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</summary><category term="latex"></category><category term="linux"></category></entry></feed>
+&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-03-17:archives/latex_on_linux.html</guid><category>LaTeX</category><category>Linux</category></item></channel></rss>

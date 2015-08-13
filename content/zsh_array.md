@@ -1,7 +1,7 @@
 Date: 2013-11-30
 Title: 对比zsh和bash中的数组与关联数组
-Category: linux
-Tags: linux, shell
+Category: Linux
+Tags: Linux, shell
 Slug: zsh_array
 
 参考：

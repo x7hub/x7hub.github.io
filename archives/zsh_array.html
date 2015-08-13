@@ -4,6 +4,8 @@
 
         <title>对比zsh和bash中的数组与关联数组</title>
         <meta charset="utf-8" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+        <link href="http://x7res.info/feeds/linux.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -22,12 +24,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -40,14 +40,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -62,16 +62,16 @@
 
             <header>
               <h2 class="entry-title">
-                <a href="../pages/zsh_array.html" rel="bookmark"
+                <a href="../archives/zsh_array.html" rel="bookmark"
                    title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2>
            
             </header>
             <footer class="post-info">
-              <abbr class="published" title="2013-11-30T00:00:00">
+              <abbr class="published" title="2013-11-30T00:00:00+08:00">
                 Sat 30 November 2013
               </abbr>
-              <address class="vcard author">
-                By <a class="url fn" href="../author/x7.html">x7</a>
+              <address class="vcard author">By 
+                <a class="url fn" href="../author/x7.html"> x7</a>
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
@@ -79,38 +79,38 @@
 <p>Linux Shell脚本攻略 人民邮电出版社</p>
 <h3>数组</h3>
 <p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
-<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
+<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
 </pre></div>
 
 
 <p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
-<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="k">}</span>
+<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
 1
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="k">}</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
 1
 </pre></div>
 
 
 <p>但是，在<code>zsh</code>中，数组索引以<code>1</code>开始，索引<code>0</code>是空的，</p>
-<div class="highlight"><pre>~/workspace/shell % <span class="nv">array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="k">}</span>
+<div class="highlight"><pre>~/workspace/shell % <span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
 
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[1]</span><span class="k">}</span>
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[1]</span><span class="si">}</span>
 1
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[2]</span><span class="k">}</span>
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[2]</span><span class="si">}</span>
 2
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[6]</span><span class="k">}</span>
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[6]</span><span class="si">}</span>
 6
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[7]</span><span class="k">}</span> 
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[7]</span><span class="si">}</span> 
 
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="k">}</span>
-1 2 3 4 5 6
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[*]</span><span class="k">}</span> 
-1 2 3 4 5 6
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[@]</span><span class="k">}</span> 
-1 2 3 4 5 6
-~/workspace/shell % <span class="nb">echo</span> <span class="k">${#</span><span class="nv">array_var</span><span class="p">[*]</span><span class="k">}</span>
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
+<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[*]</span><span class="si">}</span> 
+<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[@]</span><span class="si">}</span> 
+<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6
+~/workspace/shell % <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array_var</span><span class="p">[*]</span><span class="si">}</span>
 6
 </pre></div>
 
@@ -136,7 +136,7 @@ zsh: no matches found: <span class="o">[</span>index1<span class="o">]=</span>va
 
 
 <p>另外，在<code>bash</code>访问数组需要加大括号，不加的话拿到的是奇怪的东西，</p>
-<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="k">}</span>
+<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="si">}</span>
 val1
 <span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$ass_array</span><span class="o">[</span>index1<span class="o">]</span>
 <span class="o">[</span>index1<span class="o">]</span>
@@ -144,7 +144,7 @@ val1
 
 
 <p>在<code>zsh</code>中就可以不用大括号直接拿，</p>
-<div class="highlight"><pre>~ % <span class="nb">echo</span> <span class="k">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="k">}</span>
+<div class="highlight"><pre>~ % <span class="nb">echo</span> <span class="si">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="si">}</span>
 val1
 ~ % <span class="nb">echo</span> <span class="nv">$ass_array</span><span class="o">[</span>index1<span class="o">]</span>
 val1
@@ -158,7 +158,7 @@ val1
               <h3>Comments</h3>
               <div id="disqus_thread"></div>
               <script type="text/javascript">
-                var disqus_identifier = "pages/zsh_array.html";
+                var disqus_identifier = "archives/zsh_array.html";
                 (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'http://x7qus.disqus.com/embed.js';
@@ -169,7 +169,7 @@ val1
 
 
         </div><!-- /.eleven.columns -->
-        
+
 <div class="three columns">
 
 <h4>Pages</h4>
@@ -180,29 +180,16 @@ val1
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -211,6 +198,9 @@ val1
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -244,8 +234,11 @@ val1
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>

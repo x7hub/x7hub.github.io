@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>x7's blog</title><link>http://x7res.info/</link><description></description><atom:link href="http://x7res.info/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 30 Nov 2013 00:00:00 +0800</lastBuildDate><item><title>对比zsh和bash中的数组与关联数组</title><link>http://x7res.info/archives/zsh_array.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;Linux Shell脚本攻略 人民邮电出版社&lt;/p&gt;
+&lt;h3&gt;数组&lt;/h3&gt;
+&lt;p&gt;可以这样定义数组，在&lt;code&gt;bash&lt;/code&gt;和&lt;code&gt;zsh&lt;/code&gt;都可以，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;但是，读数组的时候有区别，在&lt;code&gt;bash&lt;/code&gt;中，数组索引以&lt;code&gt;0&lt;/code&gt;开始，符合一般习惯，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ array_var&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+1
+&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[0]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;但是，在&lt;code&gt;zsh&lt;/code&gt;中，数组索引以&lt;code&gt;1&lt;/code&gt;开始，索引&lt;code&gt;0&lt;/code&gt;是空的，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~/workspace/shell % &lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6&lt;span class="o"&gt;)&lt;/span&gt;
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[0]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[1]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+1
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[2]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+2
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[6]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+6
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[7]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; 
+
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[*]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; 
+&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; 
+&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; &lt;span class="m"&gt;5&lt;/span&gt; 6
+~/workspace/shell % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${#&lt;/span&gt;&lt;span class="nv"&gt;array_var&lt;/span&gt;&lt;span class="p"&gt;[*]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+6
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;关联数组&lt;/h3&gt;
+&lt;p&gt;在&lt;code&gt;bash&lt;/code&gt;中，可以这样声明关联数组，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;declare&lt;/span&gt; -A ass_array
+&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ ass_array&lt;/span&gt;&lt;span class="o"&gt;=([&lt;/span&gt;index1&lt;span class="o"&gt;]=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;val1&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;index2&lt;span class="o"&gt;]=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;val2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;但是在&lt;code&gt;zsh&lt;/code&gt;中就不行，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~ % &lt;span class="nb"&gt;declare&lt;/span&gt; -A ass_array 
+~ % &lt;span class="nv"&gt;ass_array&lt;/span&gt;&lt;span class="o"&gt;=([&lt;/span&gt;index1&lt;span class="o"&gt;]=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;val1&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;index2&lt;span class="o"&gt;]=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;val2&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+zsh: no matches found: &lt;span class="o"&gt;[&lt;/span&gt;index1&lt;span class="o"&gt;]=&lt;/span&gt;val1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;只能这样才行，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~ % &lt;span class="nb"&gt;declare&lt;/span&gt; -A ass_array
+~ % ass_array&lt;span class="o"&gt;[&lt;/span&gt;index1&lt;span class="o"&gt;]=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;val1&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;另外，在&lt;code&gt;bash&lt;/code&gt;访问数组需要加大括号，不加的话拿到的是奇怪的东西，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ass_array&lt;/span&gt;&lt;span class="p"&gt;[index1]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+val1
+&lt;span class="o"&gt;[&lt;/span&gt;x7@localhost ~&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$ass_array&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;index1&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;index1&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在&lt;code&gt;zsh&lt;/code&gt;中就可以不用大括号直接拿，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~ % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ass_array&lt;/span&gt;&lt;span class="p"&gt;[index1]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+val1
+~ % &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$ass_array&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;index1&lt;span class="o"&gt;]&lt;/span&gt;
+val1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;暂时就这些&lt;/h3&gt;
+&lt;p&gt;看来zsh和bash有好多不同啊，以前都没在意过。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sat, 30 Nov 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-11-30:archives/zsh_array.html</guid><category>Linux</category><category>shell</category></item><item><title>在本地建立DNS缓存</title><link>http://x7res.info/archives/local_dns.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Dnsmasq"&gt;dnsmasq - ArchWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://tieba.baidu.com/p/1034963853"&gt;用dnsmasq加速你的网络!!!&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;dnsmasq&lt;/h3&gt;
+&lt;p&gt;Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。&lt;/p&gt;
+&lt;h3&gt;配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;首先安装：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pacman -S dnsmasq
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;修改配置文件&lt;code&gt;/etc/dnsmasq.conf&lt;/code&gt;。指定用于域名查询的配置文件，反注释并修改这一行：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;resolv-file=/etc/resolv_dnsmasq.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;这个文件不存在啊？当然是需要自己创建的，复制前要保证&lt;code&gt;/etc/resolv.conf&lt;/code&gt;是原本配置好的或者被&lt;code&gt;networkmanager&lt;/code&gt;等应用自动生成的，没被修改过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo cp /etc/resolv.conf /etc/resolv_dnsmasq.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;启用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;修改系统dns服务器地址设置。如果使用了&lt;code&gt;networkmanager&lt;/code&gt;等管理网络的应用，在其中修改使用的网络连接，取消自动获取dns服务器的选框，设定&lt;code&gt;127.0.0.1&lt;/code&gt;为默认dns。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果没有使用，那么系统是通过直接读取用户设置的&lt;code&gt;/etc/resolv.conf&lt;/code&gt;来获取dns服务器，那么直接修改这个文件即可：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;nameserver 127.0.0.1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;然后启动dnsmasq服务：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo systemctl start dnsmasq.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;测试&lt;/h3&gt;
+&lt;p&gt;开启后测试一下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dig g.cn
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到这么一行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;;; SERVER: 127.0.0.1#53(127.0.0.1)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这就成功了。由于使用本地的缓存，就不必担心学校的dns服务器再瘫掉导致没法上网了。或者还可以使用8.8.8.8作为dnsmasq的上游，更稳定，不过会导致解析学校的登陆网关出问题。&lt;/p&gt;
+&lt;p&gt;另外，&lt;a href="https://wiki.archlinux.org/index.php/Dnsmasq#DNS_Caching"&gt;archwiki&lt;/a&gt;上有这么一段：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To do a lookup speed test choose a website that has not been visited since dnsmasq has been started (dig is part of the dnsutils package):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ dig archlinux.org | grep "Query time"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Running the command again will use the cached DNS IP and result in a faster lookup time if dnsmasq is setup correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;于是就试了一下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;~ % dig archlinux.org &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;&amp;quot;Query time&amp;quot;&lt;/span&gt;              commander@myhost pts/2 19:11 
+&lt;span class="p"&gt;;;&lt;/span&gt; Query &lt;span class="nb"&gt;time&lt;/span&gt;: &lt;span class="m"&gt;315&lt;/span&gt; msec
+~ % dig archlinux.org &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s2"&gt;&amp;quot;Query time&amp;quot;&lt;/span&gt;              commander@myhost pts/2 19:12 
+&lt;span class="p"&gt;;;&lt;/span&gt; Query &lt;span class="nb"&gt;time&lt;/span&gt;: &lt;span class="m"&gt;0&lt;/span&gt; msec
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;确实效果明显。但是，关掉了dnsmasq并设置使用自动获取的dns服务，一样也是这样的效果，看来学校给的dns服务器也是大概使用了这种缓存机制吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 29 Sep 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-09-29:archives/local_dns.html</guid><category>Linux</category><category>dns</category></item><item><title>修改hosts访问github</title><link>http://x7res.info/archives/github_hosts.html</link><description>&lt;p&gt;学校不知道抽的什么风，突然就不让上github了，于是修改&lt;code&gt;/etc/hosts&lt;/code&gt;加入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# github
+207.97.227.239 github.com
+65.74.177.129 www.github.com
+207.97.227.252 nodeload.github.com
+207.97.227.243 raw.github.com
+204.232.175.78 documentcloud.github.com
+204.232.175.78 pages.github.com
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 08 Sep 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-09-08:archives/github_hosts.html</guid><category>Linux</category><category>hosts</category></item><item><title>hadoop on archlinux</title><link>http://x7res.info/archives/hadoop_on_archlinux.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Hadoop"&gt;Hadoop - ArchWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://hadoop.apache.org/docs/stable/single_node_setup.html"&gt;Single Node Setup&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yaourt hadoop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;主要目录是这个：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/etc/hadoop/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;当然配置文件还是在这里。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/etc/hadoop/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;检查java环境配置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$JAVA_HOME&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;安装时生成了rsa密钥一对，还需要将本地用户的公钥添加到&lt;code&gt;/etc/hadoop/.ssh/authorized_keys&lt;/code&gt;,用于&lt;code&gt;ssh&lt;/code&gt;验证。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;格式化新的分布式文件系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hadoop namenode -format
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;启动服务,需要防火墙打开&lt;code&gt;9000&lt;/code&gt;和&lt;code&gt;9001&lt;/code&gt;端口，即使单机hadoop也需要，不明&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;bin/start-all.sh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;或者启动&lt;code&gt;systemd&lt;/code&gt;的一排service&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动后运行example测试，首先把测试用的文件写到&lt;code&gt;hadoop fs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hadoop fs -put /etc/hadoop input
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;运行测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hadoop jar /usr/lib/hadoop/hadoop-examples-*.jar grep input output &lt;span class="s1"&gt;&amp;#39;dfs[a-z.]+&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;查看结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hadoop fs -get output output
+cat output/*
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-06-21:archives/hadoop_on_archlinux.html</guid><category>Linux</category><category>Hadoop</category></item><item><title>LFS编译shadow之后设置root密码出错解决</title><link>http://x7res.info/archives/lfs_root_passwd.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;p&gt;按照&lt;a href="http://www.linuxfromscratch.org/lfs/download.html"&gt;lfs book&lt;/a&gt;编译安装配置&lt;code&gt;shadow&lt;/code&gt;之后没法修改root密码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;root:/sources/shadow-4.1.5.1# passwd root
+Changing password for root
+Enter the new password (minimum of 5 characters)
+Please use a combination of upper and lower case letters and numbers.
+Bad password: too short.  
+Warning: weak password (enter it again to use it anyway).
+passwd: password changed.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;不给输密码的机会，直接跑过去了。经过反复重新解包编译安装… 最后才发现错误原因：&lt;/p&gt;
+&lt;p&gt;之前重启过host，重新进入chroot之前忘记挂载系统虚拟文件了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;root@ant-arch /media/lfs # mount -v --bind /dev dev                pts/0 19:28
+mount: /dev binded on /media/lfs/dev
+root@ant-arch /media/lfs # mount -vt devpts devpts dev/pts         pts/0 19:28
+mount: devpts mounted on /media/lfs/dev/pts
+root@ant-arch /media/lfs # mount -vt proc proc proc                pts/0 19:28
+mount: proc mounted on /media/lfs/proc
+root@ant-arch /media/lfs # mount -vt sysfs sysfs sys               pts/0 19:28
+mount: sysfs mounted on /media/lfs/sys
+root@ant-arch /media/lfs # mount -vt tmpfs shm dev/shm             pts/0 19:28
+mount: shm mounted on /media/lfs/dev/shm
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后再chroot，修改密码，一切正常了：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;root@ant-arch /media/lfs &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; chroot /media/lfs /tools/bin/env -i \   pts/0 19:29&lt;/span&gt;
+&lt;span class="x"&gt;HOME=/root \&lt;/span&gt;
+&lt;span class="x"&gt;TERM=&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;TERM&lt;/span&gt;&lt;span class="x"&gt;&amp;quot; \&lt;/span&gt;
+&lt;span class="x"&gt;PS1=&amp;#39;\u:\w\&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; &amp;#39; \&lt;/span&gt;
+&lt;span class="x"&gt;PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \&lt;/span&gt;
+&lt;span class="x"&gt;/tools/bin/bash --login +h&lt;/span&gt;
+&lt;span class="x"&gt;root:/&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; passwd root&lt;/span&gt;
+&lt;span class="x"&gt;Changing password for root&lt;/span&gt;
+&lt;span class="x"&gt;Enter the new password (minimum of 5 characters)&lt;/span&gt;
+&lt;span class="x"&gt;Please use a combination of upper and lower case letters and numbers.&lt;/span&gt;
+&lt;span class="x"&gt;New password:&lt;/span&gt;
+&lt;span class="x"&gt;Bad password: too simple. &lt;/span&gt;
+&lt;span class="x"&gt;Warning: weak password (enter it again to use it anyway).&lt;/span&gt;
+&lt;span class="x"&gt;New password:&lt;/span&gt;
+&lt;span class="x"&gt;Re-enter new password:&lt;/span&gt;
+&lt;span class="x"&gt;passwd: password changed.&lt;/span&gt;
+&lt;span class="x"&gt;root:/&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 22 Jan 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-01-22:archives/lfs_root_passwd.html</guid><category>Linux</category><category>lfs</category></item><item><title>grub2直接引导iso镜像</title><link>http://x7res.info/archives/grub2_boot_from_iso.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Grub"&gt;GRUB - ArchWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images"&gt;grub2 - How to boot live iso images? - Ask Ubuntu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://forum.ubuntu.org.cn/viewtopic.php?f=139&amp;amp;t=393256"&gt;打造自己的多功能USB启动盘——grub2引导WinPE、Archlinux安装镜像和Ubuntu liveCD&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;U盘准备&lt;/h3&gt;
+&lt;p&gt;格式fat32，卷标 zzz。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo grub-install --boot-directory&lt;span class="o"&gt;=&lt;/span&gt; --no-floppy --target&lt;span class="o"&gt;=&lt;/span&gt;i386-pc --recheck /dev/sd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;目录放置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;考虑到方便win下使用没有分两个区。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/livecd&lt;/code&gt;需要引导的iso镜像 不必解压  暂时只用到arch ubuntu&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/livecd/grub&lt;/code&gt;在arch中用grub-install安装的grub2文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/livecd/grub4dos&lt;/code&gt;用于引导windows镜像&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;配置文件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;grub.cfg&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; grub.cfg&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; for livecd&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; by zzz&lt;/span&gt;
+
+&lt;span class="x"&gt;set menu_color_normal=light-blue/black&lt;/span&gt;
+&lt;span class="x"&gt;set menu_color_highlight=light-cyan/blue&lt;/span&gt;
+
+&lt;span class="x"&gt;set default=0&lt;/span&gt;
+&lt;span class="x"&gt;insmod part_msdos&lt;/span&gt;
+&lt;span class="x"&gt;insmod ext2&lt;/span&gt;
+&lt;span class="x"&gt;insmod ntfs&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; archlinux i686&lt;/span&gt;
+&lt;span class="x"&gt;menuentry &amp;#39;Arch GNU/Linux i686&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    set isofile=&amp;#39;/livecd/archlinux-2012.10.06-dual.iso&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    set isolabel=&amp;#39;ARCH_201210&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    set disklabel=&amp;#39;zzz&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    loopback loop (hd0,1)&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    linux (loop)/arch/boot/i686/vmlinuz archisolabel=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isolabel&lt;/span&gt;&lt;span class="x"&gt; img_dev=/dev/disk/by-label/&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;disklabel&lt;/span&gt;&lt;span class="x"&gt; img_loop=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    initrd (loop)/arch/boot/i686/archiso.img&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; archlinux x86_64&lt;/span&gt;
+&lt;span class="x"&gt;menuentry &amp;#39;Arch GNU/Linux x86_64&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    set isofile=&amp;#39;/livecd/archlinux-2012.10.06-dual.iso&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    set isolabel=&amp;#39;ARCH_201210&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    set disklabel=&amp;#39;zzz&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    loopback loop (hd0,1)&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    linux (loop)/arch/boot/x86_64/vmlinuz archisolabel=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isolabel&lt;/span&gt;&lt;span class="x"&gt; img_dev=/dev/disk/by-label/&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;disklabel&lt;/span&gt;&lt;span class="x"&gt; img_loop=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    initrd (loop)/arch/boot/x86_64/archiso.img&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; ubuntu 12.04&lt;/span&gt;
+&lt;span class="x"&gt;menuentry &amp;#39;Ubuntu 12.04.1 LTS&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    set isofile=&amp;#39;/livecd/ubuntu-12.04-desktop-i386.iso&amp;#39;&lt;/span&gt;
+&lt;span class="x"&gt;    loopback loop &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;isofile&lt;/span&gt;&lt;span class="x"&gt; ro&lt;/span&gt;
+&lt;span class="x"&gt;    initrd (loop)/casper/initrd.lz&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; grub4dos&lt;/span&gt;
+&lt;span class="x"&gt;menuentry &amp;#39;Grub4dos&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="x"&gt;    linux /livecd/grub4dos/grub.exe --config-file=/livecd/grub4dos/menu.lst&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;grub4dos&lt;/code&gt;配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# menu.lst
+
+color light-blue/black light-cyan/blue
+
+title en Windows 7 x86 ultimate sp1
+map (hd0,0)/livecd/en_windows_7_ultimate_with_sp1_x86_dvd_u_677460.iso (0xff)
+map --hook
+chainloader (0xff)
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 25 Nov 2012 00:00:00 +0800</pubDate><guid>tag:x7res.info,2012-11-25:archives/grub2_boot_from_iso.html</guid><category>Linux</category><category>grub2</category></item></channel></rss>

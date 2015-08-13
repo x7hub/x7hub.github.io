@@ -1,7 +1,7 @@
 Date: 2014-3-17
 Title: Linux系统中LaTeX的安装与使用
-Category: latex
-Tags: latex, linux
+Category: LaTeX
+Tags: LaTeX, Linux
 Slug: latex_on_linux
 
 

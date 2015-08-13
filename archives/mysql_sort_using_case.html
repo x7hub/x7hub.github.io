@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zhs">
+<head>
+
+        <title>SQL中利用case语句根据多列排序</title>
+        <meta charset="utf-8" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+        <link href="http://x7res.info/feeds/sql.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
+
+        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-44068198-1', 'x7res.info');
+                ga('send', 'pageview');
+
+              </script>
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="../">Home</a></li>
+
+                <li><a href="../pages/about-me.html">About me</a></li>
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="../archives/mysql_sort_using_case.html" rel="bookmark"
+                   title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-05-29T00:00:00+08:00">
+                Thu 29 May 2014
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="../author/x7.html"> x7</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>参考：</p>
+<p><a href="http://blog.csdn.net/chen_linbo/article/details/6396122">oracle union all和order by一起使用</a></p>
+<p>需求是这样的，有类似如下的表，</p>
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345    |
+| 131    | 353  |     |     |      | 4G      | 12345    |
+| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
++--------+------+-----+-----+------+---------+----------+
+</pre></div>
+
+
+<p>要对这个表排序输出，想要'network'为'Wi-Fi'的行在后，非'Wi-Fi'的行在前，而且两部分内分别按'operator'排序。也就是要得到如下的结果，</p>
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 131    | 353  |     |     |      | 4G      | 12345    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
++--------+------+-----+-----+------+---------+----------+
+</pre></div>
+
+
+<h3>利用union语句</h3>
+<p>容易想到<code>select</code>出'Wi-Fi'和非'Wi-Fi'两组结果，再用<code>union</code>将两组结果拼在一起。但是这两组结果还需要分别按'operator'排序，所以尝试这样，</p>
+<div class="highlight"><pre><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">push_user_list</span>
+<span class="k">where</span> <span class="n">network</span><span class="o">=</span><span class="s1">&#39;Wi-Fi&#39;</span>
+<span class="k">order</span> <span class="k">by</span> <span class="k">operator</span>
+<span class="k">union</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">push_user_list</span>
+<span class="k">order</span> <span class="k">by</span> <span class="k">operator</span><span class="p">;</span>
+</pre></div>
+
+
+<p>但是<code>union</code>的子句是不能用<code>order by</code>的，报错，</p>
+<div class="highlight"><pre>ERROR 1221 (HY000): Incorrect usage of UNION and ORDER BY
+</pre></div>
+
+
+<p>搜了一下，有人给出这样的方法，</p>
+<div class="highlight"><pre><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> 
+<span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">push_user_list</span> <span class="k">where</span> <span class="n">network</span><span class="o">&lt;&gt;</span><span class="s1">&#39;Wi-Fi&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">operator</span> <span class="p">,</span> <span class="n">network</span> <span class="k">desc</span><span class="p">)</span> <span class="n">t1</span>
+<span class="k">union</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span>
+<span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">push_user_list</span> <span class="k">where</span> <span class="n">network</span><span class="o">=</span><span class="s1">&#39;Wi-Fi&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">operator</span><span class="p">)</span> <span class="n">t2</span><span class="p">;</span>
+</pre></div>
+
+
+<p>看起来确实是个好主意，虽然据说在<code>Oracle SQL</code>测试可以通过，但是在我用的<code>MariaDB 5.5.37-1</code>结果排序却是错的，'operator'列并没有排序，</p>
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345    |
+| 131    | 353  |     |     |      | 4G      | 12345    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
++--------+------+-----+-----+------+---------+----------+
+</pre></div>
+
+
+<h3>利用case语句</h3>
+<p>从另一种思路考虑，放弃<code>union</code>的用法，把变量值用<code>case</code>或者<code>decode</code>表示，如果'network'是'Wi-Fi'就让排序的变量值为'~'，与'operator'列一起排序，这样就可以正常使用<code>order by</code>使'Wi-Fi'的行排在最后了，</p>
+<div class="highlight"><pre><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">push_user_list</span>
+<span class="k">order</span> <span class="k">by</span>
+<span class="k">case</span>
+<span class="k">when</span> <span class="n">network</span><span class="o">=</span><span class="s1">&#39;Wi-Fi&#39;</span> <span class="k">then</span> <span class="s1">&#39;~&#39;</span>
+<span class="k">else</span> <span class="k">operator</span>
+<span class="k">end</span><span class="p">,</span>
+<span class="n">network</span> <span class="k">desc</span><span class="p">;</span>
+</pre></div>
+
+
+<p>这样的结果就很完美了，</p>
+<div class="highlight"><pre>+--------+------+-----+-----+------+---------+----------+
+| userid | imei | lat | lon | addr | network | operator |
++--------+------+-----+-----+------+---------+----------+
+| 128    | 350  |     |     |      | 3G      | 12343    |
+| 122    | 343  |     |     |      | 3G      | 12344    |
+| 131    | 353  |     |     |      | 4G      | 12345    |
+| 125    | 347  |     |     |      | 3G      | 12345    |
+| 129    | 351  |     |     |      | 3G      | 12345    |
+| 130    | 352  |     |     |      | 2G      | 12345    |
+| 126    | 348  |     |     |      | 3G      | 12346    |
+| 127    | 349  |     |     |      | 3G      | 12347    |
+| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
+| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
+| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
++--------+------+-----+-----+------+---------+----------+
+</pre></div>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "archives/mysql_sort_using_case.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://x7qus.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="../pages/about-me.html">About me</a></li>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="../category/android.html">Android</a></li>
+		<li><a href="../category/blog.html">blog</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
+    <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
+
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
+
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
+
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="../theme/js/libs/gumby.min.js"></script>
+  <script src="../theme/js/plugins.js"></script>
+</body>
+</html>

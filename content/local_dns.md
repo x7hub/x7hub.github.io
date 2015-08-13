@@ -1,7 +1,7 @@
 Date: 2013-09-29
 Title: 在本地建立DNS缓存
-Category: linux
-Tags: linux, dns
+Category: Linux
+Tags: Linux, dns
 Slug: local_dns
 
 参考：

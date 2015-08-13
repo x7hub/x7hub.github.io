@@ -1,7 +1,7 @@
 Date: 2013-11-05
 Title: 对Service中弹出的Dialog设置主题
-Category: android
-Tags: android
+Category: Android
+Tags: Android
 Slug: android_service_dialog
 
 

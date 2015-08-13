@@ -1,7 +1,7 @@
 Date: 2013-10-09
 Title: Android原生日历应用分析和简单扩展
-Category: android
-Tags: android
+Category: Android
+Tags: Android
 Slug: android_calendar
 
 参考:

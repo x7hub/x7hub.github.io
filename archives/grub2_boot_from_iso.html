@@ -2,9 +2,10 @@
 <html lang="zhs">
 <head>
 
-        <title>x7's blog - grub2</title>
+        <title>grub2直接引导iso镜像</title>
         <meta charset="utf-8" />
         <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+        <link href="http://x7res.info/feeds/linux.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -53,24 +54,28 @@
               </ul>
             </div>
 
-<section id="content">
-
-
+<section id="content" class="body">
 
    <div class="row">
-
-
         <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2012-11-25T00:00:00+08:00"> Sun 25 November 2012 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="../archives/grub2_boot_from_iso.html" rel="bookmark"
+                   title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2012-11-25T00:00:00+08:00">
+                Sun 25 November 2012
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="../author/x7.html"> x7</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
 <p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
@@ -101,25 +106,81 @@
 <li><code>grub.cfg</code>:</li>
 </ul>
 <div class="highlight"><pre><span class="err">#</span><span class="x"> grub.cfg</span>
-<span class="err">#</span><span class="x"> for ...</span></pre></div> </div><!-- /.entry-content -->
+<span class="err">#</span><span class="x"> for livecd</span>
+<span class="err">#</span><span class="x"> by zzz</span>
 
-                                <div class="medium primary btn"><a href="../archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">Read more <i class="icon-arrow-right"></i></a></div>
+<span class="x">set menu_color_normal=light-blue/black</span>
+<span class="x">set menu_color_highlight=light-cyan/blue</span>
+
+<span class="x">set default=0</span>
+<span class="x">insmod part_msdos</span>
+<span class="x">insmod ext2</span>
+<span class="x">insmod ntfs</span>
+
+<span class="err">#</span><span class="x"> archlinux i686</span>
+<span class="x">menuentry &#39;Arch GNU/Linux i686&#39; </span><span class="err">{</span><span class="x"></span>
+<span class="x">    set isofile=&#39;/livecd/archlinux-2012.10.06-dual.iso&#39;</span>
+<span class="x">    set isolabel=&#39;ARCH_201210&#39;</span>
+<span class="x">    set disklabel=&#39;zzz&#39;</span>
+<span class="x">    loopback loop (hd0,1)</span><span class="p">$</span><span class="nv">isofile</span><span class="x"></span>
+<span class="x">    linux (loop)/arch/boot/i686/vmlinuz archisolabel=</span><span class="p">$</span><span class="nv">isolabel</span><span class="x"> img_dev=/dev/disk/by-label/</span><span class="p">$</span><span class="nv">disklabel</span><span class="x"> img_loop=</span><span class="p">$</span><span class="nv">isofile</span><span class="x"></span>
+<span class="x">    initrd (loop)/arch/boot/i686/archiso.img</span>
+<span class="x">}</span>
+
+<span class="err">#</span><span class="x"> archlinux x86_64</span>
+<span class="x">menuentry &#39;Arch GNU/Linux x86_64&#39; </span><span class="err">{</span><span class="x"></span>
+<span class="x">    set isofile=&#39;/livecd/archlinux-2012.10.06-dual.iso&#39;</span>
+<span class="x">    set isolabel=&#39;ARCH_201210&#39;</span>
+<span class="x">    set disklabel=&#39;zzz&#39;</span>
+<span class="x">    loopback loop (hd0,1)</span><span class="p">$</span><span class="nv">isofile</span><span class="x"></span>
+<span class="x">    linux (loop)/arch/boot/x86_64/vmlinuz archisolabel=</span><span class="p">$</span><span class="nv">isolabel</span><span class="x"> img_dev=/dev/disk/by-label/</span><span class="p">$</span><span class="nv">disklabel</span><span class="x"> img_loop=</span><span class="p">$</span><span class="nv">isofile</span><span class="x"></span>
+<span class="x">    initrd (loop)/arch/boot/x86_64/archiso.img</span>
+<span class="x">}</span>
+
+<span class="err">#</span><span class="x"> ubuntu 12.04</span>
+<span class="x">menuentry &#39;Ubuntu 12.04.1 LTS&#39; </span><span class="err">{</span><span class="x"></span>
+<span class="x">    set isofile=&#39;/livecd/ubuntu-12.04-desktop-i386.iso&#39;</span>
+<span class="x">    loopback loop </span><span class="p">$</span><span class="nv">isofile</span><span class="x"></span>
+<span class="x">    linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=</span><span class="p">$</span><span class="nv">isofile</span><span class="x"> ro</span>
+<span class="x">    initrd (loop)/casper/initrd.lz</span>
+<span class="x">}</span>
+
+<span class="err">#</span><span class="x"> grub4dos</span>
+<span class="x">menuentry &#39;Grub4dos&#39; </span><span class="err">{</span><span class="x"></span>
+<span class="x">    linux /livecd/grub4dos/grub.exe --config-file=/livecd/grub4dos/menu.lst</span>
+<span class="x">}</span>
+</pre></div>
 
 
+<ul>
+<li><code>grub4dos</code>配置</li>
+</ul>
+<div class="highlight"><pre># menu.lst
 
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/linux.html">Linux</a>
-                                            <a class="danger label" href="../tag/grub2.html">grub2</a>
-                                </div>
+color light-blue/black light-cyan/blue
 
+title en Windows 7 x86 ultimate sp1
+map (hd0,0)/livecd/en_windows_7_ultimate_with_sp1_x86_dvd_u_677460.iso (0xff)
+map --hook
+chainloader (0xff)
+</pre></div>
+            </div><!-- /.entry-content -->
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "archives/grub2_boot_from_iso.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://x7qus.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
 
-
-                        </article></li>
-                </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
-        
+
 <div class="three columns">
 
 <h4>Pages</h4>
@@ -156,10 +217,8 @@
 
 </div> </div><!-- /.row -->
 
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
+
+</section>
 
        </div><!-- /.row -->
     </div><!-- /.container -->

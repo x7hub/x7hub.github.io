@@ -1,7 +1,7 @@
 Date: 2013-09-8
 Title: 修改hosts访问github
-Category: linux
-Tags: linux, hosts
+Category: Linux
+Tags: Linux, hosts
 Slug: github_hosts
 
 学校不知道抽的什么风，突然就不让上github了，于是修改`/etc/hosts`加入：

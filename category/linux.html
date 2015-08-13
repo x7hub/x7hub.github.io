@@ -4,6 +4,8 @@
 
         <title>x7's blog</title>
         <meta charset="utf-8" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+        <link href="http://x7res.info/feeds/linux.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -22,12 +24,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -40,14 +40,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -55,57 +55,63 @@
             </div>
 
 <section id="content">
-<h2>Articles in the linux category</h2>
+<h2>Articles in the Linux category</h2>
 
 
    <div class="row">
 
 
         <div class="eleven columns">
-		         <ol id="post-list">
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-11-30T00:00:00"> Sat 30 November 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                 <ol id="post-list">
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">对比zsh和bash中的数组与关联数组</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-11-30T00:00:00+08:00"> Sat 30 November 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p>Linux Shell脚本攻略 人民邮电出版社</p>
 <h3>数组</h3>
 <p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
-<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
+<div class="highlight"><pre><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
 </pre></div>
 
 
 <p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
-<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span>1 2 3 4 5 6<span class="o">)</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="k">}</span>
+<div class="highlight"><pre><span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> 6<span class="o">)</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
 1
-<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="k">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="k">}</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span><span class="nv">$ </span><span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
 1
 </pre></div>
 
 
 <p>但是，在<code>zsh ...</code></p> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/zsh_array.html" rel="bookmark" title="Permalink to 对比zsh和bash中的数组与关联数组">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/shell.html">shell</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/shell.html">shell</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-09-29T00:00:00"> Sun 29 September 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>参考：</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-29T00:00:00+08:00"> Sun 29 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
 <p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
 <h3>dnsmasq</h3>
@@ -121,60 +127,66 @@
 <ul>
 <li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
 </ul>
-<div class="highlight"><pre><span class="n">resolv</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv_dnsmasq</span><span class="p">.</span><span class="n">conf</span>
+<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
 </pre></div>
 
 
 <ul>
-<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager ...</code></li></ul> </div><!-- /.entry-content -->
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 ...</li></ul> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/dns.html">dns</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-09-08T00:00:00"> Sun 08 September 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
-<div class="highlight"><pre><span class="cp"># github</span>
-<span class="mf">207.97.227.239</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">65.74.177.129</span> <span class="n">www</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">207.97.227.252</span> <span class="n">nodeload</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">207.97.227.243</span> <span class="n">raw</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">204.232.175.78</span> <span class="n">documentcloud</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-<span class="mf">204.232.175.78</span> <span class="n">pages</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/dns.html">dns</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-08T00:00:00+08:00"> Sun 08 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
+<div class="highlight"><pre># github
+207.97.227.239 github.com
+65.74.177.129 www.github.com
+207.97.227.252 nodeload.github.com
+207.97.227.243 raw.github.com
+204.232.175.78 documentcloud.github.com
+204.232.175.78 pages.github.com
 </pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/hosts.html">hosts</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/hosts.html">hosts</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">hadoop on archlinux</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-06-21T00:00:00"> Fri 21 June 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">hadoop on archlinux</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-06-21T00:00:00+08:00"> Fri 21 June 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Hadoop">Hadoop - ArchWiki</a></p>
 <p><a href="http://hadoop.apache.org/docs/stable/single_node_setup.html">Single Node Setup</a></p>
@@ -229,52 +241,58 @@
 <ul>
 <li>启动后运行example测试，首先把测试用的文件写到<code>hadoop ...</code></li></ul> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../archives/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/hadoop.html">hadoop</a>
-								</div>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/hadoop.html">Hadoop</a>
+                                </div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-01-22T00:00:00"> Tue 22 January 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-01-22T00:00:00+08:00"> Tue 22 January 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
 <p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
-<div class="highlight"><pre><span class="nl">root:</span><span class="o">/</span><span class="n">sources</span><span class="o">/</span><span class="n">shadow</span><span class="o">-</span><span class="mf">4.1.5.1</span><span class="err">#</span> <span class="n">passwd</span> <span class="n">root</span>
-<span class="n">Changing</span> <span class="n">password</span> <span class="k">for</span> <span class="n">root</span>
-<span class="n">Enter</span> <span class="n">the</span> <span class="n">new</span> <span class="n">password</span> <span class="p">(</span><span class="n">minimum</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">characters</span><span class="p">)</span>
-<span class="n">Please</span> <span class="n">use</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">upper</span> <span class="n">and</span> <span class="n">lower</span> <span class="k">case</span> <span class="n">letters</span> <span class="n">and</span> <span class="n">numbers</span><span class="p">.</span>
-<span class="n">Bad</span> <span class="n">password</span><span class="o">:</span> <span class="n">too</span> <span class="kt">short</span><span class="p">.</span>  
-<span class="nl">Warning:</span> <span class="n">weak</span> <span class="n">password</span> <span class="p">(</span><span class="n">enter</span> <span class="n">it ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre>root:/sources/shadow-4.1.5.1# passwd root
+Changing password for root
+Enter the new password (minimum of 5 characters)
+Please use a combination of upper and lower case letters and numbers.
+Bad password: too short.  
+Warning: weak password (enter it again ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/lfs.html">lfs</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2012-11-25T00:00:00"> Sun 25 November 2012 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/lfs.html">lfs</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2012-11-25T00:00:00+08:00"> Sun 25 November 2012 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
 <p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
@@ -304,23 +322,23 @@
 <ul>
 <li><code>grub.cfg</code>:</li>
 </ul>
-<div class="highlight"><pre><span class="cp"># grub.cfg</span>
-<span class="cp"># for ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre><span class="err">#</span><span class="x"> grub.cfg</span>
+<span class="err">#</span><span class="x"> for ...</span></pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/grub2.html">grub2</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				</ol><!-- /#posts-list -->
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/grub2.html">grub2</a>
+                                </div>
+
+
+
+                        </article></li>
+                </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
         
@@ -334,29 +352,16 @@
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -365,6 +370,9 @@
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -400,8 +408,11 @@
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>

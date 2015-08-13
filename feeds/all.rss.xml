@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7res.info/" rel="alternate"></link><link href="http://x7res.info/feeds/x7.atom.xml" rel="self"></link><id>http://x7res.info/</id><updated>2014-05-29T00:00:00+08:00</updated><entry><title>SQL中利用case语句根据多列排序</title><link href="http://x7res.info/archives/mysql_sort_using_case.html" rel="alternate"></link><updated>2014-05-29T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2014-05-29:archives/mysql_sort_using_case.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>x7's blog</title><link>http://x7res.info/</link><description></description><atom:link href="http://x7res.info/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 May 2014 00:00:00 +0800</lastBuildDate><item><title>SQL中利用case语句根据多列排序</title><link>http://x7res.info/archives/mysql_sort_using_case.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/chen_linbo/article/details/6396122"&gt;oracle union all和order by一起使用&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;需求是这样的，有类似如下的表，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;+--------+------+-----+-----+------+---------+----------+
@@ -111,7 +111,7 @@
 | 123    | 345  |     |     |      | Wi-Fi   | 12345    |
 | 133    | 354  |     |     |      | Wi-Fi   | 12346    |
 +--------+------+-----+-----+------+---------+----------+
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="SQL"></category></entry><entry><title>Linux系统中LaTeX的安装与使用</title><link href="http://x7res.info/archives/latex_on_linux.html" rel="alternate"></link><updated>2014-03-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2014-03-17:archives/latex_on_linux.html</id><summary type="html">&lt;h3&gt;安装&lt;/h3&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Thu, 29 May 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-05-29:archives/mysql_sort_using_case.html</guid><category>SQL</category></item><item><title>Linux系统中LaTeX的安装与使用</title><link>http://x7res.info/archives/latex_on_linux.html</link><description>&lt;h3&gt;安装&lt;/h3&gt;
 &lt;p&gt;针对Archlinux，需要&lt;a href="https://wiki.archlinux.org/index.php/TeX_Live"&gt;TeX Live&lt;/a&gt;，首先要编译LaTeX文件需要这个包&lt;code&gt;texlive-bin&lt;/code&gt;，有一些图片字体之类的依赖，在这一组包里&lt;code&gt;texlive-most&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。&lt;/p&gt;
 &lt;p&gt;Linux下的LaTeX编辑器&lt;a href="https://wiki.archlinux.org/index.php/Latex"&gt;有很多&lt;/a&gt;，我使用的是&lt;code&gt;Kile&lt;/code&gt;，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。&lt;/p&gt;
@@ -289,7 +289,7 @@ IEEEtran.cls version 1.7 and later.&lt;span class="k"&gt;\\&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</summary><category term="LaTeX"></category><category term="Linux"></category></entry><entry><title>用Pelican构建博客上传到Github Pages出错</title><link href="http://x7res.info/archives/page_build_failed.html" rel="alternate"></link><updated>2013-12-04T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-12-04:archives/page_build_failed.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-03-17:archives/latex_on_linux.html</guid><category>LaTeX</category><category>Linux</category></item><item><title>用Pelican构建博客上传到Github Pages出错</title><link>http://x7res.info/archives/page_build_failed.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://help.github.com/articles/using-submodules-with-pages"&gt;Using submodules with Pages&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;出错情况&lt;/h3&gt;
 &lt;p&gt;上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。&lt;/p&gt;
@@ -340,7 +340,7 @@ git submodule add  https://github.com/getpelican/pelican-themes pelican-themes
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;再次提交，没有收到报错的邮件，很快就在页面上看到更新了。&lt;/p&gt;</summary><category term="GitHub"></category><category term="Pelican"></category></entry><entry><title>对比zsh和bash中的数组与关联数组</title><link href="http://x7res.info/archives/zsh_array.html" rel="alternate"></link><updated>2013-11-30T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-11-30:archives/zsh_array.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;再次提交，没有收到报错的邮件，很快就在页面上看到更新了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Wed, 04 Dec 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-12-04:archives/page_build_failed.html</guid><category>GitHub</category><category>Pelican</category></item><item><title>对比zsh和bash中的数组与关联数组</title><link>http://x7res.info/archives/zsh_array.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;Linux Shell脚本攻略 人民邮电出版社&lt;/p&gt;
 &lt;h3&gt;数组&lt;/h3&gt;
 &lt;p&gt;可以这样定义数组，在&lt;code&gt;bash&lt;/code&gt;和&lt;code&gt;zsh&lt;/code&gt;都可以，&lt;/p&gt;
@@ -417,7 +417,7 @@ val1
 
 
 &lt;h3&gt;暂时就这些&lt;/h3&gt;
-&lt;p&gt;看来zsh和bash有好多不同啊，以前都没在意过。。。&lt;/p&gt;</summary><category term="Linux"></category><category term="shell"></category></entry><entry><title>对Service中弹出的Dialog设置主题</title><link href="http://x7res.info/archives/android_service_dialog.html" rel="alternate"></link><updated>2013-11-05T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-11-05:archives/android_service_dialog.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;看来zsh和bash有好多不同啊，以前都没在意过。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sat, 30 Nov 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-11-30:archives/zsh_array.html</guid><category>Linux</category><category>shell</category></item><item><title>对Service中弹出的Dialog设置主题</title><link>http://x7res.info/archives/android_service_dialog.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/huxueyan521/article/details/8954844"&gt;service中显示一个dialog&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.cnblogs.com/noTice520/archive/2011/02/01/1948738.html"&gt;android UI进阶之style和theme的使用&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;简介&lt;/h3&gt;
@@ -491,7 +491,7 @@ val1
         &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getWindow&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;setType&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;WindowManager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;LayoutParams&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;TYPE_SYSTEM_ALERT&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
     &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Android"></category></entry><entry><title>Android原生日历应用分析和简单扩展</title><link href="http://x7res.info/archives/android_calendar.html" rel="alternate"></link><updated>2013-10-09T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-10-09:archives/android_calendar.html</id><summary type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 05 Nov 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-11-05:archives/android_service_dialog.html</guid><category>Android</category></item><item><title>Android原生日历应用分析和简单扩展</title><link>http://x7res.info/archives/android_calendar.html</link><description>&lt;p&gt;参考:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html"&gt;Android 4.0日历（calendar）源码分析之概览&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://code.google.com/p/android-project-sse-ustc/"&gt;Google Code - android-project-sse-ustc&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;简介:&lt;/h3&gt;
@@ -662,7 +662,7 @@ val1
 
 
 &lt;h3&gt;其他&lt;/h3&gt;
-&lt;p&gt;其他还做了很多修改，暂时还不便给出，以后有机会会放到github上。&lt;/p&gt;</summary><category term="Android"></category></entry><entry><title>Android源码中日历模块单独编译</title><link href="http://x7res.info/archives/android_app_compile.html" rel="alternate"></link><updated>2013-10-08T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-10-08:archives/android_app_compile.html</id><summary type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;其他还做了很多修改，暂时还不便给出，以后有机会会放到github上。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Wed, 09 Oct 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-10-09:archives/android_calendar.html</guid><category>Android</category></item><item><title>Android源码中日历模块单独编译</title><link>http://x7res.info/archives/android_app_compile.html</link><description>&lt;p&gt;参考:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/xixinyan/article/details/6942074"&gt;在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/zhu_apollo/article/details/8760025"&gt;android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Android 源码下载：&lt;/h3&gt;
@@ -753,7 +753,7 @@ val1
 　　frameworks/ex/chips/res/values/attrs.xml
 　　frameworks/ex/chips/res/drawable-{hdpi,mdpi,xhdpi}/{chip_background.9.png,chip_delete.png,chip_background_invalid.9.png,chip_background_selected.9.png}
 　　frameworks/ex/chips/src/com/android/ex/chips/SingleRecipientArrayAdapter.java
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Android"></category></entry><entry><title>在本地建立DNS缓存</title><link href="http://x7res.info/archives/local_dns.html" rel="alternate"></link><updated>2013-09-29T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-09-29:archives/local_dns.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 08 Oct 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-10-08:archives/android_app_compile.html</guid><category>Android</category></item><item><title>在本地建立DNS缓存</title><link>http://x7res.info/archives/local_dns.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Dnsmasq"&gt;dnsmasq - ArchWiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://tieba.baidu.com/p/1034963853"&gt;用dnsmasq加速你的网络!!!&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;dnsmasq&lt;/h3&gt;
@@ -826,7 +826,7 @@ val1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;确实效果明显。但是，关掉了dnsmasq并设置使用自动获取的dns服务，一样也是这样的效果，看来学校给的dns服务器也是大概使用了这种缓存机制吧。&lt;/p&gt;</summary><category term="Linux"></category><category term="dns"></category></entry><entry><title>修改hosts访问github</title><link href="http://x7res.info/archives/github_hosts.html" rel="alternate"></link><updated>2013-09-08T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-09-08:archives/github_hosts.html</id><summary type="html">&lt;p&gt;学校不知道抽的什么风，突然就不让上github了，于是修改&lt;code&gt;/etc/hosts&lt;/code&gt;加入：&lt;/p&gt;
+&lt;p&gt;确实效果明显。但是，关掉了dnsmasq并设置使用自动获取的dns服务，一样也是这样的效果，看来学校给的dns服务器也是大概使用了这种缓存机制吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 29 Sep 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-09-29:archives/local_dns.html</guid><category>Linux</category><category>dns</category></item><item><title>修改hosts访问github</title><link>http://x7res.info/archives/github_hosts.html</link><description>&lt;p&gt;学校不知道抽的什么风，突然就不让上github了，于是修改&lt;code&gt;/etc/hosts&lt;/code&gt;加入：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;# github
 207.97.227.239 github.com
 65.74.177.129 www.github.com
@@ -834,7 +834,7 @@ val1
 207.97.227.243 raw.github.com
 204.232.175.78 documentcloud.github.com
 204.232.175.78 pages.github.com
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="hosts"></category></entry><entry><title>在Github Pages上搭建个人博客</title><link href="http://x7res.info/archives/build_my_blog.html" rel="alternate"></link><updated>2013-08-27T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-08-27:archives/build_my_blog.html</id><summary type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 08 Sep 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-09-08:archives/github_hosts.html</guid><category>Linux</category><category>hosts</category></item><item><title>在Github Pages上搭建个人博客</title><link>http://x7res.info/archives/build_my_blog.html</link><description>&lt;p&gt;参考:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html"&gt;一步一步打造Geek风格的技术博客 by lizherui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://x-wei.github.io/pelican_github_blog.html"&gt;用pelican在github上创建自己的博客! by mx&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;使用Pelican打造静态博客 by cold&lt;/a&gt;&lt;/p&gt;
@@ -1001,7 +1001,7 @@ pelican-themes -i tuxlite_tbs
 
 
 &lt;h3&gt;To be continued&lt;/h3&gt;
-&lt;p&gt;暂时就这样～ 当然还有好多东西要做，Analytics、Webmaster等等。。。&lt;/p&gt;</summary><category term="blog"></category><category term="GitHub"></category><category term="Pelican"></category></entry><entry><title>Android禁止安装360手机助手</title><link href="http://x7res.info/archives/ban_360_on_android.html" rel="alternate"></link><updated>2013-08-07T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-08-07:archives/ban_360_on_android.html</id><summary type="html">&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;p&gt;暂时就这样～ 当然还有好多东西要做，Analytics、Webmaster等等。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-08-27:archives/build_my_blog.html</guid><category>blog</category><category>GitHub</category><category>Pelican</category></item><item><title>Android禁止安装360手机助手</title><link>http://x7res.info/archives/ban_360_on_android.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
 &lt;p&gt;360太讨厌了，还老有人用我手机调试，一插他们电脑，马上就要给我装上360,于是就有了下边的招：&lt;/p&gt;
 &lt;p&gt;android程序在手机上在&lt;code&gt;/data/app/&lt;/code&gt;目录下，考虑在此位置放一个360相同包名的文件，想让它安装的时候不能覆盖&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;adb shell
@@ -1028,7 +1028,7 @@ Failure &lt;span class="o"&gt;[&lt;/span&gt;INSTALL_FAILED_UID_CHANGED&lt;span c
 &lt;span class="m"&gt;3713&lt;/span&gt; KB/s &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;3737068&lt;/span&gt; bytes in 0.982s&lt;span class="o"&gt;)&lt;/span&gt;
         pkg: /data/local/tmp/com.qihoo.appstore-1.apk
 Failure &lt;span class="o"&gt;[&lt;/span&gt;INSTALL_FAILED_UID_CHANGED&lt;span class="o"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Android"></category></entry><entry><title>从源码编译Android系统</title><link href="http://x7res.info/archives/build_android_from_source.html" rel="alternate"></link><updated>2013-07-29T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-07-29:archives/build_android_from_source.html</id><summary type="html">&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Wed, 07 Aug 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-08-07:archives/ban_360_on_android.html</guid><category>Android</category></item><item><title>从源码编译Android系统</title><link>http://x7res.info/archives/build_android_from_source.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
 &lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Android"&gt;Android - ArchWiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://source.android.com/source/initializing.html"&gt;Initializing a Build Environment | Android Developers&lt;/a&gt;&lt;/p&gt;
@@ -1114,7 +1114,7 @@ prebuilts/misc/linux-x86/ccache/ccache -M 50G
 &lt;li&gt;编译,就可以了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;make -j4
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Android"></category><category term="Linux"></category></entry><entry><title>hadoop on archlinux</title><link href="http://x7res.info/archives/hadoop_on_archlinux.html" rel="alternate"></link><updated>2013-06-21T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-06-21:archives/hadoop_on_archlinux.html</id><summary type="html">&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Mon, 29 Jul 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-07-29:archives/build_android_from_source.html</guid><category>Android</category><category>Linux</category></item><item><title>hadoop on archlinux</title><link>http://x7res.info/archives/hadoop_on_archlinux.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
 &lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Hadoop"&gt;Hadoop - ArchWiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://hadoop.apache.org/docs/stable/single_node_setup.html"&gt;Single Node Setup&lt;/a&gt;&lt;/p&gt;
@@ -1185,7 +1185,7 @@ prebuilts/misc/linux-x86/ccache/ccache -M 50G
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;hadoop fs -get output output
 cat output/*
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Hadoop"></category></entry><entry><title>LFS编译shadow之后设置root密码出错解决</title><link href="http://x7res.info/archives/lfs_root_passwd.html" rel="alternate"></link><updated>2013-01-22T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2013-01-22:archives/lfs_root_passwd.html</id><summary type="html">&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-06-21:archives/hadoop_on_archlinux.html</guid><category>Linux</category><category>Hadoop</category></item><item><title>LFS编译shadow之后设置root密码出错解决</title><link>http://x7res.info/archives/lfs_root_passwd.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
 &lt;p&gt;按照&lt;a href="http://www.linuxfromscratch.org/lfs/download.html"&gt;lfs book&lt;/a&gt;编译安装配置&lt;code&gt;shadow&lt;/code&gt;之后没法修改root密码：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;root:/sources/shadow-4.1.5.1# passwd root
 Changing password for root
@@ -1230,7 +1230,7 @@ mount: shm mounted on /media/lfs/dev/shm
 &lt;span class="x"&gt;Re-enter new password:&lt;/span&gt;
 &lt;span class="x"&gt;passwd: password changed.&lt;/span&gt;
 &lt;span class="x"&gt;root:/&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="lfs"></category></entry><entry><title>grub2直接引导iso镜像</title><link href="http://x7res.info/archives/grub2_boot_from_iso.html" rel="alternate"></link><updated>2012-11-25T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2012-11-25:archives/grub2_boot_from_iso.html</id><summary type="html">&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 22 Jan 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-01-22:archives/lfs_root_passwd.html</guid><category>Linux</category><category>lfs</category></item><item><title>grub2直接引导iso镜像</title><link>http://x7res.info/archives/grub2_boot_from_iso.html</link><description>&lt;p&gt;搬迁自&lt;a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html"&gt;以前的新浪博客&lt;/a&gt;～&lt;/p&gt;
 &lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Grub"&gt;GRUB - ArchWiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images"&gt;grub2 - How to boot live iso images? - Ask Ubuntu&lt;/a&gt;&lt;/p&gt;
@@ -1318,4 +1318,4 @@ title en Windows 7 x86 ultimate sp1
 map (hd0,0)/livecd/en_windows_7_ultimate_with_sp1_x86_dvd_u_677460.iso (0xff)
 map --hook
 chainloader (0xff)
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="grub2"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Sun, 25 Nov 2012 00:00:00 +0800</pubDate><guid>tag:x7res.info,2012-11-25:archives/grub2_boot_from_iso.html</guid><category>Linux</category><category>grub2</category></item></channel></rss>

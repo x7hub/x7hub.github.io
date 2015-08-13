@@ -1,7 +1,7 @@
 Date: 2013-06-21
 Title: hadoop on archlinux
-Category: linux
-Tags: linux, hadoop
+Category: Linux
+Tags: Linux, Hadoop
 Slug: hadoop_on_archlinux
 
 搬迁自[以前的新浪博客](http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html)～

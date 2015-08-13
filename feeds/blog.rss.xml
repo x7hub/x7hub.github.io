@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7hub.github.io/" rel="alternate"></link><link href="http://x7hub.github.io/feeds/pelican.atom.xml" rel="self"></link><id>http://x7hub.github.io/</id><updated>2013-12-04T00:00:00+08:00</updated><entry><title>用Pelican构建博客上传到Github Pages出错</title><link href="http://x7hub.github.io/pages/page_build_failed.html" rel="alternate"></link><updated>2013-12-04T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7hub.github.io,2013-12-04:pages/page_build_failed.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>x7's blog</title><link>http://x7res.info/</link><description></description><atom:link href="http://x7res.info/feeds/blog.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 04 Dec 2013 00:00:00 +0800</lastBuildDate><item><title>用Pelican构建博客上传到Github Pages出错</title><link>http://x7res.info/archives/page_build_failed.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://help.github.com/articles/using-submodules-with-pages"&gt;Using submodules with Pages&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;出错情况&lt;/h3&gt;
 &lt;p&gt;上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。&lt;/p&gt;
@@ -50,7 +50,7 @@ git submodule add  https://github.com/getpelican/pelican-themes pelican-themes
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;再次提交，没有收到报错的邮件，很快就在页面上看到更新了。&lt;/p&gt;</summary><category term="github"></category><category term="pelican"></category></entry><entry><title>在Github Pages上搭建个人博客</title><link href="http://x7hub.github.io/pages/build_my_blog.html" rel="alternate"></link><updated>2013-08-27T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7hub.github.io,2013-08-27:pages/build_my_blog.html</id><summary type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;再次提交，没有收到报错的邮件，很快就在页面上看到更新了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Wed, 04 Dec 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-12-04:archives/page_build_failed.html</guid><category>GitHub</category><category>Pelican</category></item><item><title>在Github Pages上搭建个人博客</title><link>http://x7res.info/archives/build_my_blog.html</link><description>&lt;p&gt;参考:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html"&gt;一步一步打造Geek风格的技术博客 by lizherui&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://x-wei.github.io/pelican_github_blog.html"&gt;用pelican在github上创建自己的博客! by mx&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html"&gt;使用Pelican打造静态博客 by cold&lt;/a&gt;&lt;/p&gt;
@@ -121,8 +121,8 @@ rm -rf username.github.io
 
 
 &lt;p&gt;添加&lt;code&gt;github&lt;/code&gt;项，方便直接向github提交修改：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;github&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;publish&lt;/span&gt;
-    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OUTPUTDIR&lt;span class="k"&gt;)&lt;/span&gt;; git add .; git commit -am &lt;span class="s1"&gt;&amp;#39;zzz&amp;#39;&lt;/span&gt;; git push
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;github&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;publish&lt;/span&gt;
+    &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OUTPUTDIR&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; git add .&lt;span class="p"&gt;;&lt;/span&gt; git commit -am &lt;span class="s1"&gt;&amp;#39;zzz&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; git push
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -217,4 +217,4 @@ pelican-themes -i tuxlite_tbs
 
 
 &lt;h3&gt;To be continued&lt;/h3&gt;
-&lt;p&gt;暂时就这样～ 当然还有好多东西要做，Analytics、Webmaster等等。。。&lt;/p&gt;</summary><category term="blog"></category><category term="github"></category><category term="pelican"></category></entry></feed>
+&lt;p&gt;暂时就这样～ 当然还有好多东西要做，Analytics、Webmaster等等。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 27 Aug 2013 00:00:00 +0800</pubDate><guid>tag:x7res.info,2013-08-27:archives/build_my_blog.html</guid><category>blog</category><category>GitHub</category><category>Pelican</category></item></channel></rss>

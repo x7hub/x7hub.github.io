@@ -4,6 +4,8 @@
 
         <title>在本地建立DNS缓存</title>
         <meta charset="utf-8" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+        <link href="http://x7res.info/feeds/linux.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -22,12 +24,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -40,14 +40,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -62,16 +62,16 @@
 
             <header>
               <h2 class="entry-title">
-                <a href="../pages/local_dns.html" rel="bookmark"
+                <a href="../archives/local_dns.html" rel="bookmark"
                    title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2>
            
             </header>
             <footer class="post-info">
-              <abbr class="published" title="2013-09-29T00:00:00">
+              <abbr class="published" title="2013-09-29T00:00:00+08:00">
                 Sun 29 September 2013
               </abbr>
-              <address class="vcard author">
-                By <a class="url fn" href="../author/x7.html">x7</a>
+              <address class="vcard author">By 
+                <a class="url fn" href="../author/x7.html"> x7</a>
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
@@ -91,7 +91,7 @@
 <ul>
 <li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
 </ul>
-<div class="highlight"><pre><span class="n">resolv</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv_dnsmasq</span><span class="p">.</span><span class="n">conf</span>
+<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
 </pre></div>
 
 
@@ -111,7 +111,7 @@
 <p>如果没有使用，那么系统是通过直接读取用户设置的<code>/etc/resolv.conf</code>来获取dns服务器，那么直接修改这个文件即可：</p>
 </li>
 </ul>
-<div class="highlight"><pre><span class="n">nameserver</span> <span class="mf">127.0.0.1</span>
+<div class="highlight"><pre>nameserver 127.0.0.1
 </pre></div>
 
 
@@ -129,7 +129,7 @@
 
 
 <p>可以看到这么一行：</p>
-<div class="highlight"><pre><span class="p">;;</span> <span class="n">SERVER</span><span class="o">:</span> <span class="mf">127.0.0.1</span><span class="err">#</span><span class="mi">53</span><span class="p">(</span><span class="mf">127.0.0.1</span><span class="p">)</span>
+<div class="highlight"><pre>;; SERVER: 127.0.0.1#53(127.0.0.1)
 </pre></div>
 
 
@@ -141,10 +141,10 @@
 <p>Running the command again will use the cached DNS IP and result in a faster lookup time if dnsmasq is setup correctly.</p>
 </blockquote>
 <p>于是就试了一下：</p>
-<div class="highlight"><pre>~ % dig archlinux.org | grep <span class="s2">&quot;Query time&quot;</span>              commander@myhost pts/2 19:11 
-;; Query <span class="nb">time</span>: 315 msec
-~ % dig archlinux.org | grep <span class="s2">&quot;Query time&quot;</span>              commander@myhost pts/2 19:12 
-;; Query <span class="nb">time</span>: 0 msec
+<div class="highlight"><pre>~ % dig archlinux.org <span class="p">|</span> grep <span class="s2">&quot;Query time&quot;</span>              commander@myhost pts/2 19:11 
+<span class="p">;;</span> Query <span class="nb">time</span>: <span class="m">315</span> msec
+~ % dig archlinux.org <span class="p">|</span> grep <span class="s2">&quot;Query time&quot;</span>              commander@myhost pts/2 19:12 
+<span class="p">;;</span> Query <span class="nb">time</span>: <span class="m">0</span> msec
 </pre></div>
 
 
@@ -154,7 +154,7 @@
               <h3>Comments</h3>
               <div id="disqus_thread"></div>
               <script type="text/javascript">
-                var disqus_identifier = "pages/local_dns.html";
+                var disqus_identifier = "archives/local_dns.html";
                 (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'http://x7qus.disqus.com/embed.js';
@@ -165,7 +165,7 @@
 
 
         </div><!-- /.eleven.columns -->
-        
+
 <div class="three columns">
 
 <h4>Pages</h4>
@@ -176,29 +176,16 @@
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -207,6 +194,9 @@
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -240,8 +230,11 @@
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>

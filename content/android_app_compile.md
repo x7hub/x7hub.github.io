@@ -1,7 +1,7 @@
 Date: 2013-10-08
 Title: Android源码中日历模块单独编译
-Category: android
-Tags: android
+Category: Android
+Tags: Android
 Slug: android_app_compile
 
 参考:

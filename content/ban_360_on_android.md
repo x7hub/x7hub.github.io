@@ -1,7 +1,7 @@
 Date: 2013-08-07
 Title: Android禁止安装360手机助手
-Category: android
-Tags: android
+Category: Android
+Tags: Android
 Slug: ban_360_on_android
 
 搬迁自[以前的新浪博客](http://blog.sina.com.cn/s/blog_76db5e270101ozui.html)～

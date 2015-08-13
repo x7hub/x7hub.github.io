@@ -1,7 +1,7 @@
 Date: 2012-11-25
 Title: grub2直接引导iso镜像
-Category: linux
-Tags: linux, grub2
+Category: Linux
+Tags: Linux, grub2
 Slug: grub2_boot_from_iso
 
 搬迁自[以前的新浪博客](http://blog.sina.com.cn/s/blog_76db5e270101f2an.html)～

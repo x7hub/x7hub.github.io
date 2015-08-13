@@ -1,7 +1,7 @@
 Date: 2013-07-29
 Title: 从源码编译Android系统
-Category: android
-Tags: android, linux
+Category: Android
+Tags: Android, Linux
 Slug: build_android_from_source
 
 搬迁自[以前的新浪博客](http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html)～

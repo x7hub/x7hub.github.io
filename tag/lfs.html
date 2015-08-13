@@ -4,7 +4,7 @@
 
         <title>x7's blog - lfs</title>
         <meta charset="utf-8" />
-        <link href="http://x7hub.github.io/feeds/lfs.atom.xml" type="application/atom+xml" rel="alternate" title="x7's blog Tags Atom Feed" />
+        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -23,12 +23,10 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', 'UA-44068198-1', 'x7hub.github.io');
+                ga('create', 'UA-44068198-1', 'x7res.info');
                 ga('send', 'pageview');
 
               </script>
-
-
 
 
 </head>
@@ -41,14 +39,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="..">x7's blog <strong></strong></a></h1>
+                  <h1><a href="../">x7's blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="..">Home</a></li>
+                <li><a href="../">Home</a></li>
 
                 <li><a href="../pages/about-me.html">About me</a></li>
 
@@ -63,35 +61,38 @@
 
 
         <div class="eleven columns">
-		         <ol id="post-list">
-				        <li><article class="hentry">
-				                <header> <h2 class="entry-title"><a href="../pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
-				                <footer class="post-info">
-				                    <abbr class="published" title="2013-01-22T00:00:00"> Tue 22 January 2013 </abbr>
-<address class="vcard author">By <a class="url fn" href="../author/x7.html">x7</a></address>				                </footer><!-- /.post-info -->
-				                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
+                 <ol id="post-list">
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-01-22T00:00:00+08:00"> Tue 22 January 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
 <p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
-<div class="highlight"><pre><span class="nl">root:</span><span class="o">/</span><span class="n">sources</span><span class="o">/</span><span class="n">shadow</span><span class="o">-</span><span class="mf">4.1.5.1</span><span class="err">#</span> <span class="n">passwd</span> <span class="n">root</span>
-<span class="n">Changing</span> <span class="n">password</span> <span class="k">for</span> <span class="n">root</span>
-<span class="n">Enter</span> <span class="n">the</span> <span class="n">new</span> <span class="n">password</span> <span class="p">(</span><span class="n">minimum</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">characters</span><span class="p">)</span>
-<span class="n">Please</span> <span class="n">use</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="n">upper</span> <span class="n">and</span> <span class="n">lower</span> <span class="k">case</span> <span class="n">letters</span> <span class="n">and</span> <span class="n">numbers</span><span class="p">.</span>
-<span class="n">Bad</span> <span class="n">password</span><span class="o">:</span> <span class="n">too</span> <span class="kt">short</span><span class="p">.</span>  
-<span class="nl">Warning:</span> <span class="n">weak</span> <span class="n">password</span> <span class="p">(</span><span class="n">enter</span> <span class="n">it ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre>root:/sources/shadow-4.1.5.1# passwd root
+Changing password for root
+Enter the new password (minimum of 5 characters)
+Please use a combination of upper and lower case letters and numbers.
+Bad password: too short.  
+Warning: weak password (enter it again ...</pre></div> </div><!-- /.entry-content -->
 
-								<div class="medium primary btn"><a href="../pages/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-								<div class="row tag-row">
-										<span>Tagged as : </span>
-											<a class="danger label" href="../tag/linux.html">linux</a>
-											<a class="danger label" href="../tag/lfs.html">lfs</a>
-								</div>
+                                <div class="medium primary btn"><a href="../archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
-				        </article></li>
-				</ol><!-- /#posts-list -->
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/lfs.html">lfs</a>
+                                </div>
+
+
+
+                        </article></li>
+                </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
         
@@ -105,29 +106,16 @@
 
 <h4>Categories</h4>
 <ul>
-		<li><a href="../category/android.html">android</a></li>
+		<li><a href="../category/android.html">Android</a></li>
 		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">latex</a></li>
-		<li><a href="../category/linux.html">linux</a></li>
-		<li><a href="../category/sql.html">sql</a></li>
+		<li><a href="../category/latex.html">LaTeX</a></li>
+		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/sql.html">SQL</a></li>
 </ul>
 
 
 <h4>Tags</h4>
 	<ul>
-	    <li class="tag-4"><a href="../tag/sql.html">sql</a></li>
-	    <li class="tag-4"><a href="../tag/hosts.html">hosts</a></li>
-	    <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-	    <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-	    <li class="tag-4"><a href="../tag/dns.html">dns</a></li>
-	    <li class="tag-4"><a href="../tag/lfs.html">lfs</a></li>
-	    <li class="tag-1"><a href="../tag/android.html">android</a></li>
-	    <li class="tag-4"><a href="../tag/blog.html">blog</a></li>
-	    <li class="tag-3"><a href="../tag/github.html">github</a></li>
-	    <li class="tag-4"><a href="../tag/hadoop.html">hadoop</a></li>
-	    <li class="tag-4"><a href="../tag/grub2.html">grub2</a></li>
-	    <li class="tag-3"><a href="../tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="../tag/latex.html">latex</a></li>
 </ul>
 
 
@@ -136,6 +124,9 @@
   <ul>
     <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
     <li><a href="https://github.com/x7hub">GitHub</a></li>
+    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
+    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
   </ul>
 </nav>
 
@@ -171,8 +162,11 @@
 
                 <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
+                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
 
+                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
+                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
 
               </ul>
             </div>
