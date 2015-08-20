@@ -31,7 +31,7 @@ Blablabla said Nobody ~&lt;span class="k"&gt;\cite&lt;/span&gt;&lt;span class="n
 
 
 &lt;p&gt;生成的pdf是这样的，&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hello world 的编译结果" src="http://x7hub.github.io/images/latex_on_linux-01.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Hello world 的编译结果" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-00.png/500px" /&gt;&lt;/p&gt;
 &lt;h4&gt;使用模板&lt;/h4&gt;
 &lt;p&gt;虽然语法不是太难理解，但是要自己编辑一篇文章符合投稿的各种格式需求还是相当困难的，所以要套用模板，比如&lt;a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html"&gt;这里&lt;/a&gt;可以下载IEEE的模板，包括四个tex文件，bare_conf是会议，bare_jrnl和bare_jrnl_compsoc一个是for Computer Society Journals一个是for journals，bare_adv是Bare Advanced Demo of IEEEtran.cls for Computer Society Journals。&lt;/p&gt;
 &lt;h4&gt;插入图片&lt;/h4&gt;
@@ -97,7 +97,7 @@ Three &lt;span class="nb"&gt;&amp;amp;&lt;/span&gt; Four&lt;span class="k"&gt;\\
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="插入表格" src="http://x7hub.github.io/images/latex_on_linux-02.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="插入表格" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-01.png/500px" /&gt;&lt;/p&gt;
 &lt;h4&gt;插入算法&lt;/h4&gt;
 &lt;p&gt;算法不是用表格填写的，而是有专门的语法，很方便，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;algorithmic&lt;span class="nb"&gt;}&lt;/span&gt;
@@ -120,7 +120,7 @@ Three &lt;span class="nb"&gt;&amp;amp;&lt;/span&gt; Four&lt;span class="k"&gt;\\
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="插入算法" src="http://x7hub.github.io/images/latex_on_linux-03.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="插入算法" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-02.png/500px" /&gt;&lt;/p&gt;
 &lt;h4&gt;插入参考文献&lt;/h4&gt;
 &lt;p&gt;有两种方式。&lt;/p&gt;
 &lt;h5&gt;thebibliography&lt;/h5&gt;
@@ -168,7 +168,7 @@ I wish you the best of success.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="有段间距" src="http://x7hub.github.io/images/latex_on_linux-04.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="有段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-03.png/500px" /&gt;&lt;/p&gt;
 &lt;p&gt;用换行和缩进避免段间距，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;This demo file is intended to serve as a ``starter file&amp;#39;&amp;#39;
 for IEEE conference papers produced under &lt;span class="k"&gt;\LaTeX\ &lt;/span&gt;using
@@ -177,4 +177,4 @@ IEEEtran.cls version 1.7 and later.&lt;span class="k"&gt;\\&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="避免段间距" src="http://x7hub.github.io/images/latex_on_linux-05.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-03-17:archives/latex_on_linux.html</guid><category>LaTeX</category><category>Linux</category></item></channel></rss>
+&lt;p&gt;&lt;img alt="避免段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-04.png/500px" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Mon, 17 Mar 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-03-17:archives/latex_on_linux.html</guid><category>LaTeX</category><category>Linux</category></item></channel></rss>

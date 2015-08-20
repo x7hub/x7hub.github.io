@@ -84,10 +84,10 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="月视图" src="http://x7hub.github.io/images/small-android_calendar-02.png" /&gt;
-&lt;img alt="周视图" src="http://x7hub.github.io/images/small-android_calendar-03.png" /&gt;
-&lt;img alt="日视图" src="http://x7hub.github.io/images/small-android_calendar-04.png" /&gt;
-&lt;img alt="日程视图" src="http://x7hub.github.io/images/small-android_calendar-05.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px" /&gt;
+&lt;img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px" /&gt;
+&lt;img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px" /&gt;
+&lt;img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px" /&gt;&lt;/p&gt;
 &lt;p&gt;四个视图对应4个Fragment，都附着于&lt;code&gt;AllInOneActivity&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;月视图：&lt;code&gt;month/MonthByWeekFragment.java&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;日视图和周视图：&lt;code&gt;DayFragment.java&lt;/code&gt;&lt;/p&gt;
@@ -98,9 +98,9 @@
 &lt;p&gt;日程新建、编辑：&lt;code&gt;event/EditEventFragment.java&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;日程详细信息：&lt;code&gt;EventInfoActivity.java&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;设置：&lt;code&gt;CalendarSettingActivity.java&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="日程新建、编辑" src="http://x7hub.github.io/images/small-android_calendar-06.png" /&gt;
-&lt;img alt="日程详细信息" src="http://x7hub.github.io/images/small-android_calendar-07.png" /&gt; 
-&lt;img alt="设置" src="http://x7hub.github.io/images/small-android_calendar-08.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="日程新建、编辑" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-04.png/500px" /&gt;
+&lt;img alt="日程详细信息" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-05.png/500px" /&gt; 
+&lt;img alt="设置" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-06.png/500px" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;加入农历显示功能&lt;/h3&gt;
