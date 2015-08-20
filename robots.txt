@@ -1,1 +1,4 @@
 Sitemap: http://x7res.info/sitemap.xml
+User-agent: *
+Disallow: /pages/
+Disallow: /drafts/
