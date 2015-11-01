@@ -153,7 +153,7 @@ rm -rf username.github.io
 &lt;p&gt;需要编辑的md文件应该位于content目录下，我暂时使用的编辑器是ReText，另外有一个在线的编辑器&lt;a href="http://mahua.jser.me"&gt;MaHua&lt;/a&gt;，还没尝试其他。&lt;/p&gt;
 &lt;p&gt;pelican要求文章的开头必须有一些字段，如&lt;code&gt;Title&lt;/code&gt;等，比如本文的开头是这样的：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2013&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;27&lt;/span&gt;
-&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;在&lt;/span&gt;&lt;span class="n"&gt;Github&lt;/span&gt; &lt;span class="n"&gt;Pages&lt;/span&gt;&lt;span class="err"&gt;上搭建个人博客&lt;/span&gt;
+&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;在&lt;/span&gt;&lt;span class="n"&gt;Github&lt;/span&gt; &lt;span class="n"&gt;Pages上搭建个人博客&lt;/span&gt;
 &lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt;
 &lt;span class="n"&gt;Tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt;
 &lt;span class="n"&gt;Slug&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;build_my_blog&lt;/span&gt;

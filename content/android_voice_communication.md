@@ -3,7 +3,6 @@ Title: Android声波通信
 Category: Android
 Tags: Android, voice
 Slug: android_voice_communication
-Status: draft
 
 
 参考：

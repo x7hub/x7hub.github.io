@@ -3,7 +3,6 @@ Title: MonkeyRunner利用剪贴板输入中文
 Category: Android
 Tags: Android MonkeyRunner
 Slug: monkeyrunner_input_unicode
-Status: draft
 
 参考：
 

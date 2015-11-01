@@ -63,6 +63,132 @@
         <div class="eleven columns">
                  <ol id="post-list">
                         <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-29T00:00:00+08:00"> Sun 29 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
+<p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
+<h3>dnsmasq</h3>
+<p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
+<h3>配置</h3>
+<ul>
+<li>首先安装：</li>
+</ul>
+<div class="highlight"><pre>pacman -S dnsmasq
+</pre></div>
+
+
+<ul>
+<li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
+</ul>
+<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
+</pre></div>
+
+
+<ul>
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 ...</li></ul> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="../archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/dns.html">dns</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-09-08T00:00:00+08:00"> Sun 08 September 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
+<div class="highlight"><pre># github
+207.97.227.239 github.com
+65.74.177.129 www.github.com
+207.97.227.252 nodeload.github.com
+207.97.227.243 raw.github.com
+204.232.175.78 documentcloud.github.com
+204.232.175.78 pages.github.com
+</pre></div> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="../archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/linux.html">Linux</a>
+                                            <a class="danger label" href="../tag/hosts.html">hosts</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-08-27T00:00:00+08:00"> Tue 27 August 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考:</p>
+<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
+<p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
+<p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
+<h3>搭建环境</h3>
+<p>在Linux环境下搭建，我使用的是Archlinux i686，使用其它发行版过程基本相同。</p>
+<h3>Github Pages</h3>
+<ul>
+<li>注册Github,注册和配置SSH密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
+<li>在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。</li>
+<li>Setting -&gt; Automatic page generator -&gt; Continue to layout，选择一个模板，并发布。</li>
+</ul>
+<p>这时在username.github.io页面就已经生成了一个页面。</p>
+<h3>本地搭建</h3>
+<ul>
+<li>安装pelican和markdown：</li>
+</ul>
+<div class="highlight"><pre>yaourt pelican
+yaourt markdown
+</pre></div>
+
+
+<ul>
+<li>搭建目录：</li>
+</ul>
+<div class="highlight"><pre>mkdir blog
+<span class="nb">cd </span>blog
+pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/blog.html">blog</a>
+                                            <a class="danger label" href="../tag/github.html">GitHub</a>
+                                            <a class="danger label" href="../tag/pelican.html">Pelican</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
                                 <header> <h2 class="entry-title"><a href="../archives/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Android禁止安装360手机助手</a></h2> </header>
                                 <footer class="post-info">
                                     <abbr class="published" title="2013-08-07T00:00:00+08:00"> Wed 07 August 2013 </abbr>

@@ -3,7 +3,6 @@ Title: Android设备上实现苹果IBeacon协议信号接收
 Category: Android
 Tags: Android, IBeacon
 Slug: android_ibeacon_receive
-Status: draft
 
 
 ### 背景资料

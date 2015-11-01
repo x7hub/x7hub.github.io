@@ -63,6 +63,112 @@
         <div class="eleven columns">
                  <ol id="post-list">
                         <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="./archives/monkeyrunner_input_unicode.html" rel="bookmark" title="Permalink to MonkeyRunner利用剪贴板输入中文">MonkeyRunner利用剪贴板输入中文</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2015-08-17T00:00:00+08:00"> Mon 17 August 2015 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="./author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
+<p><a href="http://developer.android.com/tools/help/MonkeyRunner.html">MonkeyRunner</a></p>
+<p><a href="http://stackoverflow.com/questions/14243427/set-clipboard-text-via-adb-shell-as-of-api-level-11">Set clipboard text via adb shell as of API level 11</a></p>
+<h3>Monkeyrunner不支持中文直接输入</h3>
+<p><a href="http://developer.android.com/tools/help/MonkeyRunner.html">MonkeyRunner</a>是一组<a href="http://www.jython.org/docs/tutorial/indexprogress.html">Jython</a>环境的Android自动测试工具，通过USB控制Android设备完成点击、拖拽、输入等操作。</p>
+<p><code>MonkeyDevice</code>类的<code>type(String message)</code>方法支持向设备输入字符串，但是由于Jython本身的原因，无法支持直接输入unicode字符，</p>
+<div class="highlight"><pre><span class="n">device</span> <span class="o">=</span> <span class="n">MonkeyRunner</span><span class="o">.</span><span class="n">waitForConnection</span><span class="p">()</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span> <span class="c"># 成功</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">&#39;测试&#39;</span><span class="p">)</span> <span class="c"># 无输入</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">u&#39;测试&#39;</span><span class="p">)</span> <span class="c"># 无输入</span>
+</pre></div>
+
+
+<p>解决的思路有两个，</p>
+<ol>
+<li>利用Android设备上的输入法输入中文，相对复杂。</li>
+<li>利用剪贴板复制粘贴。</li>
+</ol>
+<p>下文实现的是利用剪贴板的思路 ...</p> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="./archives/monkeyrunner_input_unicode.html" rel="bookmark" title="Permalink to MonkeyRunner利用剪贴板输入中文">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="./tag/android-monkeyrunner.html">Android MonkeyRunner</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="./archives/android_ibeacon_receive.html" rel="bookmark" title="Permalink to Android设备上实现苹果IBeacon协议信号接收">Android设备上实现苹果IBeacon协议信号接收</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2014-09-26T00:00:00+08:00"> Fri 26 September 2014 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="./author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <h3>背景资料</h3>
+<p><a href="http://stackoverflow.com/questions/18906988/what-is-the-ibeacon-bluetooth-profile">这里</a>详细介绍了iBeacon协议中的关键字段，此Demo根据协议中的字段，将蓝牙扫描到的记录字段做解析，判断记录是否是iBeacon包，并获得iBeacon中的信息字段，包括UUID，major，minor，txpower。</p>
+<blockquote>
+<p>02 # Number of bytes that follow in first AD structure</p>
+<p>01 # Flags AD type</p>
+<p>1A # Flags value 0x1A = 000011010</p>
+<p>bit 0 (OFF) LE Limited Discoverable Mode</p>
+<p>bit 1 (ON) LE General Discoverable Mode</p>
+<p>bit 2 (OFF) BR/EDR Not ...</p></blockquote> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="./archives/android_ibeacon_receive.html" rel="bookmark" title="Permalink to Android设备上实现苹果IBeacon协议信号接收">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="./tag/android.html">Android</a>
+                                            <a class="danger label" href="./tag/ibeacon.html">IBeacon</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="./archives/android_voice_communication.html" rel="bookmark" title="Permalink to Android声波通信">Android声波通信</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2014-09-26T00:00:00+08:00"> Fri 26 September 2014 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="./author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://github.com/Katee/quietnet">Quietnet</a></p>
+<h3>发送部分</h3>
+<p>通过超声波(19.1kHz)携带信息，OOK调制，叠加一段音乐后发送。</p>
+<h4>编码</h4>
+<p>由于采用了较简单的OOK调制，所以要在调制前把目标信息编码成二进制。采用<a href="https://github.com/Katee/quietnet">这个Python工程</a>的编码。</p>
+<p>编码采用类似霍夫曼编码的思路，但是为了在接收时判断字符的开始结束，引入了对编码的限制。因为接收时通过两个连续的0判定一个自负的结束，所以要求编码首尾都是1，而且不出现连续的0。</p>
+<h4>调制</h4>
+<p>每个bit字符占用3个chunk，即重复3遍发送，这是为了在接收时方便判定同步，否则如果接收的采样区间跨越了0和1两个不同的比特，就会造成解调错误。</p>
+<p>采用OOK调制。1bit对应有声波，声波波形采用正弦波，与采样率相关，用如下方法计算数组的值；0bit对应没有声波。</p>
+<div class="highlight"><pre>for (int j = 0; j &lt; Constants.DATASIZE; j++) {
+    tone[j] = Math.sin(2 * Math.PI * freq
+        * ((double ...</pre></div> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="./archives/android_voice_communication.html" rel="bookmark" title="Permalink to Android声波通信">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="./tag/android.html">Android</a>
+                                            <a class="danger label" href="./tag/voice.html">voice</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
                                 <header> <h2 class="entry-title"><a href="./archives/mysql_sort_using_case.html" rel="bookmark" title="Permalink to SQL中利用case语句根据多列排序">SQL中利用case语句根据多列排序</a></h2> </header>
                                 <footer class="post-info">
                                     <abbr class="published" title="2014-05-29T00:00:00+08:00"> Thu 29 May 2014 </abbr>
@@ -329,132 +435,6 @@
                                 <div class="row tag-row">
                                         <span>Tagged as : </span>
                                             <a class="danger label" href="./tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-09-29T00:00:00+08:00"> Sun 29 September 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
-<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
-<p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
-<h3>dnsmasq</h3>
-<p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
-<h3>配置</h3>
-<ul>
-<li>首先安装：</li>
-</ul>
-<div class="highlight"><pre>pacman -S dnsmasq
-</pre></div>
-
-
-<ul>
-<li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
-</ul>
-<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
-</pre></div>
-
-
-<ul>
-<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 ...</li></ul> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="./archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/dns.html">dns</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-09-08T00:00:00+08:00"> Sun 08 September 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
-<div class="highlight"><pre># github
-207.97.227.239 github.com
-65.74.177.129 www.github.com
-207.97.227.252 nodeload.github.com
-207.97.227.243 raw.github.com
-204.232.175.78 documentcloud.github.com
-204.232.175.78 pages.github.com
-</pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="./archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/hosts.html">hosts</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-08-27T00:00:00+08:00"> Tue 27 August 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
-<p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
-<p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
-<p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
-<h3>搭建环境</h3>
-<p>在Linux环境下搭建，我使用的是Archlinux i686，使用其它发行版过程基本相同。</p>
-<h3>Github Pages</h3>
-<ul>
-<li>注册Github,注册和配置SSH密钥过程<a href="http://help.github.com/articles/set-up-git">help page</a>写得很清楚。</li>
-<li>在Github创建一个名为username.github.io的版本库（将username替换成自己的Github账户名）。</li>
-<li>Setting -&gt; Automatic page generator -&gt; Continue to layout，选择一个模板，并发布。</li>
-</ul>
-<p>这时在username.github.io页面就已经生成了一个页面。</p>
-<h3>本地搭建</h3>
-<ul>
-<li>安装pelican和markdown：</li>
-</ul>
-<div class="highlight"><pre>yaourt pelican
-yaourt markdown
-</pre></div>
-
-
-<ul>
-<li>搭建目录：</li>
-</ul>
-<div class="highlight"><pre>mkdir blog
-<span class="nb">cd </span>blog
-pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="./archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/blog.html">blog</a>
-                                            <a class="danger label" href="./tag/github.html">GitHub</a>
-                                            <a class="danger label" href="./tag/pelican.html">Pelican</a>
                                 </div>
 
 
