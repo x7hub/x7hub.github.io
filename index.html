@@ -103,6 +103,39 @@
 
                         </article></li>
                         <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="./archives/python2_encoding.html" rel="bookmark" title="Permalink to Python2字符编码问题小结">Python2字符编码问题小结</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2015-05-29T00:00:00+08:00"> Fri 29 May 2015 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="./author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考：</p>
+<p><a href="https://docs.python.org/2/howto/unicode.html">Python docs - Unicode HOWTO</a></p>
+<p><a href="https://docs.python.org/2/library/stdtypes.html">Python docs - Built-in Types</a></p>
+<p><a href="http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii">Stack Overflow - Why does Python print unicode characters when the default encoding is ASCII?</a></p>
+<h2>理论</h2>
+<h3>编码中的Unicode和UTF-8</h3>
+<p><code>Unicode</code>是字符集，<code>UTF-8</code>是<code>Unicode</code>的一种编码方式，并列的还包括<code>UTF-16</code>、<code>UTF-32</code>等。</p>
+<p>某个字符的<code>Unicode</code>通过查询标准得到，其<code>UTF-8</code>编码由<code>Unicode</code>码计算得到。</p>
+<h3>Python2中的str和unicode</h3>
+<p><code>str</code>和<code>unicode</code>是两个不同的类。</p>
+<p><code>str</code>存储的是已经编码后的字节序列 ...</p> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="./archives/python2_encoding.html" rel="bookmark" title="Permalink to Python2字符编码问题小结">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="./tag/python.html">Python</a>
+                                            <a class="danger label" href="./tag/python2.html">Python2</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
                                 <header> <h2 class="entry-title"><a href="./archives/android_ibeacon_receive.html" rel="bookmark" title="Permalink to Android设备上实现苹果IBeacon协议信号接收">Android设备上实现苹果IBeacon协议信号接收</a></h2> </header>
                                 <footer class="post-info">
                                     <abbr class="published" title="2014-09-26T00:00:00+08:00"> Fri 26 September 2014 </abbr>
@@ -396,50 +429,6 @@
 
 
                         </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-10-08T00:00:00+08:00"> Tue 08 October 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
-<p><a href="http://blog.csdn.net/xixinyan/article/details/6942074">在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)</a></p>
-<p><a href="http://blog.csdn.net/zhu_apollo/article/details/8760025">android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一</a></p>
-<h3>Android 源码下载：</h3>
-<p>利用<code>repo</code>工具下载Google原生的Android源码。参考<a href="http://source.android.com/source/downloading.html">Google官方文档</a>。</p>
-<p>高通芯片对应的Android<a href="https://www.codeaurora.org/xwiki/bin/QRD-Android/">源码下载</a>。</p>
-<h3>Android源码结构：</h3>
-<p>Google提供的Android包含了：Android源代码，工具链，基础C库，仿真环境，开发环境等。</p>
-<p>第一级别的目录和文件如下所示：</p>
-<div class="highlight"><pre>　　----------------
-　　　|-- Makefile            全局的Makefile
-　　　|-- build               系统编译规则和配置所需要的脚本和工具
-　　----------------
-　　　|-- prebuilt        各种平台编译工具链
-　　　|-- bionic              基础C库源代码
-　　----------------
-　　　|-- frameworks *        Android应用程序的核心框架层(java及C++语言)
-　　　|-- system     *        底层文件系统/库/应用及组件(C语言)
-　　　|-- dalvik              JAVA虚拟机
-　　　|-- external            android使用的一些额外开源库
-　　　|-- libcore             与媒体播放框架代码相关
-　　----------------
-　　　|-- packages ...</pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="./archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
                 </ol><!-- /#posts-list -->
 
         </div><!-- /.eleven.columns -->
@@ -458,6 +447,7 @@
 		<li><a href="./category/blog.html">blog</a></li>
 		<li><a href="./category/latex.html">LaTeX</a></li>
 		<li><a href="./category/linux.html">Linux</a></li>
+		<li><a href="./category/python.html">Python</a></li>
 		<li><a href="./category/sql.html">SQL</a></li>
 </ul>
 
