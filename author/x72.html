@@ -63,6 +63,46 @@
         <div class="eleven columns">
                  <ol id="post-list">
                         <li><article class="hentry">
+                                <header> <h2 class="entry-title"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
+                                <footer class="post-info">
+                                    <abbr class="published" title="2013-10-09T00:00:00+08:00"> Wed 09 October 2013 </abbr>
+                                    <address class="vcard author">By 
+                                    <a class="url fn" href="../author/x7.html"> x7</a>
+                                    </address>
+                                </footer><!-- /.post-info -->
+                                <div class="entry-content"> <p>参考:</p>
+<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
+<p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
+<h3>简介:</h3>
+<p>学校实验室的项目，其中一部分需求要修改原生的Android日历应用，加入部分额外的功能。本文介绍对Android源码中日历模块的分析，另外简单实现了农历的显示。<a href="https://github.com/x7hub/Calendar_lunar">部分修改的源码</a>上传到了github，由于参加与公司的合作项目，所以只提交了完成农历显示的版本，之后的版本不便给出。</p>
+<p>本文日历模块特指Android 4.1源码中的<code>com.android.calendar</code>，没有对calendar provider做分析。</p>
+<h3>主要结构</h3>
+<p>首先需要说明，在Google给出的Android代码中单独取出Calendar模块，是不能在eclipse中直接编译运行的。单独编译运行的方法参考<a href="http://x7hub.github.io/pages/android_app_compile.html">另一篇博文</a>。</p>
+<ul>
+<li>
+<p>日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。</p>
+<p><img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px" />
+<img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px" />
+<img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px" />
+<img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px" /></p>
+<p>四个视图对应4个Fragment，都附着于<code>AllInOneActivity</code>。</p>
+<p>月视图：<code>month/MonthByWeekFragment.java</code></p>
+<p>日视图和周视图：<code>DayFragment.java</code></p>
+<p>日程视图 ...</p></li></ul> </div><!-- /.entry-content -->
+
+                                <div class="medium primary btn"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
+
+
+
+                                <div class="row tag-row">
+                                        <span>Tagged as : </span>
+                                            <a class="danger label" href="../tag/android.html">Android</a>
+                                </div>
+
+
+
+                        </article></li>
+                        <li><article class="hentry">
                                 <header> <h2 class="entry-title"><a href="../archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
                                 <footer class="post-info">
                                     <abbr class="published" title="2013-10-08T00:00:00+08:00"> Tue 08 October 2013 </abbr>
@@ -484,6 +524,7 @@ Warning: weak password (enter it again ...</pre></div> </div><!-- /.entry-conten
 		<li><a href="../category/blog.html">blog</a></li>
 		<li><a href="../category/latex.html">LaTeX</a></li>
 		<li><a href="../category/linux.html">Linux</a></li>
+		<li><a href="../category/php.html">PHP</a></li>
 		<li><a href="../category/python.html">Python</a></li>
 		<li><a href="../category/sql.html">SQL</a></li>
 </ul>

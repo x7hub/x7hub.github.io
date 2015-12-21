@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7res.info/" rel="alternate"></link><link href="http://x7res.info/feeds/x7.atom.xml" rel="self"></link><id>http://x7res.info/</id><updated>2015-08-17T00:00:00+08:00</updated><entry><title>MonkeyRunner利用剪贴板输入中文</title><link href="http://x7res.info/archives/monkeyrunner_input_unicode.html" rel="alternate"></link><updated>2015-08-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2015-08-17:archives/monkeyrunner_input_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog</title><link href="http://x7res.info/" rel="alternate"></link><link href="http://x7res.info/feeds/x7.atom.xml" rel="self"></link><id>http://x7res.info/</id><updated>2015-12-17T00:00:00+08:00</updated><entry><title>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</title><link href="http://x7res.info/archives/php_emoji_to_unicode.html" rel="alternate"></link><updated>2015-12-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2015-12-17:archives/php_emoji_to_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/UTF-16"&gt;UTF-16&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Emoji"&gt;Emoji&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://cenalulu.github.io/linux/character-encoding/"&gt;十分钟搞清字符集和字符编码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/27287369/4-byte-unicode-character-in-java"&gt;4 byte unicode character in Java&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Emoji与Unicode、UTF8&lt;/h2&gt;
+&lt;p&gt;Emoji是一种特殊的字符，而不是像QQ表情一样的普通字符的转义表示。在Unicode编码中，占用了&lt;code&gt;U+1F300&lt;/code&gt;到&lt;code&gt;U+1F64F&lt;/code&gt;中的&lt;a href="https://en.wikipedia.org/wiki/Emoji#Unicode_Blocks"&gt;部分范围&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;Emoji字符的特殊之处在于，其使用的Unicode字符超出了通常使用的三字节UTF-8编码的Unicode范围，即BMP范围&lt;code&gt;U+0000&lt;/code&gt;到&lt;code&gt;U+FFFF&lt;/code&gt;。按照&lt;a href="https://en.wikipedia.org/wiki/UTF-8#Codepage_layout"&gt;UTF-8编码规范&lt;/a&gt;，Emoji字符属于辅助平面范围，通常对应4字节的UTF-8编码。&lt;/p&gt;
+&lt;h2&gt;Android上Emoji的特殊表示&lt;/h2&gt;
+&lt;p&gt;在Android上显示Emoji出现问题根源在于Java的char长度是两个字节，因此不能直接表示BMP范围外的Unicode字符，包括Emoji。对于BMP范围外的字符，Java没有直接编码的方案，而是&lt;a href="http://stackoverflow.com/questions/27287369/4-byte-unicode-character-in-java"&gt;采用一种替代手段&lt;/a&gt;，使用两个char来表示一个字符，称为high surrogate和low surrogate。其中high surrogate使用的是&lt;code&gt;U+D800&lt;/code&gt;–&lt;code&gt;U+DBFF&lt;/code&gt;，low surrogate使用的是&lt;code&gt;U+DC00&lt;/code&gt;-&lt;code&gt;U+DFFF&lt;/code&gt;，这两个范围都是Unicode编码的保留范围，专门用于表示surrogate字符。&lt;/p&gt;
+&lt;p&gt;举个栗子，Unicode编码为&lt;code&gt;U+1F602&lt;/code&gt;的Emoji符号。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Face With Tears of Joy" src="http://emojipedia-us.s3.amazonaws.com/cache/37/38/3738be68ead34966e8869f4b305fe1d2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;在Java中看一下对它的存储和编码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;tear&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Character&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toChars&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mh"&gt;0x1F602&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Face with Tears of Joy&lt;/span&gt;
+&lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tear&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;byteLength&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getBytes&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;StandardCharsets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;UTF_8&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;escape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;StringEscapeUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;escapeJava&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAG&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;s &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAG&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;length &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAG&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;byteLength &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;byteLength&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;i&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TAG&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;escape &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;escape&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;12-18 14:37:11.437 28246-28246/info.x7res.myapplication I/MainActivity: s ��
+12-18 14:37:11.437 28246-28246/info.x7res.myapplication I/MainActivity: length 2
+12-18 14:37:11.437 28246-28246/info.x7res.myapplication I/MainActivity: byteLength 4
+12-18 14:37:11.437 28246-28246/info.x7res.myapplication I/MainActivity: escape \uD83D\uDE02
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;String对象的长度为&lt;code&gt;2&lt;/code&gt;，编码为UTF-8字节数组后长度为&lt;code&gt;4&lt;/code&gt;，单个字符unicode-escape编码结果为&lt;code&gt;\uD83D\uDE02&lt;/code&gt;。因此，虽然Java不能支持直接用单个Unicode字符表示Emoji表情，但是通过使用两个surrogate字符的替代方案也能很好的支持Emoji表情的保存和编码显示。&lt;/p&gt;
+&lt;h2&gt;Lua对Emoji字符串的处理&lt;/h2&gt;
+&lt;p&gt;Lua的字符串只能是ANSI编码，不支持Unicode字符的字符串。本节下文是在&lt;a href="https://www.zybuluo.com/miniknife/note/148136"&gt;触动精灵&lt;/a&gt;框架下，在Android上的Lua解释器测试得到的结论。&lt;/p&gt;
+&lt;p&gt;在Lua中，一个Emoji字符是6个字节长度，而不是直接UTF-8编码得到的4个字节。这是在Java两个surrogate字符表示一个Emoji字符的基础上，又对这两个surrogate字符进行标准UTF-8编码，得到的6个字节的字符串。&lt;/p&gt;
+&lt;h2&gt;PHP对Emoji字符的接收和保存&lt;/h2&gt;
+&lt;p&gt;对于Android或者Lua经过urlencode上传的Emoji字符，在服务器的PHP上经过自动的urldecode会得到6个字节长度的2个字符，这里的表现是与Android相匹配的。&lt;/p&gt;
+&lt;p&gt;问题出现在数据保存，虽然MySQL提供的utf8mb4编码支持4字节的UTF-8字符，但是要做匹配的另一批数据保存到了MongoDB，中文字符保存在成json格式时自动转为了unicode-escape编码，不能支持多字节的UTF-8字符或非BMP的unicode字符。因此为了与其他平台的数据做匹配，要求按照unicode-escape编码数据，即要求将&lt;code&gt;U+1F602&lt;/code&gt;编码为&lt;code&gt;\uD83D\uDE02&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;PHP并没有提供Python一样便利的编解码，而且也并不认为现unicode-escape是一种编码格式，因此没有直接encode字符串的方法。对于普通的BMP范围内的字符，比如中文字符，可以通过&lt;code&gt;json_encode&lt;/code&gt;方法&lt;a href="http://stackoverflow.com/questions/7381900/php-decoding-and-encoding-json-with-unicode-characters"&gt;实现unicode-escape编码&lt;/a&gt;，与Python的处理方式类似。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;$nickname_unicode = trim(json_encode($nickname), &amp;#39;&amp;quot;&amp;#39;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然而，与Python不同的是，PHP(5.6)的&lt;code&gt;json_encode&lt;/code&gt;方法认为&lt;code&gt;U+D800&lt;/code&gt;-&lt;code&gt;U+DFFF&lt;/code&gt;的范围是非法的，不能处理带有上述6字节Emoji符号的字符串，这样会得到空的结果。所以要实现保留字段的unicode-escape编码，需要重写&lt;code&gt;json_encode&lt;/code&gt;方法。这里参考了&lt;a href="https://github.com/amekkawi/diskusagereports/blob/master/scripts/inc/json_encode.php"&gt;一个开源项目的一部分代码&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;重写的&lt;code&gt;json_encode&lt;/code&gt;代码放在了&lt;a href="https://gist.github.com/x7hub/32615114d4a540d64502"&gt;我的gist&lt;/a&gt;，注意与原本的参考代码不同的是，173-175行的&lt;code&gt;mb_convert_encoding&lt;/code&gt;被注释掉，否则将使用PHP自带的&lt;code&gt;mb_convert_encoding&lt;/code&gt;方法，对于Unicode保留字符同样不能正常编码。&lt;/p&gt;</summary><category term="Emoji"></category><category term="Unicode"></category><category term="PHP"></category><category term="Lua"></category></entry><entry><title>MonkeyRunner利用剪贴板输入中文</title><link href="http://x7res.info/archives/monkeyrunner_input_unicode.html" rel="alternate"></link><updated>2015-08-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7res.info,2015-08-17:archives/monkeyrunner_input_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://developer.android.com/tools/help/MonkeyRunner.html"&gt;MonkeyRunner&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/14243427/set-clipboard-text-via-adb-shell-as-of-api-level-11"&gt;Set clipboard text via adb shell as of API level 11&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Monkeyrunner不支持中文直接输入&lt;/h3&gt;
