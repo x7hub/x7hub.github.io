@@ -26,7 +26,7 @@ Emoji字符的特殊之处在于，其使用的Unicode字符超出了通常使�
 
 举个栗子，Unicode编码为`U+1F602`的Emoji符号。
 
-![Face With Tears of Joy](http://emojipedia-us.s3.amazonaws.com/cache/37/38/3738be68ead34966e8869f4b305fe1d2.png)
+![Face With Tears of Joy](https://emojipedia-us.s3.amazonaws.com/cache/3e/a3/3ea3af3cf1f2a75b62bec201c87cd995.png)
 
 在Java中看一下对它的存储和编码：
 
