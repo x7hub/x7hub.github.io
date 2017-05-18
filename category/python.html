@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html lang="zhs">
 <head>
+    <meta charset="utf-8">
+    <title>x7's blog - Python</title>
+    <meta name="description" content="">
+    <meta name="author" content="x7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>x7's blog</title>
-        <meta charset="utf-8" />
-        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
-        <link href="http://x7res.info/feeds/python.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
 
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
-
-        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-              <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-44068198-1', 'x7res.info');
-                ga('send', 'pageview');
-
-              </script>
-
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="https://x7blog.info/feeds/all.rss.xml" rel="alternate" title="x7's blog" type="application/rss+xml">
 
 </head>
 
-<body id="index" class="home">
+<body>
 
-
+<div class="navbar">
+    <div class="navbar-inner">
     <div class="container">
 
-        <div class="row">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-          <header id="banner" class="body">
-                  <h1><a href="../">x7's blog <strong></strong></a></h1>
-          </header><!-- /#banner -->
+        <a class="brand" href="..">x7's blog</a>
 
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="../">Home</a></li>
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about-me.html">About me</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
 
-                <li><a href="../pages/about-me.html">About me</a></li>
+<div class="container">
+    <div class="content">
+    <div class="row">
 
-              </ul>
-            </div>
+        <div class="span9">
+        
 
-<section id="content">
-<h2>Articles in the Python category</h2>
-
-
-   <div class="row">
+        
 
 
-        <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/python2_encoding.html" rel="bookmark" title="Permalink to Python2字符编码问题小结">Python2字符编码问题小结</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2015-05-29T00:00:00+08:00"> Fri 29 May 2015 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+    <div class='article'>
+        <div class="content-title">
+            <a href="../archives/python2_encoding.html"><h1>Python2字符编码问题小结</h1></a>
+Fri 29 May 2015
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>参考：</p>
 <p><a href="https://docs.python.org/2/howto/unicode.html">Python docs - Unicode HOWTO</a></p>
 <p><a href="https://docs.python.org/2/library/stdtypes.html">Python docs - Built-in Types</a></p>
 <p><a href="http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii">Stack Overflow - Why does Python print unicode characters when the default encoding is ASCII?</a></p>
@@ -81,118 +80,350 @@
 <p>某个字符的<code>Unicode</code>通过查询标准得到，其<code>UTF-8</code>编码由<code>Unicode</code>码计算得到。</p>
 <h3>Python2中的str和unicode</h3>
 <p><code>str</code>和<code>unicode</code>是两个不同的类。</p>
-<p><code>str</code>存储的是已经编码后的字节序列 ...</p> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="../archives/python2_encoding.html" rel="bookmark" title="Permalink to Python2字符编码问题小结">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/python.html">Python</a>
-                                            <a class="danger label" href="../tag/python2.html">Python2</a>
-                                </div>
-
-
-
-                        </article></li>
-                </ol><!-- /#posts-list -->
-
-        </div><!-- /.eleven.columns -->
-        
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-      <li><a href="../pages/about-me.html">About me</a></li>
-  </ul>
-
-<h4>Categories</h4>
-<ul>
-		<li><a href="../category/android.html">Android</a></li>
-		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">LaTeX</a></li>
-		<li><a href="../category/linux.html">Linux</a></li>
-		<li><a href="../category/php.html">PHP</a></li>
-		<li><a href="../category/python.html">Python</a></li>
-		<li><a href="../category/sql.html">SQL</a></li>
-</ul>
+<p><code>str</code>存储的是已经编码后的字节序列，输出时看到每个字节用16进制表示，以<code>\x</code>开头。每个汉字会占用3个字节的长度。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;啊哈哈&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;str&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="s1">&#39;</span><span class="se">\xe5\x95\x8a\xe5\x93\x88\xe5\x93\x88</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="s1">&#39;</span><span class="se">\x8a</span><span class="s1">&#39;</span>
+</pre></div>
 
 
-<h4>Tags</h4>
-	<ul>
-</ul>
+<p><code>unicode</code>是“字符”串，存储的是编码前的字符，输出是看到字符以<code>\u</code>开头。每个汉字占用一个长度。定义一个<code>Unicode</code>对象时，以<code>u</code>
+开头。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;哟呵呵&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;unicode&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u54df\u5475\u5475</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u5475</span><span class="s1">&#39;</span>
+</pre></div>
 
 
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
-    <li><a href="https://github.com/x7hub">GitHub</a></li>
-    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
-    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
-    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
+<p><code>str</code>可以通过<code>decode()</code>方法转化为<code>unicode</code>对象，参数指明编码方式。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u554a\u54c8\u54c8</span><span class="s1">&#39;</span>
+</pre></div>
 
 
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
+<p><code>unicode</code>可以通过<code>encode()</code>方法转化为<code>str</code>对象，参数指明编码方式。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="s1">&#39;</span><span class="se">\xe5\x93\x9f\xe5\x91\xb5\xe5\x91\xb5</span><span class="s1">&#39;</span>
+</pre></div>
 
 
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
+<h3>默认编码</h3>
+<p>Python2中的默认编码，有多个不同的变量。</p>
+<ol>
+<li>
+<p>代码文件开头的<code>coding</code></p>
+<div class="highlight"><pre><span></span># -*- coding: utf-8 -*-
+</pre></div>
 
-                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
 
-                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
+<p>或</p>
+<div class="highlight"><pre><span></span># coding=utf-8
+</pre></div>
 
-                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
 
-                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
+<p>指明代码文件中的字符编码，用于代码文件中出现中文的情况。</p>
+<div class="highlight"><pre><span></span><span class="c">% cat hello.py</span>
+#! <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">python</span>
+# <span class="n">coding</span><span class="p">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">print</span> <span class="s">&#39;泥壕&#39;</span>
 
-              </ul>
-            </div>
-          </div>
-        </footer>
+<span class="c">% python hello.py</span>
+泥壕
+</pre></div>
 
+
+<p>如果不设置，默认是<code>ascii</code>，当出现中文字符时就不能正常识别。</p>
+<div class="highlight"><pre><span></span><span class="c">% cat hello.py</span>
+#! <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">python</span>
+<span class="n">print</span> <span class="s">&#39;泥壕&#39;</span>
+
+<span class="c">% python hello.py</span>
+    <span class="n">File</span> &quot;<span class="n">hello</span><span class="p">.</span><span class="n">py</span>&quot;<span class="p">,</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">SyntaxError</span><span class="p">:</span> <span class="n">Non</span><span class="o">-</span><span class="n">ASCII</span> <span class="n">character</span> <span class="s">&#39;\xe6&#39;</span> <span class="n">in</span> <span class="n">file</span> <span class="n">hello</span><span class="p">.</span><span class="n">py</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="n">but</span> <span class="n">no</span> <span class="n">encoding</span> <span class="n">declared</span><span class="p">;</span> <span class="n">see</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">python</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">peps</span><span class="o">/</span><span class="n">pep</span><span class="o">-</span><span class="mi">0263</span><span class="o">/</span> <span class="k">for</span> <span class="n">details</span>
+</pre></div>
+
+
+</li>
+<li>
+<p><code>sys.stdin.encoding</code>和<code>sys.stdout.encoding</code></p>
+<p><code>sdtin</code>和<code>stdout</code>输入输出使用的编码，包命令行参数和<code>print</code>输出，由<code>locale</code>环境变量决定。</p>
+<p>在<code>en_US.UTF-8</code>的系统中，默认值是<code>UTF-8</code>。</p>
+</li>
+<li>
+<p><code>sys.getdefaultencoding()</code></p>
+<p>文件读写和字符串处理等操作使用的默认编码。</p>
+<p>默认值是<code>ascii</code>。</p>
+</li>
+</ol>
+<h2>字符串拼接</h2>
+<p><code>unicode</code>和<code>str</code>类型通过<code>+</code>拼接时，输出结果是<code>unicode</code>类型，相当于先将<code>str</code>类型的字符串通过<code>decode()</code>方法解码成<code>unicode</code>，再拼接。此时如果解码时没有明确指明编码类型，可能会出现错误。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;啊哈哈&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;哟呵呵&#39;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">UnicodeDecodeError</span><span class="p">:</span> <span class="s1">&#39;ascii&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t decode byte 0xe5 in position 0: ordinal not in range(128)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u554a\u54c8\u54c8\u54df\u5475\u5475</span><span class="s1">&#39;</span>
+</pre></div>
+
+
+<p>错误提到<code>'ascii' codec can't decode byte 0xe5</code>，这是因为自动将<code>str</code>类型的变量按照默认的编码格式<code>sys.getdefaultencoding()</code>来解码，默认编码即<code>ascii</code>，而这个字符不在<code>ascii</code>的范围内，就出现了错误。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;sys&#39;</span> <span class="p">(</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;啊哈哈&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;哟呵呵&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u554a\u54c8\u54c8\u54df\u5475\u5475</span><span class="s1">&#39;</span>
+</pre></div>
+
+
+<h2>文件读取和json解析</h2>
+<p>读文件得到的结果是<code>str</code>类型，以<code>\x</code>开头的十六进制表示。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; f = open(&#39;t.txt&#39;)
+&gt;&gt;&gt; a = f.read()
+&gt;&gt;&gt; a
+&#39;{&quot;hello&quot;:&quot;\xe5\x92\xa9&quot;}\n&#39;
+</pre></div>
+
+
+<p>而经过json解析后会自动转为<code>unicode</code>。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; json.loads(a)
+{u&#39;hello&#39;: u&#39;\u54a9&#39;}
+</pre></div>
+
+
+<h2>输出</h2>
+<h3>输出到文件</h3>
+<p><code>str</code>类型可以输出到文件，而<code>unicode</code>类型必须先编码成<code>str</code>。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;啊哈哈&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;哟呵呵&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="s1">&#39;</span><span class="se">\xe5\x95\x8a\xe5\x93\x88\xe5\x93\x88</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u54df\u5475\u5475</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;t.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s1">&#39;ascii&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t encode characters in position 0-2: ordinal not in range(128)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><code>unicode</code>输出到文件时的错误是由于默认编码为<code>ascii</code>，无法自动完成编码过程。如果将<code>sys.getdefaultencoding()</code>编码设置成了<code>utf-8</code>就可以自动完成转换过程了。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;sys&#39;</span> <span class="p">(</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>计算md5</h3>
+<p>同样，md5计算也要求输入的<code>unicode</code>先编码。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;啊哈哈&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;哟呵呵&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="s1">&#39;f38b302e2993ec3fdad79c4d76074b21&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s1">&#39;ascii&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t encode characters in position 0-2: ordinal not in range(128)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="s1">&#39;c02dc06719bafeaf60505b11d3c0c90a&#39;</span>
+</pre></div>
+
+
+<h3>输出到stdout</h3>
+<p>输出到<code>stdout</code>时，默认编码是<code>sys.stdout.encoding</code>，默认值取决于系统环境变量，所以<code>print</code>输出汉字时才可以不用指定<code>utf-8</code>。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">encoding</span>
+<span class="s1">&#39;UTF-8&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u54a9</span><span class="s1">&#39;</span>
+<span class="err">咩</span>
+</pre></div>
+
+
+<p>而在<code>zh_CN.GB2312</code>的环境中，默认值不是<code>utf-8</code>，就不能正常输出了。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">encoding</span>
+<span class="s1">&#39;ANSI_X3.4-1968&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u54a9</span><span class="s1">&#39;</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s1">&#39;ascii&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t encode character u&#39;</span>\<span class="n">u54a9</span><span class="s1">&#39; in position 0: ordinal not in range(128)</span>
+</pre></div>
+
+
+<h2>命令行参数读取</h2>
+<p>通过<code>sys.argv</code>或<code>argparse</code>得到的命令行参数都是编码后的<code>str</code>类型，以<code>\x</code>开头的十六进制表示。可以通过<code>sys.stdin.encoding</code>得到命令行传入的编码类型，解码成<code>unicode</code>。</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1"># coding = utf-8</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">encoding</span>
+<span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">encoding</span><span class="p">))</span>
+</pre></div>
+
+
+<p>输出结果。</p>
+<div class="highlight"><pre><span></span>~/workspace % python hello.py <span class="s2">&quot;哇嘿嘿&quot;</span>  
+<span class="s1">&#39;\xe5\x93\x87\xe5\x98\xbf\xe5\x98\xbf&#39;</span>
+UTF-8
+u<span class="s1">&#39;\u54c7\u563f\u563f&#39;</span>
+</pre></div>
+
+
+<p>如果命令行环境已经改成<code>GB2312</code>等其他编码，python找不到与之匹配的编码类型，就会将默认编码<code>sys.stdin.encoding</code>设置成<code>ascii</code>，无法通过这种方法正常解码成<code>unicode</code>。</p>
+<h2>带\u的字符串转unicode</h2>
+<p>可能会遇到汉字被转换成unicode编码的形式表示的情况，即一个汉字被表示成了<code>\u????</code>的形式。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;咩&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u54a9</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\u54a9</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span>
+<span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u54a9&#39;</span>
+</pre></div>
+
+
+<p>上述<code>b</code>就是这样的情况。此时<code>b</code>是一个长度为6的字符串，而不是一个汉字。</p>
+<p>要把<code>b</code>表示为汉字编码有两种方法。</p>
+<ol>
+<li>
+<p>unicode-escape编码。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; unicode(b, &#39;unicode-escape&#39;)
+u&#39;\u54a9&#39;
+</pre></div>
+
+
+<p>或</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; b.decode(&#39;unicode-escape&#39;)
+u&#39;\u54a9&#39;
+</pre></div>
+
+
+</li>
+<li>
+<p>eval拼接。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; eval(&#39;u&quot;&#39; + b.replace(&#39;&quot;&#39;, r&#39;\&quot;&#39;)+&#39;&quot;&#39;)
+u&#39;\u54a9&#39;
+</pre></div>
+
+
+</li>
+</ol></div>
+        <hr />
     </div>
+		
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../category/python.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
 
 
-<script type="text/javascript">
-    var disqus_shortname = 'x7qus';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="../theme/js/libs/gumby.min.js"></script>
-  <script src="../theme/js/plugins.js"></script>
+
+                <li><a href="https://x7blog.info/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/android.html">Android</a></li>
+                <li><a href="../category/blog.html">blog</a></li>
+                <li><a href="../category/latex.html">LaTeX</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
+                <li><a href="../category/php.html">PHP</a></li>
+                <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/sql.html">SQL</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.blackmomo.com/">陌阁</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/x7hub">GitHub</a></li>
+                <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+                <li><a href="https://www.facebook.com/rong.feng.9484">Facebook</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">x7's blog</a> &copy; x7 2015</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
 </body>
 </html>

@@ -1,86 +1,85 @@
 <!DOCTYPE html>
 <html lang="zhs">
 <head>
+    <meta charset="utf-8">
+    <title>x7's blog - Android</title>
+    <meta name="description" content="">
+    <meta name="author" content="x7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>x7's blog</title>
-        <meta charset="utf-8" />
-        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
-        <link href="http://x7res.info/feeds/android.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
 
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
-
-        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-              <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-44068198-1', 'x7res.info');
-                ga('send', 'pageview');
-
-              </script>
-
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="https://x7blog.info/feeds/all.rss.xml" rel="alternate" title="x7's blog" type="application/rss+xml">
 
 </head>
 
-<body id="index" class="home">
+<body>
 
-
+<div class="navbar">
+    <div class="navbar-inner">
     <div class="container">
 
-        <div class="row">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-          <header id="banner" class="body">
-                  <h1><a href="../">x7's blog <strong></strong></a></h1>
-          </header><!-- /#banner -->
+        <a class="brand" href="..">x7's blog</a>
 
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="../">Home</a></li>
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about-me.html">About me</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
 
-                <li><a href="../pages/about-me.html">About me</a></li>
+<div class="container">
+    <div class="content">
+    <div class="row">
 
-              </ul>
-            </div>
+        <div class="span9">
+        
 
-<section id="content">
-<h2>Articles in the Android category</h2>
-
-
-   <div class="row">
+        
 
 
-        <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/monkeyrunner_input_unicode.html" rel="bookmark" title="Permalink to MonkeyRunner利用剪贴板输入中文">MonkeyRunner利用剪贴板输入中文</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2015-08-17T00:00:00+08:00"> Mon 17 August 2015 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+    <div class='article'>
+        <div class="content-title">
+            <a href="../archives/monkeyrunner_input_unicode.html"><h1>MonkeyRunner利用剪贴板输入中文</h1></a>
+Mon 17 August 2015
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>参考：</p>
 <p><a href="http://developer.android.com/tools/help/MonkeyRunner.html">MonkeyRunner</a></p>
 <p><a href="http://stackoverflow.com/questions/14243427/set-clipboard-text-via-adb-shell-as-of-api-level-11">Set clipboard text via adb shell as of API level 11</a></p>
 <h3>Monkeyrunner不支持中文直接输入</h3>
 <p><a href="http://developer.android.com/tools/help/MonkeyRunner.html">MonkeyRunner</a>是一组<a href="http://www.jython.org/docs/tutorial/indexprogress.html">Jython</a>环境的Android自动测试工具，通过USB控制Android设备完成点击、拖拽、输入等操作。</p>
 <p><code>MonkeyDevice</code>类的<code>type(String message)</code>方法支持向设备输入字符串，但是由于Jython本身的原因，无法支持直接输入unicode字符，</p>
-<div class="highlight"><pre><span class="n">device</span> <span class="o">=</span> <span class="n">MonkeyRunner</span><span class="o">.</span><span class="n">waitForConnection</span><span class="p">()</span>
-<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span> <span class="c"># 成功</span>
-<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">&#39;测试&#39;</span><span class="p">)</span> <span class="c"># 无输入</span>
-<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s">u&#39;测试&#39;</span><span class="p">)</span> <span class="c"># 无输入</span>
+<div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">MonkeyRunner</span><span class="o">.</span><span class="n">waitForConnection</span><span class="p">()</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span> <span class="c1"># 成功</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s1">&#39;测试&#39;</span><span class="p">)</span> <span class="c1"># 无输入</span>
+<span class="n">device</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;测试&#39;</span><span class="p">)</span> <span class="c1"># 无输入</span>
 </pre></div>
 
 
@@ -89,29 +88,78 @@
 <li>利用Android设备上的输入法输入中文，相对复杂。</li>
 <li>利用剪贴板复制粘贴。</li>
 </ol>
-<p>下文实现的是利用剪贴板的思路 ...</p> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="../archives/monkeyrunner_input_unicode.html" rel="bookmark" title="Permalink to MonkeyRunner利用剪贴板输入中文">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android-monkeyrunner.html">Android MonkeyRunner</a>
-                                </div>
+<p>下文实现的是利用剪贴板的思路。</p>
+<h3>利用剪贴板输入中文</h3>
+<p>由PC机通过adb发送中文到Android设备，在设备上接收并将文字放入剪贴板，再通过monkeyrunner控制粘贴到文本框。</p>
+<h4>由adb传入中文字符</h4>
+<p><code>am startservice</code>命令可以启指定的Service并传入Extra参数，</p>
+<div class="highlight"><pre><span></span>adb shell am startservice -e <span class="s2">&quot;text&quot;</span> <span class="nv">$message</span> info.x7res.clip/.ClipService
+</pre></div>
 
 
+<p><code>info.x7res.clip</code>是应用包名，<code>ClipService</code>是接收文字的Service，<code>text</code>是传入的StringExtra的键。</p>
+<p>此处可以直接传入中文，不过为了考虑对Windows的字符编码的兼容性问题，这里传入的是经过<code>unicode-escape</code>编码后的ascii字符，在下一步设备上接收时再还原成中文。</p>
+<h4>Android应用接收并放入剪贴板</h4>
+<p>用Service在后台接收<code>am startservice</code>命令传入的Extra参数，需要实现<code>onStartCommand</code>方法，</p>
+<div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">onStartCommand</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">,</span> <span class="kt">int</span> <span class="n">startId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onStartCommand</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">startId</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">);</span>
+    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;text: &quot;</span> <span class="o">+</span> <span class="n">text</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">textConverted</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">unicodeEscape</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;textConverted: &quot;</span> <span class="o">+</span> <span class="n">textConverted</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setClip</span><span class="o">(</span><span class="n">textConverted</span><span class="o">);</span>
+    <span class="n">stopSelf</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">START_NOT_STICKY</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
 
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/android_ibeacon_receive.html" rel="bookmark" title="Permalink to Android设备上实现苹果IBeacon协议信号接收">Android设备上实现苹果IBeacon协议信号接收</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2014-09-26T00:00:00+08:00"> Fri 26 September 2014 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <h3>背景资料</h3>
+
+<p>unicode-escape的解码可以用<code>org.apache.commons.lang</code>库中的<code>StringEscapeUtils.unescapeJava(input)</code>方法。</p>
+<p>复制到剪贴板，</p>
+<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setClip</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ClipboardManager</span> <span class="n">clipboard</span> <span class="o">=</span> <span class="o">(</span><span class="n">ClipboardManager</span><span class="o">)</span><span class="n">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">CLIPBOARD_SERVICE</span><span class="o">);</span>
+    <span class="n">ClipData</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">ClipData</span><span class="o">.</span><span class="na">newPlainText</span><span class="o">(</span><span class="s">&quot;simple text&quot;</span><span class="o">,</span> <span class="n">text</span><span class="o">);</span>
+    <span class="n">clipboard</span><span class="o">.</span><span class="na">setPrimaryClip</span><span class="o">(</span><span class="n">clip</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h4>monkeyrunner手势控制粘贴</h4>
+<p>在文本框上长按，出现粘贴按钮，点击按钮粘贴。</p>
+<div class="highlight"><pre><span></span><span class="n">view_point</span> <span class="o">=</span> <span class="n">HierarchyViewer</span><span class="o">.</span><span class="n">getAbsolutePositionOfView</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+<span class="n">offset_x</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">offset_y</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">drag</span><span class="p">((</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">offset_x</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">offset_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">touch</span><span class="p">(</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span> <span class="n">MonkeyDevice</span><span class="o">.</span><span class="n">DOWN_AND_UP</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1;32m-&gt; </span><span class="se">\033</span><span class="s1">[0m&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; text pasted&quot;</span>
+</pre></div>
+
+
+<p>长按是利用原地的<code>drag</code>实现的。如果利用<code>press</code>的<code>DOWN</code>和<code>UP</code>方法不能实现长按效果。</p>
+<p>其中的offset值都是经验值，文本框的编辑位置一般位于<code>getAbsolutePositionOfView</code>右下，而长按出现的粘贴按钮一般位于右上。</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/android_ibeacon_receive.html"><h2>Android设备上实现苹果IBeacon协议信号接收</h2></a>
+        <div class= "well small"> Fri 26 September 2014
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><h3>背景资料</h3>
 <p><a href="http://stackoverflow.com/questions/18906988/what-is-the-ibeacon-bluetooth-profile">这里</a>详细介绍了iBeacon协议中的关键字段，此Demo根据协议中的字段，将蓝牙扫描到的记录字段做解析，判断记录是否是iBeacon包，并获得iBeacon中的信息字段，包括UUID，major，minor，txpower。</p>
 <blockquote>
 <p>02 # Number of bytes that follow in first AD structure</p>
@@ -119,30 +167,25 @@
 <p>1A # Flags value 0x1A = 000011010</p>
 <p>bit 0 (OFF) LE Limited Discoverable Mode</p>
 <p>bit 1 (ON) LE General Discoverable Mode</p>
-<p>bit 2 (OFF) BR/EDR Not ...</p></blockquote> </div><!-- /.entry-content -->
+<p>bit 2 (OFF) BR/EDR Not …</p></blockquote> <a class="btn btn-info xsmall" href="../archives/android_ibeacon_receive.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/android_ibeacon_receive.html" rel="bookmark" title="Permalink to Android设备上实现苹果IBeacon协议信号接收">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/android_voice_communication.html"><h2>Android声波通信</h2></a>
+        <div class= "well small"> Fri 26 September 2014
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                            <a class="danger label" href="../tag/ibeacon.html">IBeacon</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/android_voice_communication.html" rel="bookmark" title="Permalink to Android声波通信">Android声波通信</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2014-09-26T00:00:00+08:00"> Fri 26 September 2014 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+ </div>
+        <div class="summary"><p>参考：</p>
 <p><a href="https://github.com/Katee/quietnet">Quietnet</a></p>
 <h3>发送部分</h3>
 <p>通过超声波(19.1kHz)携带信息，OOK调制，叠加一段音乐后发送。</p>
@@ -152,32 +195,27 @@
 <h4>调制</h4>
 <p>每个bit字符占用3个chunk，即重复3遍发送，这是为了在接收时方便判定同步，否则如果接收的采样区间跨越了0和1两个不同的比特，就会造成解调错误。</p>
 <p>采用OOK调制。1bit对应有声波，声波波形采用正弦波，与采样率相关，用如下方法计算数组的值；0bit对应没有声波。</p>
-<div class="highlight"><pre>for (int j = 0; j &lt; Constants.DATASIZE; j++) {
+<div class="highlight"><pre><span></span>for (int j = 0; j &lt; Constants.DATASIZE; j++) {
     tone[j] = Math.sin(2 * Math.PI * freq
-        * ((double ...</pre></div> </div><!-- /.entry-content -->
+        * ((double …</pre></div> <a class="btn btn-info xsmall" href="../archives/android_voice_communication.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/android_voice_communication.html" rel="bookmark" title="Permalink to Android声波通信">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/android_service_dialog.html"><h2>对Service中弹出的Dialog设置主题</h2></a>
+        <div class= "well small"> Tue 05 November 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                            <a class="danger label" href="../tag/voice.html">voice</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">对Service中弹出的Dialog设置主题</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-11-05T00:00:00+08:00"> Tue 05 November 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+ </div>
+        <div class="summary"><p>参考：</p>
 <p><a href="http://blog.csdn.net/huxueyan521/article/details/8954844">service中显示一个dialog</a></p>
 <p><a href="http://www.cnblogs.com/noTice520/archive/2011/02/01/1948738.html">android UI进阶之style和theme的使用</a></p>
 <h3>简介</h3>
@@ -185,36 +223,32 @@
 <h3>Services中弹出Dialog</h3>
 <p>新建一个Service并在<code>AndroidManifest.xml</code>中声明<code>Service</code>和<code>intent-filter</code>，在需要的地方用Intent调起，不谈。</p>
 <p>用<code>startService(intent)</code>调起Service后的操作需要重写<code>onStartCommand</code>方法，在其中尝试按照平常的方法调起Dialog：</p>
-<div class="highlight"><pre><span class="n">Dialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><span class="n">Dialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
 <span class="n">dialog</span><span class="o">.</span><span class="na">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">something</span><span class="o">);</span>
 <span class="n">dialog</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
 </pre></div>
 
 
 <p>这样尝试调起Dialog会引起错误：</p>
-<div class="highlight"><pre><span class="mi">11</span><span class="o">-</span><span class="mo">05 ...</span></pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre><span></span><span class="mi">11</span><span class="o">-</span><span class="mo">05 …</span></pre></div> <a class="btn btn-info xsmall" href="../archives/android_service_dialog.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/android_service_dialog.html" rel="bookmark" title="Permalink to 对Service中弹出的Dialog设置主题">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/android_calendar.html"><h2>Android原生日历应用分析和简单扩展</h2></a>
+        <div class= "well small"> Wed 09 October 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-10-09T00:00:00+08:00"> Wed 09 October 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
 <p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
 <h3>简介:</h3>
@@ -225,36 +259,32 @@
 <ul>
 <li>
 <p>日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。</p>
-<p><img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px" />
-<img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px" />
-<img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px" />
-<img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px" /></p>
+<p><img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px">
+<img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px">
+<img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px">
+<img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px"></p>
 <p>四个视图对应4个Fragment，都附着于<code>AllInOneActivity</code>。</p>
 <p>月视图：<code>month/MonthByWeekFragment.java</code></p>
 <p>日视图和周视图：<code>DayFragment.java</code></p>
-<p>日程视图 ...</p></li></ul> </div><!-- /.entry-content -->
+<p>日程视图 …</p></li></ul> <a class="btn btn-info xsmall" href="../archives/android_calendar.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/android_app_compile.html"><h2>Android源码中日历模块单独编译</h2></a>
+        <div class= "well small"> Tue 08 October 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-10-08T00:00:00+08:00"> Tue 08 October 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://blog.csdn.net/xixinyan/article/details/6942074">在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)</a></p>
 <p><a href="http://blog.csdn.net/zhu_apollo/article/details/8760025">android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一</a></p>
 <h3>Android 源码下载：</h3>
@@ -263,7 +293,7 @@
 <h3>Android源码结构：</h3>
 <p>Google提供的Android包含了：Android源代码，工具链，基础C库，仿真环境，开发环境等。</p>
 <p>第一级别的目录和文件如下所示：</p>
-<div class="highlight"><pre>　　----------------
+<div class="highlight"><pre><span></span>　　----------------
 　　　|-- Makefile            全局的Makefile
 　　　|-- build               系统编译规则和配置所需要的脚本和工具
 　　----------------
@@ -276,32 +306,28 @@
 　　　|-- external            android使用的一些额外开源库
 　　　|-- libcore             与媒体播放框架代码相关
 　　----------------
-　　　|-- packages ...</pre></div> </div><!-- /.entry-content -->
+　　　|-- packages …</pre></div> <a class="btn btn-info xsmall" href="../archives/android_app_compile.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/ban_360_on_android.html"><h2>Android禁止安装360手机助手</h2></a>
+        <div class= "well small"> Wed 07 August 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Android禁止安装360手机助手</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-08-07T00:00:00+08:00"> Wed 07 August 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html">以前的新浪博客</a>～</p>
 <p>360太讨厌了，还老有人用我手机调试，一插他们电脑，马上就要给我装上360,于是就有了下边的招：</p>
 <p>android程序在手机上在<code>/data/app/</code>目录下，考虑在此位置放一个360相同包名的文件，想让它安装的时候不能覆盖</p>
-<div class="highlight"><pre>adb shell
+<div class="highlight"><pre><span></span>adb shell
 su
 touch /data/app/com.qihoo.appstore-1.apk
 chattr +i /data/app/com.qihoo.appstore-1.apk
@@ -309,32 +335,28 @@ chattr +i /data/app/com.qihoo.appstore-1.apk
 
 
 <p>尝试安装，软件装到手机时成功的禁止掉，但是还是能被安装到sd卡，于是采取占用<code>data</code>文件夹的方式：</p>
-<div class="highlight"><pre>adb shell
+<div class="highlight"><pre><span></span>adb shell
 su
 touch /data/data/com.qihoo.appstore
-chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
+chattr +i /data/data …</pre></div> <a class="btn btn-info xsmall" href="../archives/ban_360_on_android.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="../archives/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/build_android_from_source.html"><h2>从源码编译Android系统</h2></a>
+        <div class= "well small"> Mon 29 July 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">从源码编译Android系统</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-07-29T00:00:00+08:00"> Mon 29 July 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Android">Android - ArchWiki</a></p>
 <p><a href="http://source.android.com/source/initializing.html">Initializing a Build Environment | Android Developers</a></p>
@@ -344,123 +366,100 @@ chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
 <ul>
 <li>系统需求，32位系统需要这么一堆东西：</li>
 </ul>
-<div class="highlight"><pre>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
+<div class="highlight"><pre><span></span>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
 </pre></div>
 
 
 <p>64位系统还需要：</p>
-<div class="highlight"><pre>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib ...</pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="../archives/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/android.html">Android</a>
-                                            <a class="danger label" href="../tag/linux.html">Linux</a>
-                                </div>
-
-
-
-                        </article></li>
-                </ol><!-- /#posts-list -->
-
-        </div><!-- /.eleven.columns -->
-        
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-      <li><a href="../pages/about-me.html">About me</a></li>
-  </ul>
-
-<h4>Categories</h4>
+<div class="highlight"><pre><span></span>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib …</pre></div> <a class="btn btn-info xsmall" href="../archives/build_android_from_source.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
 <ul>
-		<li><a href="../category/android.html">Android</a></li>
-		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">LaTeX</a></li>
-		<li><a href="../category/linux.html">Linux</a></li>
-		<li><a href="../category/php.html">PHP</a></li>
-		<li><a href="../category/python.html">Python</a></li>
-		<li><a href="../category/sql.html">SQL</a></li>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../category/android.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
 </ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
 
 
-<h4>Tags</h4>
-	<ul>
-</ul>
 
+                <li><a href="https://x7blog.info/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
 
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
-    <li><a href="https://github.com/x7hub">GitHub</a></li>
-    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
-    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
-    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
-
-                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
-
-                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
-
-                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
-
-              </ul>
+            </ul>
             </div>
-          </div>
-        </footer>
-
-    </div>
 
 
-<script type="text/javascript">
-    var disqus_shortname = 'x7qus';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="../theme/js/libs/gumby.min.js"></script>
-  <script src="../theme/js/plugins.js"></script>
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/android.html">Android</a></li>
+                <li><a href="../category/blog.html">blog</a></li>
+                <li><a href="../category/latex.html">LaTeX</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
+                <li><a href="../category/php.html">PHP</a></li>
+                <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/sql.html">SQL</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.blackmomo.com/">陌阁</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/x7hub">GitHub</a></li>
+                <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+                <li><a href="https://www.facebook.com/rong.feng.9484">Facebook</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">x7's blog</a> &copy; x7 2015</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
 </body>
 </html>

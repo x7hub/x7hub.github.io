@@ -1,94 +1,83 @@
 <!DOCTYPE html>
 <html lang="zhs">
 <head>
+    <meta charset="utf-8">
+    <title>x7's blog - Linux系统中LaTeX的安装与使用</title>
+    <meta name="description" content="">
+    <meta name="author" content="x7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Linux系统中LaTeX的安装与使用</title>
-        <meta charset="utf-8" />
-        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
-        <link href="http://x7res.info/feeds/latex.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog Categories RSS Feed" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
 
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
-
-        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-              <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-44068198-1', 'x7res.info');
-                ga('send', 'pageview');
-
-              </script>
-
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="https://x7blog.info/feeds/all.rss.xml" rel="alternate" title="x7's blog" type="application/rss+xml">
 
 </head>
 
-<body id="index" class="home">
+<body>
 
-
+<div class="navbar">
+    <div class="navbar-inner">
     <div class="container">
 
-        <div class="row">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-          <header id="banner" class="body">
-                  <h1><a href="../">x7's blog <strong></strong></a></h1>
-          </header><!-- /#banner -->
+        <a class="brand" href="..">x7's blog</a>
 
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="../">Home</a></li>
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about-me.html">About me</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
 
-                <li><a href="../pages/about-me.html">About me</a></li>
+<div class="container">
+    <div class="content">
+    <div class="row">
 
-              </ul>
-            </div>
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Linux系统中LaTeX的安装与使用</h1>
+Mon 17 March 2014
 
-<section id="content" class="body">
-
-   <div class="row">
-        <div class="eleven columns">
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-            <header>
-              <h2 class="entry-title">
-                <a href="../archives/latex_on_linux.html" rel="bookmark"
-                   title="Permalink to Linux系统中LaTeX的安装与使用">Linux系统中LaTeX的安装与使用</a></h2>
-           
-            </header>
-            <footer class="post-info">
-              <abbr class="published" title="2014-03-17T00:00:00+08:00">
-                Mon 17 March 2014
-              </abbr>
-              <address class="vcard author">By 
-                <a class="url fn" href="../author/x7.html"> x7</a>
-              </address>
-            </footer><!-- /.post-info -->
-            <div class="entry-content">
-              <h3>安装</h3>
+        </div>
+	
+        <div><h3>安装</h3>
 <p>针对Archlinux，需要<a href="https://wiki.archlinux.org/index.php/TeX_Live">TeX Live</a>，首先要编译LaTeX文件需要这个包<code>texlive-bin</code>，有一些图片字体之类的依赖，在这一组包里<code>texlive-most</code>。</p>
 <p>如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。</p>
 <p>Linux下的LaTeX编辑器<a href="https://wiki.archlinux.org/index.php/Latex">有很多</a>，我使用的是<code>Kile</code>，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。</p>
 <h3>使用</h3>
 <p>LaTeX文件后缀通常为<code>.tex</code>。可以在命令行直接编译，</p>
-<div class="highlight"><pre>latex source.tex
+<div class="highlight"><pre><span></span>latex source.tex
 </pre></div>
 
 
 <p>用<code>Kile</code>编辑文件，可以直接通过''QuickBuild''编译生成pdf并直接打开预览。</p>
 <h4>Helloworld</h4>
 <p>简单测试代码，很容易理解，</p>
-<div class="highlight"><pre><span class="k">\documentclass</span><span class="na">[11pt]</span><span class="nb">{</span>article<span class="nb">}</span>
+<div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="na">[11pt]</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>cite<span class="nb">}</span>
 
 <span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
@@ -107,17 +96,17 @@ Blablabla said Nobody ~<span class="k">\cite</span><span class="nb">{</span>Nobo
 
 
 <p>生成的pdf是这样的，</p>
-<p><img alt="Hello world 的编译结果" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-00.png/500px" /></p>
+<p><img alt="Hello world 的编译结果" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-00.png/500px"></p>
 <h4>使用模板</h4>
 <p>虽然语法不是太难理解，但是要自己编辑一篇文章符合投稿的各种格式需求还是相当困难的，所以要套用模板，比如<a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">这里</a>可以下载IEEE的模板，包括四个tex文件，bare_conf是会议，bare_jrnl和bare_jrnl_compsoc一个是for Computer Society Journals一个是for journals，bare_adv是Bare Advanced Demo of IEEEtran.cls for Computer Society Journals。</p>
 <h4>插入图片</h4>
 <p>首先发表的论文中需要使用eps格式的图片的文件。matlab可以直接保存为eps格式。如果是visio图，需要先保存为pdf，再在acrobat中选择tools-&gt;print production-&gt;set page boxes-&gt;勾选remove white margins-&gt;OK，然后再保存为eps格式。</p>
 <p>根据IEEE提供的模板，插入图片很简单，</p>
-<div class="highlight"><pre><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[!t]
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>[!t]
 <span class="k">\centering</span>
 <span class="k">\includegraphics</span><span class="na">[width=2.5in]</span><span class="nb">{</span>myfigure<span class="nb">}</span>
 <span class="c">% where an .eps filename suffix will be assumed under latex, </span>
@@ -138,7 +127,7 @@ Blablabla said Nobody ~<span class="k">\cite</span><span class="nb">{</span>Nobo
 <li>!: 让latex决定</li>
 </ul>
 <p>如果要插入多张并列的一组图片，模板中提供了<code>subfloat</code>的方法，不过似乎给出的语法有误。可以用下边的方法实现，</p>
-<div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>figure*<span class="nb">}</span>[!t]
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure*<span class="nb">}</span>[!t]
 <span class="k">\centering</span>
 <span class="k">\subfigure</span><span class="na">[]</span><span class="nb">{</span><span class="k">\includegraphics</span><span class="na">[width=1.5in]</span><span class="nb">{</span>fig2a.eps<span class="nb">}</span><span class="k">\label</span><span class="nb">{</span>fig<span class="nb">_</span>moreuser<span class="nb">_</span>a<span class="nb">}}</span>
 <span class="k">\hfil</span>
@@ -152,7 +141,7 @@ Blablabla said Nobody ~<span class="k">\cite</span><span class="nb">{</span>Nobo
 
 
 <h4>插入表格</h4>
-<div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[!t]
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[!t]
 <span class="c">% increase table row spacing, adjust to taste</span>
 <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\arraystretch</span><span class="nb">}{</span>1.3<span class="nb">}</span>
 <span class="c">% if using array.sty, it might be a good idea to tweak the value of</span>
@@ -173,15 +162,15 @@ Three <span class="nb">&amp;</span> Four<span class="k">\\</span>
 </pre></div>
 
 
-<p><img alt="插入表格" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-01.png/500px" /></p>
+<p><img alt="插入表格" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-01.png/500px"></p>
 <h4>插入算法</h4>
 <p>算法不是用表格填写的，而是有专门的语法，很方便，</p>
-<div class="highlight"><pre><span class="k">\usepackage</span><span class="nb">{</span>algorithmic<span class="nb">}</span>
+<div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>algorithmic<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>algorithm<span class="nb">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>algorithm<span class="nb">}</span>[!t]
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>algorithm<span class="nb">}</span>[!t]
 <span class="k">\caption</span><span class="nb">{</span>Hello<span class="nb">}</span>
 <span class="k">\label</span><span class="nb">{</span>alg<span class="nb">_</span>hello<span class="nb">}</span>
 <span class="k">\begin</span><span class="nb">{</span>algorithmic<span class="nb">}</span>[1]
@@ -196,12 +185,12 @@ Three <span class="nb">&amp;</span> Four<span class="k">\\</span>
 </pre></div>
 
 
-<p><img alt="插入算法" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-02.png/500px" /></p>
+<p><img alt="插入算法" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-02.png/500px"></p>
 <h4>插入参考文献</h4>
 <p>有两种方式。</p>
 <h5>thebibliography</h5>
 <p>参考模板中给出的格式，</p>
-<div class="highlight"><pre><span class="k">\begin</span><span class="nb">{</span>thebibliography<span class="nb">}{</span>1<span class="nb">}</span>
+<div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>thebibliography<span class="nb">}{</span>1<span class="nb">}</span>
 
 <span class="k">\bibitem</span><span class="nb">{</span>IEEEhowto:kopka<span class="nb">}</span>
 H.~Kopka and P.~W. Daly, <span class="k">\emph</span><span class="nb">{</span>A Guide to <span class="k">\LaTeX</span><span class="nb">}</span>, 3rd~ed.<span class="k">\hskip</span> 1em plus
@@ -213,16 +202,16 @@ H.~Kopka and P.~W. Daly, <span class="k">\emph</span><span class="nb">{</span>A 
 
 <h5>bibtex</h5>
 <p>正文中这样声明文件名，</p>
-<div class="highlight"><pre><span class="k">\bibliographystyle</span><span class="nb">{</span>IEEEtran<span class="nb">}</span>
+<div class="highlight"><pre><span></span><span class="k">\bibliographystyle</span><span class="nb">{</span>IEEEtran<span class="nb">}</span>
 <span class="k">\bibliography</span><span class="nb">{</span>IEEEabrv,mybib<span class="nb">}</span>
 </pre></div>
 
 
 <p>创建<code>mybib.bib</code>文件，格式是这个样子的，</p>
-<div class="highlight"><pre>@misc{ Nobody06,
-    author = &quot;Nobody Jr&quot;,
-    title = &quot;My Article&quot;,
-    year = &quot;2006&quot; }
+<div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span> <span class="nl">Nobody06</span><span class="p">,</span>
+    <span class="na">author</span> <span class="p">=</span> <span class="s">&quot;Nobody Jr&quot;</span><span class="p">,</span>
+    <span class="na">title</span> <span class="p">=</span> <span class="s">&quot;My Article&quot;</span><span class="p">,</span>
+    <span class="na">year</span> <span class="p">=</span> <span class="s">&quot;2006&quot;</span> <span class="p">}</span>
 </pre></div>
 
 
@@ -236,7 +225,7 @@ H.~Kopka and P.~W. Daly, <span class="k">\emph</span><span class="nb">{</span>A 
 <p>这个版本的conf模板生成的pdf文件会有较大的段落间距，但是注意到现在可以检索到的IEEE的文章多数都是没有段间距的。<a href="http://blog.sciencenet.cn/blog-264887-725786.html">有人</a>提到可以用另一个版本的模板代替官网上下载的版本，但是尝试后可以发现这个版本与官方版本的页边距等参数是不同的，为了避免其他问题，下面给出了避免段间距的办法。</p>
 <p>避免分段，当需要分段时，用<code>\\</code>换行，再在下一行行首缩进固定的长度即可。</p>
 <p>本来的分段的写法，</p>
-<div class="highlight"><pre>This demo file is intended to serve as a ``starter file&#39;&#39;
+<div class="highlight"><pre><span></span>This demo file is intended to serve as a ``starter file&#39;&#39;
 for IEEE conference papers produced under <span class="k">\LaTeX\ </span>using
 IEEEtran.cls version 1.7 and later.
 
@@ -244,124 +233,107 @@ I wish you the best of success.
 </pre></div>
 
 
-<p><img alt="有段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-03.png/500px" /></p>
+<p><img alt="有段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-03.png/500px"></p>
 <p>用换行和缩进避免段间距，</p>
-<div class="highlight"><pre>This demo file is intended to serve as a ``starter file&#39;&#39;
+<div class="highlight"><pre><span></span>This demo file is intended to serve as a ``starter file&#39;&#39;
 for IEEE conference papers produced under <span class="k">\LaTeX\ </span>using
 IEEEtran.cls version 1.7 and later.<span class="k">\\</span>
 <span class="k">\hspace*</span><span class="nb">{</span>0.5cm<span class="nb">}</span>I wish you the best of success.
 </pre></div>
 
 
-<p><img alt="避免段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-04.png/500px" /></p>
-            </div><!-- /.entry-content -->
-            <div class="comments">
-              <h3>Comments</h3>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-                var disqus_identifier = "archives/latex_on_linux.html";
-                (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://x7qus.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-              </script>
-            </div>
+<p><img alt="避免段间距" src="http://7xl7ca.com1.z0.glb.clouddn.com/latex_on_linux-04.png/500px"></p></div>
+	
+        <hr>
 
-
-        </div><!-- /.eleven.columns -->
-
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-      <li><a href="../pages/about-me.html">About me</a></li>
-  </ul>
-
-<h4>Categories</h4>
-<ul>
-		<li><a href="../category/android.html">Android</a></li>
-		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">LaTeX</a></li>
-		<li><a href="../category/linux.html">Linux</a></li>
-		<li><a href="../category/php.html">PHP</a></li>
-		<li><a href="../category/python.html">Python</a></li>
-		<li><a href="../category/sql.html">SQL</a></li>
-</ul>
-
-
-<h4>Tags</h4>
-	<ul>
-</ul>
-
-
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
-    <li><a href="https://github.com/x7hub">GitHub</a></li>
-    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
-    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
-    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-
-</section>
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
-
-                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
-
-                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
-
-                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
-
-              </ul>
-            </div>
-          </div>
-        </footer>
-
-    </div>
-
-
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'x7qus';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    var disqus_shortname = 'x7qus'; 
+    var disqus_title = 'Linux系统中LaTeX的安装与使用';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
-  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="../theme/js/libs/gumby.min.js"></script>
-  <script src="../theme/js/plugins.js"></script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+
+
+
+                <li><a href="https://x7blog.info/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/android.html">Android</a></li>
+                <li><a href="../category/blog.html">blog</a></li>
+                <li><a href="../category/latex.html">LaTeX</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
+                <li><a href="../category/php.html">PHP</a></li>
+                <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/sql.html">SQL</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.blackmomo.com/">陌阁</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/x7hub">GitHub</a></li>
+                <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+                <li><a href="https://www.facebook.com/rong.feng.9484">Facebook</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">x7's blog</a> &copy; x7 2015</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
 </body>
 </html>

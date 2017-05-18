@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>x7's blog</title><link>http://x7res.info/</link><description></description><atom:link href="http://x7res.info/feeds/sql.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 May 2014 00:00:00 +0800</lastBuildDate><item><title>SQL中利用case语句根据多列排序</title><link>http://x7res.info/archives/mysql_sort_using_case.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
+<rss version="2.0"><channel><title>x7's blog - SQL</title><link>https://x7blog.info/</link><description></description><lastBuildDate>Thu, 29 May 2014 00:00:00 +0800</lastBuildDate><item><title>SQL中利用case语句根据多列排序</title><link>https://x7blog.info/archives/mysql_sort_using_case.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/chen_linbo/article/details/6396122"&gt;oracle union all和order by一起使用&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;需求是这样的，有类似如下的表，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;+--------+------+-----+-----+------+---------+----------+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+--------+------+-----+-----+------+---------+----------+
 | userid | imei | lat | lon | addr | network | operator |
 +--------+------+-----+-----+------+---------+----------+
 | 122    | 343  |     |     |      | 3G      | 12344    |
@@ -13,102 +13,4 @@
 | 127    | 349  |     |     |      | 3G      | 12347    |
 | 128    | 350  |     |     |      | 3G      | 12343    |
 | 129    | 351  |     |     |      | 3G      | 12345    |
-| 130    | 352  |     |     |      | 2G      | 12345    |
-| 131    | 353  |     |     |      | 4G      | 12345    |
-| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
-+--------+------+-----+-----+------+---------+----------+
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;要对这个表排序输出，想要'network'为'Wi-Fi'的行在后，非'Wi-Fi'的行在前，而且两部分内分别按'operator'排序。也就是要得到如下的结果，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;+--------+------+-----+-----+------+---------+----------+
-| userid | imei | lat | lon | addr | network | operator |
-+--------+------+-----+-----+------+---------+----------+
-| 128    | 350  |     |     |      | 3G      | 12343    |
-| 122    | 343  |     |     |      | 3G      | 12344    |
-| 131    | 353  |     |     |      | 4G      | 12345    |
-| 125    | 347  |     |     |      | 3G      | 12345    |
-| 129    | 351  |     |     |      | 3G      | 12345    |
-| 130    | 352  |     |     |      | 2G      | 12345    |
-| 126    | 348  |     |     |      | 3G      | 12346    |
-| 127    | 349  |     |     |      | 3G      | 12347    |
-| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
-| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
-| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
-+--------+------+-----+-----+------+---------+----------+
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;利用union语句&lt;/h3&gt;
-&lt;p&gt;容易想到&lt;code&gt;select&lt;/code&gt;出'Wi-Fi'和非'Wi-Fi'两组结果，再用&lt;code&gt;union&lt;/code&gt;将两组结果拼在一起。但是这两组结果还需要分别按'operator'排序，所以尝试这样，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;push_user_list&lt;/span&gt;
-&lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wi-Fi&amp;#39;&lt;/span&gt;
-&lt;span class="k"&gt;order&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;
-&lt;span class="k"&gt;union&lt;/span&gt;
-&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;push_user_list&lt;/span&gt;
-&lt;span class="k"&gt;order&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;但是&lt;code&gt;union&lt;/code&gt;的子句是不能用&lt;code&gt;order by&lt;/code&gt;的，报错，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ERROR 1221 (HY000): Incorrect usage of UNION and ORDER BY
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;搜了一下，有人给出这样的方法，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; 
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;push_user_list&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wi-Fi&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;order&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt; &lt;span class="k"&gt;desc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;
-&lt;span class="k"&gt;union&lt;/span&gt;
-&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;push_user_list&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wi-Fi&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;order&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;看起来确实是个好主意，虽然据说在&lt;code&gt;Oracle SQL&lt;/code&gt;测试可以通过，但是在我用的&lt;code&gt;MariaDB 5.5.37-1&lt;/code&gt;结果排序却是错的，'operator'列并没有排序，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;+--------+------+-----+-----+------+---------+----------+
-| userid | imei | lat | lon | addr | network | operator |
-+--------+------+-----+-----+------+---------+----------+
-| 122    | 343  |     |     |      | 3G      | 12344    |
-| 125    | 347  |     |     |      | 3G      | 12345    |
-| 126    | 348  |     |     |      | 3G      | 12346    |
-| 127    | 349  |     |     |      | 3G      | 12347    |
-| 128    | 350  |     |     |      | 3G      | 12343    |
-| 129    | 351  |     |     |      | 3G      | 12345    |
-| 130    | 352  |     |     |      | 2G      | 12345    |
-| 131    | 353  |     |     |      | 4G      | 12345    |
-| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
-| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
-| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
-+--------+------+-----+-----+------+---------+----------+
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;利用case语句&lt;/h3&gt;
-&lt;p&gt;从另一种思路考虑，放弃&lt;code&gt;union&lt;/code&gt;的用法，把变量值用&lt;code&gt;case&lt;/code&gt;或者&lt;code&gt;decode&lt;/code&gt;表示，如果'network'是'Wi-Fi'就让排序的变量值为'~'，与'operator'列一起排序，这样就可以正常使用&lt;code&gt;order by&lt;/code&gt;使'Wi-Fi'的行排在最后了，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;push_user_list&lt;/span&gt;
-&lt;span class="k"&gt;order&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt;
-&lt;span class="k"&gt;case&lt;/span&gt;
-&lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Wi-Fi&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;~&amp;#39;&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;operator&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="n"&gt;network&lt;/span&gt; &lt;span class="k"&gt;desc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;这样的结果就很完美了，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;+--------+------+-----+-----+------+---------+----------+
-| userid | imei | lat | lon | addr | network | operator |
-+--------+------+-----+-----+------+---------+----------+
-| 128    | 350  |     |     |      | 3G      | 12343    |
-| 122    | 343  |     |     |      | 3G      | 12344    |
-| 131    | 353  |     |     |      | 4G      | 12345    |
-| 125    | 347  |     |     |      | 3G      | 12345    |
-| 129    | 351  |     |     |      | 3G      | 12345    |
-| 130    | 352  |     |     |      | 2G      | 12345    |
-| 126    | 348  |     |     |      | 3G      | 12346    |
-| 127    | 349  |     |     |      | 3G      | 12347    |
-| 124    | 346  |     |     |      | Wi-Fi   | 12345    |
-| 123    | 345  |     |     |      | Wi-Fi   | 12345    |
-| 133    | 354  |     |     |      | Wi-Fi   | 12346    |
-+--------+------+-----+-----+------+---------+----------+
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Thu, 29 May 2014 00:00:00 +0800</pubDate><guid>tag:x7res.info,2014-05-29:archives/mysql_sort_using_case.html</guid><category>SQL</category></item></channel></rss>
+| 130    | 352  |     |     |      | 2G      | 12345 …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Thu, 29 May 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:x7blog.info,2014-05-29:/archives/mysql_sort_using_case.html</guid><category>SQL</category></item></channel></rss>

@@ -1,76 +1,74 @@
 <!DOCTYPE html>
 <html lang="zhs">
 <head>
+    <meta charset="utf-8">
+    <title>x7's blog</title>
+    <meta name="description" content="">
+    <meta name="author" content="x7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>x7's blog</title>
-        <meta charset="utf-8" />
-        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
 
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
-
-        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-              <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-44068198-1', 'x7res.info');
-                ga('send', 'pageview');
-
-              </script>
-
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="https://x7blog.info/feeds/all.rss.xml" rel="alternate" title="x7's blog" type="application/rss+xml">
 
 </head>
 
-<body id="index" class="home">
+<body>
 
-
+<div class="navbar">
+    <div class="navbar-inner">
     <div class="container">
 
-        <div class="row">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-          <header id="banner" class="body">
-                  <h1><a href="./">x7's blog <strong></strong></a></h1>
-          </header><!-- /#banner -->
+        <a class="brand" href=".">x7's blog</a>
 
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="./">Home</a></li>
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="./pages/about-me.html">About me</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
 
-                <li><a href="./pages/about-me.html">About me</a></li>
+<div class="container">
+    <div class="content">
+    <div class="row">
 
-              </ul>
-            </div>
+        <div class="span9">
+        
 
-<section id="content">
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/android_calendar.html"><h2>Android原生日历应用分析和简单扩展</h2></a>
+        <div class= "well small"> Wed 09 October 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-   <div class="row">
-
-
-        <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Android原生日历应用分析和简单扩展</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-10-09T00:00:00+08:00"> Wed 09 October 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0222/896.html">Android 4.0日历（calendar）源码分析之概览</a></p>
 <p><a href="https://code.google.com/p/android-project-sse-ustc/">Google Code - android-project-sse-ustc</a></p>
 <h3>简介:</h3>
@@ -81,36 +79,32 @@
 <ul>
 <li>
 <p>日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。</p>
-<p><img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px" />
-<img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px" />
-<img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px" />
-<img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px" /></p>
+<p><img alt="月视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-00.png/500px">
+<img alt="周视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-01.png/500px">
+<img alt="日视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-02.png/500px">
+<img alt="日程视图" src="http://7xl7ca.com1.z0.glb.clouddn.com/android_calendar-03.png/500px"></p>
 <p>四个视图对应4个Fragment，都附着于<code>AllInOneActivity</code>。</p>
 <p>月视图：<code>month/MonthByWeekFragment.java</code></p>
 <p>日视图和周视图：<code>DayFragment.java</code></p>
-<p>日程视图 ...</p></li></ul> </div><!-- /.entry-content -->
+<p>日程视图 …</p></li></ul> <a class="btn btn-info xsmall" href="./archives/android_calendar.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/android_calendar.html" rel="bookmark" title="Permalink to Android原生日历应用分析和简单扩展">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/android_app_compile.html"><h2>Android源码中日历模块单独编译</h2></a>
+        <div class= "well small"> Tue 08 October 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Android源码中日历模块单独编译</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-10-08T00:00:00+08:00"> Tue 08 October 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://blog.csdn.net/xixinyan/article/details/6942074">在Eclipse中开发Android系统的内置应用(Mms, Contacts ect)</a></p>
 <p><a href="http://blog.csdn.net/zhu_apollo/article/details/8760025">android4.0.3 联系人Contacts应用导入到eclipse中编译运行之一</a></p>
 <h3>Android 源码下载：</h3>
@@ -119,7 +113,7 @@
 <h3>Android源码结构：</h3>
 <p>Google提供的Android包含了：Android源代码，工具链，基础C库，仿真环境，开发环境等。</p>
 <p>第一级别的目录和文件如下所示：</p>
-<div class="highlight"><pre>　　----------------
+<div class="highlight"><pre><span></span>　　----------------
 　　　|-- Makefile            全局的Makefile
 　　　|-- build               系统编译规则和配置所需要的脚本和工具
 　　----------------
@@ -132,29 +126,25 @@
 　　　|-- external            android使用的一些额外开源库
 　　　|-- libcore             与媒体播放框架代码相关
 　　----------------
-　　　|-- packages ...</pre></div> </div><!-- /.entry-content -->
+　　　|-- packages …</pre></div> <a class="btn btn-info xsmall" href="./archives/android_app_compile.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/android_app_compile.html" rel="bookmark" title="Permalink to Android源码中日历模块单独编译">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/local_dns.html"><h2>在本地建立DNS缓存</h2></a>
+        <div class= "well small"> Sun 29 September 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">在本地建立DNS缓存</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-09-29T00:00:00+08:00"> Sun 29 September 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+ </div>
+        <div class="summary"><p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
 <p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
 <h3>dnsmasq</h3>
@@ -163,73 +153,63 @@
 <ul>
 <li>首先安装：</li>
 </ul>
-<div class="highlight"><pre>pacman -S dnsmasq
+<div class="highlight"><pre><span></span>pacman -S dnsmasq
 </pre></div>
 
 
 <ul>
 <li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
 </ul>
-<div class="highlight"><pre>resolv-file=/etc/resolv_dnsmasq.conf
+<div class="highlight"><pre><span></span>resolv-file=/etc/resolv_dnsmasq.conf
 </pre></div>
 
 
 <ul>
-<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 ...</li></ul> </div><!-- /.entry-content -->
+<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 …</li></ul> <a class="btn btn-info xsmall" href="./archives/local_dns.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/local_dns.html" rel="bookmark" title="Permalink to 在本地建立DNS缓存">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/github_hosts.html"><h2>修改hosts访问github</h2></a>
+        <div class= "well small"> Sun 08 September 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/dns.html">dns</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">修改hosts访问github</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-09-08T00:00:00+08:00"> Sun 08 September 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
-<div class="highlight"><pre># github
+ </div>
+        <div class="summary"><p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
+<div class="highlight"><pre><span></span># github
 207.97.227.239 github.com
 65.74.177.129 www.github.com
 207.97.227.252 nodeload.github.com
 207.97.227.243 raw.github.com
 204.232.175.78 documentcloud.github.com
 204.232.175.78 pages.github.com
-</pre></div> </div><!-- /.entry-content -->
+</pre></div> <a class="btn btn-info xsmall" href="./archives/github_hosts.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/github_hosts.html" rel="bookmark" title="Permalink to 修改hosts访问github">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/build_my_blog.html"><h2>在Github Pages上搭建个人博客</h2></a>
+        <div class= "well small"> Tue 27 August 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/hosts.html">hosts</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-08-27T00:00:00+08:00"> Tue 27 August 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
 <p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
 <p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
@@ -246,7 +226,7 @@
 <ul>
 <li>安装pelican和markdown：</li>
 </ul>
-<div class="highlight"><pre>yaourt pelican
+<div class="highlight"><pre><span></span>yaourt pelican
 yaourt markdown
 </pre></div>
 
@@ -254,36 +234,30 @@ yaourt markdown
 <ul>
 <li>搭建目录：</li>
 </ul>
-<div class="highlight"><pre>mkdir blog
-<span class="nb">cd </span>blog
-pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre><span></span>mkdir blog
+<span class="nb">cd</span> blog
+pelican-quickstart …</pre></div> <a class="btn btn-info xsmall" href="./archives/build_my_blog.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/ban_360_on_android.html"><h2>Android禁止安装360手机助手</h2></a>
+        <div class= "well small"> Wed 07 August 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/blog.html">blog</a>
-                                            <a class="danger label" href="./tag/github.html">GitHub</a>
-                                            <a class="danger label" href="./tag/pelican.html">Pelican</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Android禁止安装360手机助手</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-08-07T00:00:00+08:00"> Wed 07 August 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101ozui.html">以前的新浪博客</a>～</p>
 <p>360太讨厌了，还老有人用我手机调试，一插他们电脑，马上就要给我装上360,于是就有了下边的招：</p>
 <p>android程序在手机上在<code>/data/app/</code>目录下，考虑在此位置放一个360相同包名的文件，想让它安装的时候不能覆盖</p>
-<div class="highlight"><pre>adb shell
+<div class="highlight"><pre><span></span>adb shell
 su
 touch /data/app/com.qihoo.appstore-1.apk
 chattr +i /data/app/com.qihoo.appstore-1.apk
@@ -291,32 +265,28 @@ chattr +i /data/app/com.qihoo.appstore-1.apk
 
 
 <p>尝试安装，软件装到手机时成功的禁止掉，但是还是能被安装到sd卡，于是采取占用<code>data</code>文件夹的方式：</p>
-<div class="highlight"><pre>adb shell
+<div class="highlight"><pre><span></span>adb shell
 su
 touch /data/data/com.qihoo.appstore
-chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
+chattr +i /data/data …</pre></div> <a class="btn btn-info xsmall" href="./archives/ban_360_on_android.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/ban_360_on_android.html" rel="bookmark" title="Permalink to Android禁止安装360手机助手">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/build_android_from_source.html"><h2>从源码编译Android系统</h2></a>
+        <div class= "well small"> Mon 29 July 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/android.html">Android</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">从源码编译Android系统</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-07-29T00:00:00+08:00"> Mon 29 July 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Android">Android - ArchWiki</a></p>
 <p><a href="http://source.android.com/source/initializing.html">Initializing a Build Environment | Android Developers</a></p>
@@ -326,63 +296,58 @@ chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
 <ul>
 <li>系统需求，32位系统需要这么一堆东西：</li>
 </ul>
-<div class="highlight"><pre>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
+<div class="highlight"><pre><span></span>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
 </pre></div>
 
 
 <p>64位系统还需要：</p>
-<div class="highlight"><pre>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib ...</pre></div> </div><!-- /.entry-content -->
+<div class="highlight"><pre><span></span>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib …</pre></div> <a class="btn btn-info xsmall" href="./archives/build_android_from_source.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/build_android_from_source.html" rel="bookmark" title="Permalink to 从源码编译Android系统">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/hadoop_on_archlinux.html"><h2>hadoop on archlinux</h2></a>
+        <div class= "well small"> Fri 21 June 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/android.html">Android</a>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">hadoop on archlinux</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-06-21T00:00:00+08:00"> Fri 21 June 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Hadoop">Hadoop - ArchWiki</a></p>
 <p><a href="http://hadoop.apache.org/docs/stable/single_node_setup.html">Single Node Setup</a></p>
 <ul>
 <li>安装：</li>
 </ul>
-<div class="highlight"><pre>yaourt hadoop
+<div class="highlight"><pre><span></span>yaourt hadoop
 </pre></div>
 
 
 <ul>
 <li>主要目录是这个：</li>
 </ul>
-<div class="highlight"><pre>/etc/hadoop/
+<div class="highlight"><pre><span></span>/etc/hadoop/
 </pre></div>
 
 
 <ul>
 <li>当然配置文件还是在这里。</li>
 </ul>
-<div class="highlight"><pre>/etc/hadoop/
+<div class="highlight"><pre><span></span>/etc/hadoop/
 </pre></div>
 
 
 <ul>
 <li>检查java环境配置。</li>
 </ul>
-<div class="highlight"><pre><span class="nb">echo</span> <span class="nv">$JAVA_HOME</span>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$JAVA_HOME</span>
 </pre></div>
 
 
@@ -394,80 +359,70 @@ chattr +i /data/data ...</pre></div> </div><!-- /.entry-content -->
 <p>格式化新的分布式文件系统</p>
 </li>
 </ul>
-<div class="highlight"><pre>hadoop namenode -format
+<div class="highlight"><pre><span></span>hadoop namenode -format
 </pre></div>
 
 
 <ul>
 <li>启动服务,需要防火墙打开<code>9000</code>和<code>9001</code>端口，即使单机hadoop也需要，不明</li>
 </ul>
-<div class="highlight"><pre>bin/start-all.sh
+<div class="highlight"><pre><span></span>bin/start-all.sh
 </pre></div>
 
 
 <p>或者启动<code>systemd</code>的一排service</p>
 <ul>
-<li>启动后运行example测试，首先把测试用的文件写到<code>hadoop ...</code></li></ul> </div><!-- /.entry-content -->
+<li>启动后运行example测试，首先把测试用的文件写到<code>hadoop …</code></li></ul> <a class="btn btn-info xsmall" href="./archives/hadoop_on_archlinux.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/hadoop_on_archlinux.html" rel="bookmark" title="Permalink to hadoop on archlinux">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/lfs_root_passwd.html"><h2>LFS编译shadow之后设置root密码出错解决</h2></a>
+        <div class= "well small"> Tue 22 January 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/hadoop.html">Hadoop</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">LFS编译shadow之后设置root密码出错解决</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-01-22T00:00:00+08:00"> Tue 22 January 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
 <p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
-<div class="highlight"><pre>root:/sources/shadow-4.1.5.1# passwd root
+<div class="highlight"><pre><span></span>root:/sources/shadow-4.1.5.1# passwd root
 Changing password for root
 Enter the new password (minimum of 5 characters)
 Please use a combination of upper and lower case letters and numbers.
 Bad password: too short.  
-Warning: weak password (enter it again ...</pre></div> </div><!-- /.entry-content -->
+Warning: weak password (enter it again …</pre></div> <a class="btn btn-info xsmall" href="./archives/lfs_root_passwd.html">read more</a></div>
+    </div>	
+				
 
-                                <div class="medium primary btn"><a href="./archives/lfs_root_passwd.html" rel="bookmark" title="Permalink to LFS编译shadow之后设置root密码出错解决">Read more <i class="icon-arrow-right"></i></a></div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/grub2_boot_from_iso.html"><h2>grub2直接引导iso镜像</h2></a>
+        <div class= "well small"> Sun 25 November 2012
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
 
 
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/lfs.html">lfs</a>
-                                </div>
-
-
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="./archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">grub2直接引导iso镜像</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2012-11-25T00:00:00+08:00"> Sun 25 November 2012 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="./author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
 <p>参考：</p>
 <p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
 <p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
 <p><a href="http://forum.ubuntu.org.cn/viewtopic.php?f=139&amp;t=393256">打造自己的多功能USB启动盘——grub2引导WinPE、Archlinux安装镜像和Ubuntu liveCD</a></p>
 <h3>U盘准备</h3>
 <p>格式fat32，卷标 zzz。</p>
-<div class="highlight"><pre>sudo grub-install --boot-directory<span class="o">=</span> --no-floppy --target<span class="o">=</span>i386-pc --recheck /dev/sd
+<div class="highlight"><pre><span></span>sudo grub-install --boot-directory<span class="o">=</span> --no-floppy --target<span class="o">=</span>i386-pc --recheck /dev/sd
 </pre></div>
 
 
@@ -490,120 +445,97 @@ Warning: weak password (enter it again ...</pre></div> </div><!-- /.entry-conten
 <ul>
 <li><code>grub.cfg</code>:</li>
 </ul>
-<div class="highlight"><pre><span class="err">#</span><span class="x"> grub.cfg</span>
-<span class="err">#</span><span class="x"> for ...</span></pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="./archives/grub2_boot_from_iso.html" rel="bookmark" title="Permalink to grub2直接引导iso镜像">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="./tag/linux.html">Linux</a>
-                                            <a class="danger label" href="./tag/grub2.html">grub2</a>
-                                </div>
-
-
-
-                        </article></li>
-                </ol><!-- /#posts-list -->
-
-        </div><!-- /.eleven.columns -->
-        
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-      <li><a href="./pages/about-me.html">About me</a></li>
-  </ul>
-
-<h4>Categories</h4>
+<div class="highlight"><pre><span></span># grub.cfg
+# for …</pre></div> <a class="btn btn-info xsmall" href="./archives/grub2_boot_from_iso.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
 <ul>
-		<li><a href="./category/android.html">Android</a></li>
-		<li><a href="./category/blog.html">blog</a></li>
-		<li><a href="./category/latex.html">LaTeX</a></li>
-		<li><a href="./category/linux.html">Linux</a></li>
-		<li><a href="./category/php.html">PHP</a></li>
-		<li><a href="./category/python.html">Python</a></li>
-		<li><a href="./category/sql.html">SQL</a></li>
+    <li class="prev"><a href="./index.html">&larr; Previous</a></li>
+
+    <li class=""><a href="./index.html">1</a></li>
+    <li class="active"><a href="./index2.html">2</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
 </ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
 
 
-<h4>Tags</h4>
-	<ul>
-</ul>
 
+                <li><a href="https://x7blog.info/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
 
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
-    <li><a href="https://github.com/x7hub">GitHub</a></li>
-    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
-    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
-    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-<p class="paginator">
-            <a href="./index.html"><i class="icon-arrow-left"></i></a>
-    Page 2 / 2
-</p>
-</section><!-- /#content -->
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
-
-                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
-
-                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
-
-                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
-
-              </ul>
+            </ul>
             </div>
-          </div>
-        </footer>
-
-    </div>
 
 
-<script type="text/javascript">
-    var disqus_shortname = 'x7qus';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="./theme/js/libs/gumby.min.js"></script>
-  <script src="./theme/js/plugins.js"></script>
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/android.html">Android</a></li>
+                <li><a href="./category/blog.html">blog</a></li>
+                <li><a href="./category/latex.html">LaTeX</a></li>
+                <li><a href="./category/linux.html">Linux</a></li>
+                <li><a href="./category/php.html">PHP</a></li>
+                <li><a href="./category/python.html">Python</a></li>
+                <li><a href="./category/sql.html">SQL</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.blackmomo.com/">陌阁</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/x7hub">GitHub</a></li>
+                <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+                <li><a href="https://www.facebook.com/rong.feng.9484">Facebook</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">x7's blog</a> &copy; x7 2015</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
+ 
 </body>
 </html>

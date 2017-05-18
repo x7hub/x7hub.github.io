@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html lang="zhs">
 <head>
+    <meta charset="utf-8">
+    <title>x7's blog - Pelican</title>
+    <meta name="description" content="">
+    <meta name="author" content="x7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>x7's blog - Pelican</title>
-        <meta charset="utf-8" />
-        <link href="http://x7res.info/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="x7's blog RSS Feed" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
 
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
-
-        <link rel="stylesheet" type="text/css" href="../theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="../theme/pygment.css" />
-
-        <script src="../theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-              <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-44068198-1', 'x7res.info');
-                ga('send', 'pageview');
-
-              </script>
-
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="https://x7blog.info/feeds/all.rss.xml" rel="alternate" title="x7's blog" type="application/rss+xml">
 
 </head>
 
-<body id="index" class="home">
+<body>
 
-
+<div class="navbar">
+    <div class="navbar-inner">
     <div class="container">
 
-        <div class="row">
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
 
-          <header id="banner" class="body">
-                  <h1><a href="../">x7's blog <strong></strong></a></h1>
-          </header><!-- /#banner -->
+        <a class="brand" href="..">x7's blog</a>
 
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="../">Home</a></li>
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about-me.html">About me</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
 
-                <li><a href="../pages/about-me.html">About me</a></li>
+<div class="container">
+    <div class="content">
+    <div class="row">
 
-              </ul>
-            </div>
+        <div class="span9">
+        
 
-<section id="content">
-
-
-
-   <div class="row">
+        
 
 
-        <div class="eleven columns">
-                 <ol id="post-list">
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">用Pelican构建博客上传到Github Pages出错</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-12-04T00:00:00+08:00"> Wed 04 December 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考：</p>
+    <div class='article'>
+        <div class="content-title">
+            <a href="../archives/page_build_failed.html"><h1>用Pelican构建博客上传到Github Pages出错</h1></a>
+Wed 04 December 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><p>参考：</p>
 <p><a href="https://help.github.com/articles/using-submodules-with-pages">Using submodules with Pages</a></p>
 <h3>出错情况</h3>
 <p>上次写完博客，上传Github的时候突然出问题了，现在当然已经修复。</p>
@@ -79,30 +79,68 @@
 <p>From:  GitHub (noreply@github.com) This sender is in your safe list.</p>
 <p>Sent:  Saturday, November 30, 2013 1:06:57 PM</p>
 <p>To:    x7hub (x7.0@outlook.com)</p>
-<p>The page build ...</p></blockquote> </div><!-- /.entry-content -->
+<p>The page build failed with the following error:</p>
+<p>page build failed</p>
+<p>For information on troubleshooting Jekyll see:</p>
+<p>https://help.github.com/articles/using-jekyll-with-pages#troubleshooting</p>
+<p>If you have any questions please contact us at https://github.com/contact.</p>
+</blockquote>
+<p>错误信息就只有<code>page build failed</code>，给出的帮助链接指向的是<code>Jekyll</code>，我用的是<code>Pelican</code>啊，很苦恼啊。于是尝试了删除新添加的博文，尝试了回退到之前的版本，尝试更新系统软件，都不起作用，每次提交都会收到上面那封邮件。无奈之下求助邮件中的第二个链接，就是<a href="https://github.com/contact">Github的帮助</a>。</p>
+<h3>求助Github</h3>
+<p>帮助页面写着，</p>
+<blockquote>
+<p>We’re here to help with any questions or comments. If you just want to say hi, that's cool too.</p>
+</blockquote>
+<p>简单说明了问题以后，几分钟内就收到了答复邮件，</p>
+<blockquote>
+<p>Sorry about this. We are currently working on improving these error messages.</p>
+<p>The actual error found in the page build logs is as follows:</p>
+<p>No submodule mapping found in .gitmodules for path 'pelican-plugins'</p>
+<p>Please take a look at our Help article on using Git submodules with GitHub Pages:</p>
+<p>https://help.github.com/articles/using-submodules-with-pages</p>
+<p>That should help you sort out the issue.</p>
+</blockquote>
+<p><code>No submodule mapping found in .gitmodules for path 'pelican-plugins'</code>这个就是问题所在了。因为我的博客目录下有<code>pelican-plugins</code>和<code>pelican-themes</code>两个submodule，之前也没有在<code>.gitmodules</code>中声明，现在他们不认了。</p>
+<p>自己也不会写<code>.gitmodules</code>，所以还是交给<code>git</code>自动添加吧，</p>
+<div class="highlight"><pre><span></span>rm -rf pelican-plugins
+rm -rf pelican-themes
+ga . -A
+gc -m <span class="s2">&quot;remove 2 submodule dirs &quot;</span>
+git submodule add  https://github.com/getpelican/pelican-plugins pelican-plugins
+git submodule add  https://github.com/getpelican/pelican-themes pelican-themes
+</pre></div>
 
-                                <div class="medium primary btn"><a href="../archives/page_build_failed.html" rel="bookmark" title="Permalink to 用Pelican构建博客上传到Github Pages出错">Read more <i class="icon-arrow-right"></i></a></div>
+
+<p>现在<code>.gitmodules</code>是这样的了，</p>
+<div class="highlight"><pre><span></span><span class="k">[submodule &quot;pelican-plugins&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">pelican-plugins</span>
+<span class="s">    url = https://github.com/getpelican/pelican-plugins</span>
+<span class="k">[submodule &quot;pelican-themes&quot;]</span>
+    <span class="na">path</span> <span class="o">=</span> <span class="s">pelican-themes</span>
+<span class="s">    url = https://github.com/getpelican/pelican-themes</span>
+</pre></div>
 
 
+<p>再次提交，没有收到报错的邮件，很快就在页面上看到更新了。</p></div>
+        <hr />
+    </div>
+		
 
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/github.html">GitHub</a>
-                                            <a class="danger label" href="../tag/pelican.html">Pelican</a>
-                                </div>
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/build_my_blog.html"><h2>在Github Pages上搭建个人博客</h2></a>
+        <div class= "well small"> Tue 27 August 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
 
 
-
-                        </article></li>
-                        <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">在Github Pages上搭建个人博客</a></h2> </header>
-                                <footer class="post-info">
-                                    <abbr class="published" title="2013-08-27T00:00:00+08:00"> Tue 27 August 2013 </abbr>
-                                    <address class="vcard author">By 
-                                    <a class="url fn" href="../author/x7.html"> x7</a>
-                                    </address>
-                                </footer><!-- /.post-info -->
-                                <div class="entry-content"> <p>参考:</p>
+ </div>
+        <div class="summary"><p>参考:</p>
 <p><a href="http://www.lizherui.com/pages/2013/08/17/build_blog.html">一步一步打造Geek风格的技术博客 by lizherui</a></p>
 <p><a href="http://x-wei.github.io/pelican_github_blog.html">用pelican在github上创建自己的博客! by mx</a></p>
 <p><a href="http://www.linuxzen.com/shi-yong-pelicanda-zao-jing-tai-bo-ke.html">使用Pelican打造静态博客 by cold</a></p>
@@ -119,7 +157,7 @@
 <ul>
 <li>安装pelican和markdown：</li>
 </ul>
-<div class="highlight"><pre>yaourt pelican
+<div class="highlight"><pre><span></span>yaourt pelican
 yaourt markdown
 </pre></div>
 
@@ -127,121 +165,97 @@ yaourt markdown
 <ul>
 <li>搭建目录：</li>
 </ul>
-<div class="highlight"><pre>mkdir blog
-<span class="nb">cd </span>blog
-pelican-quickstart ...</pre></div> </div><!-- /.entry-content -->
-
-                                <div class="medium primary btn"><a href="../archives/build_my_blog.html" rel="bookmark" title="Permalink to 在Github Pages上搭建个人博客">Read more <i class="icon-arrow-right"></i></a></div>
-
-
-
-                                <div class="row tag-row">
-                                        <span>Tagged as : </span>
-                                            <a class="danger label" href="../tag/blog.html">blog</a>
-                                            <a class="danger label" href="../tag/github.html">GitHub</a>
-                                            <a class="danger label" href="../tag/pelican.html">Pelican</a>
-                                </div>
-
-
-
-                        </article></li>
-                </ol><!-- /#posts-list -->
-
-        </div><!-- /.eleven.columns -->
-        
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-      <li><a href="../pages/about-me.html">About me</a></li>
-  </ul>
-
-<h4>Categories</h4>
+<div class="highlight"><pre><span></span>mkdir blog
+<span class="nb">cd</span> blog
+pelican-quickstart …</pre></div> <a class="btn btn-info xsmall" href="../archives/build_my_blog.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
 <ul>
-		<li><a href="../category/android.html">Android</a></li>
-		<li><a href="../category/blog.html">blog</a></li>
-		<li><a href="../category/latex.html">LaTeX</a></li>
-		<li><a href="../category/linux.html">Linux</a></li>
-		<li><a href="../category/php.html">PHP</a></li>
-		<li><a href="../category/python.html">Python</a></li>
-		<li><a href="../category/sql.html">SQL</a></li>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../tag/pelican.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
 </ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
 
 
-<h4>Tags</h4>
-	<ul>
-</ul>
 
+                <li><a href="https://x7blog.info/feeds/all.rss.xml" rel="alternate">RSS feed</a></li>
 
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="http://weibo.com/ulzzz">新浪微博</a></li>
-    <li><a href="https://github.com/x7hub">GitHub</a></li>
-    <li><a href="https://twitter.com/x7tter">Twitter</a></li>
-    <li><a href="https://www.facebook.com/profile.php?id=100009856203706">Facebook</a></li>
-    <li><a href="https://plus.google.com/u/0/103542609671038993194">Google+</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-<p class="paginator">
-    Page 1 / 1
-</p>
-</section><!-- /#content -->
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/x7hub" target="_blank">Github</a></div></li>
-
-                <li><div class="btn twitter"><a href="https://twitter.com/x7tter" target="_blank">Twitter</a></div></li>
-
-                <li><div class="btn facebook"><a href="https://www.facebook.com/profile.php?id=100009856203706" target="_blank">Facebook</a></div></li>
-
-                <li><div class="btn danger"><a href="https://plus.google.com/u/0/103542609671038993194" target="_blank">Google+</a></div></li>
-
-              </ul>
+            </ul>
             </div>
-          </div>
-        </footer>
-
-    </div>
 
 
-<script type="text/javascript">
-    var disqus_shortname = 'x7qus';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="../theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="../theme/js/libs/gumby.min.js"></script>
-  <script src="../theme/js/plugins.js"></script>
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/android.html">Android</a></li>
+                <li><a href="../category/blog.html">blog</a></li>
+                <li><a href="../category/latex.html">LaTeX</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
+                <li><a href="../category/php.html">PHP</a></li>
+                <li><a href="../category/python.html">Python</a></li>
+                <li><a href="../category/sql.html">SQL</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://www.blackmomo.com/">陌阁</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/x7hub">GitHub</a></li>
+                <li><a href="https://twitter.com/x7tter">Twitter</a></li>
+                <li><a href="https://www.facebook.com/rong.feng.9484">Facebook</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">x7's blog</a> &copy; x7 2013</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
 </body>
 </html>
