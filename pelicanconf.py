@@ -18,6 +18,7 @@ OUTPUT_PATH = '.'
 ARCHIVES_URL = 'archives.html'
 ARTICLE_URL = 'archives/{slug}.html'
 ARTICLE_SAVE_AS = 'archives/{slug}.html'
+STATIC_PATHS = ["images"]
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -36,8 +37,8 @@ SOCIAL = (
           ('Facebook', 'https://www.facebook.com/rong.feng.9484'),
           )
 
-GITHUB_URL = 'https://github.com/x7hub'
-TWITTER_USERNAME = 'x7tter'
+#GITHUB_URL = 'https://github.com/x7hub'
+#TWITTER_USERNAME = 'x7tter'
 #TWITTER_URL = 'https://twitter.com/x7tter'
 #FACEBOOK_URL = 'https://www.facebook.com/rong.feng.9484'
 #GOOGLEPLUS_URL = 'https://plus.google.com/u/0/103542609671038993194'
