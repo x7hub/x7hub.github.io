@@ -12,7 +12,7 @@ THEME = 'pelican-themes/tuxlite_tbs'
 
 DISQUS_SITENAME = 'x7qus'
 GOOGLE_ANALYTICS_ID = 'UA-44068198-1'
-GOOGLE_ANALYTICS_SITENAME = 'x7blog.info'
+GOOGLE_ANALYTICS_SITENAME = 'auto'
 
 OUTPUT_PATH = '.'
 ARCHIVES_URL = 'archives.html'
@@ -36,9 +36,10 @@ SOCIAL = (
           ('Facebook', 'https://www.facebook.com/rong.feng.9484'),
           )
 
-#GITHUB_URL = 'https://github.com/x7hub'
+GITHUB_URL = 'https://github.com/x7hub'
+TWITTER_USERNAME = 'x7tter'
 #TWITTER_URL = 'https://twitter.com/x7tter'
-#FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=100009856203706'
+#FACEBOOK_URL = 'https://www.facebook.com/rong.feng.9484'
 #GOOGLEPLUS_URL = 'https://plus.google.com/u/0/103542609671038993194'
 
 DEFAULT_PAGINATION = 10
