@@ -48,7 +48,7 @@ Blablabla said Nobody ~\cite{Nobody06}.
 
 生成的pdf是这样的，
 
-![Hello world 的编译结果](/images/latex_on_linux-00.png/500px)
+![Hello world 的编译结果](/images/latex_on_linux-00.png)
 
 
 ####使用模板
@@ -123,7 +123,7 @@ Three & Four\\
 \end{table}
 ```
 
-![插入表格](/images/latex_on_linux-01.png/500px)
+![插入表格](/images/latex_on_linux-01.png)
 
 ####插入算法
 
@@ -148,7 +148,7 @@ Three & Four\\
 \end{algorithm}
 ```
 
-![插入算法](/images/latex_on_linux-02.png/500px)
+![插入算法](/images/latex_on_linux-02.png)
 
 ####插入参考文献
 
@@ -212,7 +212,7 @@ IEEEtran.cls version 1.7 and later.
 I wish you the best of success.
 ```
 
-![有段间距](/images/latex_on_linux-03.png/500px)
+![有段间距](/images/latex_on_linux-03.png)
 
 用换行和缩进避免段间距，
 
@@ -223,5 +223,5 @@ IEEEtran.cls version 1.7 and later.\\
 \hspace*{0.5cm}I wish you the best of success.
 ```
 
-![避免段间距](/images/latex_on_linux-04.png/500px)
+![避免段间距](/images/latex_on_linux-04.png)
 

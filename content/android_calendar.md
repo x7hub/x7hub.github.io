@@ -22,10 +22,10 @@ Slug: android_calendar
 
 * 日历应用有四个主要视图，分别是月视图，周视图，日视图，日程视图。
 
-    ![月视图](/images/android_calendar-00.png/500px)
-    ![周视图](/images/android_calendar-01.png/500px)
-    ![日视图](/images/android_calendar-02.png/500px)
-    ![日程视图](/images/android_calendar-03.png/500px)
+    ![月视图](/images/android_calendar-00.png)
+    ![周视图](/images/android_calendar-01.png)
+    ![日视图](/images/android_calendar-02.png)
+    ![日程视图](/images/android_calendar-03.png)
 
     四个视图对应4个Fragment，都附着于`AllInOneActivity`。
 
@@ -43,9 +43,9 @@ Slug: android_calendar
 
     设置：`CalendarSettingActivity.java`
 
-    ![日程新建、编辑](/images/android_calendar-04.png/500px)
-    ![日程详细信息](/images/android_calendar-05.png/500px) 
-    ![设置](/images/android_calendar-06.png/500px)
+    ![日程新建、编辑](/images/android_calendar-04.png)
+    ![日程详细信息](/images/android_calendar-05.png) 
+    ![设置](/images/android_calendar-06.png)
 
 ### 加入农历显示功能
 
