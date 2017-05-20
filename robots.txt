@@ -1,4 +1,4 @@
-Sitemap: http://x7blog.info/sitemap.xml
+Sitemap: https://x7blog.info/sitemap.xml
 User-agent: *
 Disallow: /pages/
 Disallow: /drafts/
