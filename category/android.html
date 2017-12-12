@@ -60,8 +60,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../archives/monkeyrunner_input_unicode.html"><h1>MonkeyRunner利用剪贴板输入中文</h1></a>
-Mon 17 August 2015
+            <a href="../archives/recompile_wechat_6513.html"><h1>反编译微信Android客户端并重新打包</h1></a>
+Tue 12 December 2017
 
 by <a class="url fn" href="../author/x7.html">x7</a>
  
@@ -70,7 +70,125 @@ by <a class="url fn" href="../author/x7.html">x7</a>
  
         </div>
         
-        <div><p>参考：</p>
+        <div><p>参考:</p>
+<p><a href="http://x-wei.github.io/pelican_github_blog.html">微信安卓客户端逆向分析 by impakho</a></p>
+<p><a href="http://www.jianshu.com/p/a0e6b3f15d78">微信的二次打包 by manmade</a></p>
+<h3>工具</h3>
+<ul>
+<li>微信版本<code>6.5.13</code>.<a href="http://dldir1.qq.com/weixin/android/weixin6514android1120.apk">官方下载地址</a>，文件名叫6514，实际在应用内显示版本为6.5.13。其他相近的版本原理相似，但是由于代码混淆机制，可能对应的包名类名不同。</li>
+<li>Apktool <code>2.2.4</code></li>
+<li>jadx <code>0.6.1</code></li>
+<li>jdk <code>1.8.0_151</code></li>
+</ul>
+<h3>反编译</h3>
+<p>如果直接默认选项反编译，那么在重新打包时会遇到资源文件错误的问题，所以尝试用<code>-r</code>参数保留资源文件。</p>
+<div class="highlight"><pre><span></span>java -jar .<span class="se">\a</span>pktool<span class="se">\a</span>pktool_2.2.4.jar  d -r .<span class="se">\w</span>eixin6514android1120.apk
+</pre></div>
+
+
+<p>反编译后的目录：</p>
+<div class="highlight"><pre><span></span>total <span class="m">3057</span>
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:45 ./
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:42 ../
+-rw-r--r-- <span class="m">1</span> Sec <span class="m">197121</span>  <span class="m">242032</span> Dec <span class="m">12</span> <span class="m">10</span>:42 AndroidManifest.xml
+-rw-r--r-- <span class="m">1</span> Sec <span class="m">197121</span> <span class="m">379</span> Dec <span class="m">12</span> <span class="m">10</span>:45 apktool.yml
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:45 assets/
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:45 lib/
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:45 original/
+-rw-r--r-- <span class="m">1</span> Sec <span class="m">197121</span> <span class="m">2831616</span> Dec <span class="m">12</span> <span class="m">10</span>:42 resources.arsc
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:44 smali/
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:44 smali_classes2/
+drwxr-xr-x <span class="m">1</span> Sec <span class="m">197121</span>   <span class="m">0</span> Dec <span class="m">12</span> <span class="m">10</span>:45 smali_classes3/
+</pre></div>
+
+
+<p>微信相关的代码位于<code>smali/com/tencent/mm/</code>。</p>
+<h3>签名检查</h3>
+<p>位于<code>smali/com/tencent/mm/d/a.smali</code>中的第<code>793</code>行。</p>
+<div class="highlight"><pre><span></span>if-eqz <span class="nb">v0</span><span class="p">,</span> <span class="nl">:cond_2</span>
+</pre></div>
+
+
+<p>直接删掉就可以跳过检查。</p>
+<h3>简单修改</h3>
+<p>对代码做一些简单的修改，以打印内部日志为例。</p>
+<p>对于日志输出的分析，参考<a href="https://impakho.com/2017/02/22/wechat-android-client-hack/">这篇文章</a>。</p>
+<p>日志类在<code>smali/com/tencent/mm/sdk/platformtools/v.smali</code>，其中的<code>d</code>、<code>i</code>等方法中，都会调用<code>Lcom/tencent/mm/sdk/platformtools/v$a;-&gt;getLogLevel()I</code>方法，猜测是在检查日志输出级别的设置，
+如果我们想要输出全部级别的日志，则需要在每个日志方法中，去掉对日志级别的检查，并用<code>android.util.Log</code>打印日志到logcat。</p>
+<p>例如在<code>v</code>方法中，第<code>532</code>行的以下代码</p>
+<div class="highlight"><pre><span></span><span class="k">.line</span> <span class="mi">265</span>
+sget-object <span class="nb">v0</span><span class="p">,</span> <span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v</span>;<span class="p">-&gt;</span><span class="nv">uqV</span><span class="p">:</span><span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v$a</span>;
+
+if-eqz <span class="nb">v0</span><span class="p">,</span> <span class="nl">:cond_1</span>
+
+sget-object <span class="nb">v0</span><span class="p">,</span> <span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v</span>;<span class="p">-&gt;</span><span class="nv">uqV</span><span class="p">:</span><span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v$a</span>;
+
+invoke-interface <span class="p">{</span><span class="nb">v0</span><span class="p">},</span> <span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v$a</span>;<span class="p">-&gt;</span><span class="nf">getLogLevel</span><span class="p">()</span><span class="kt">I</span>
+
+move-result <span class="nb">v0</span>
+
+const/4 <span class="nb">v1</span><span class="p">,</span> <span class="mh">0x1</span>
+
+if-gt <span class="nb">v0</span><span class="p">,</span> <span class="nb">v1</span><span class="p">,</span> <span class="nl">:cond_1</span>
+</pre></div>
+
+
+<p>检查loglevel如果不够<code>1</code>，则认为不该输出<code>v</code>级别的日志，就跳转到了<code>:cond_1</code>处，直接结束。</p>
+<p>时直接将这一段判断代码删除，以跳过检查。并且，找到第597行出现了一段代码</p>
+<div class="highlight"><pre><span></span>invoke-interface/range <span class="p">{</span><span class="nb">v0</span> <span class="p">..</span> <span class="nb">v10</span><span class="p">},</span> <span class="kt">L</span>com/tencent/mm/sdk/platformtools/<span class="nc">v$a</span>;<span class="p">-&gt;</span><span class="nf">logD</span><span class="p">(</span><span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">IIJJL</span>java/lang/<span class="nc">String</span>;<span class="p">)</span><span class="kt">V</span>
+</pre></div>
+
+
+<p><code>logD</code>的调用明显是在输出日志内容，所以在此处插入一行</p>
+<div class="highlight"><pre><span></span>invoke-static <span class="p">{</span><span class="nb">p0</span><span class="p">,</span> <span class="nb">v10</span><span class="p">},</span> <span class="kt">L</span>android/util/<span class="nc">Log</span>;<span class="p">-&gt;</span><span class="nf">d</span><span class="p">(</span><span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="p">)</span><span class="kt">I</span>
+</pre></div>
+
+
+<p>输出<code>v10</code>的内容到logcat。</p>
+<p>对于此类中的其他日志相关的方法，同样跳过检查并插入logcat输出，就可以在打包运行时看到内部的全部日志，能直接看到聊天显示内容和网络交互等内容，信息量很大。</p>
+<h3>打包</h3>
+<p>直接打包可以打包成功，并且可以安装，但是运行时会秒退，根据报错信息发现是缺少了资源文件。</p>
+<p>微信的资源文件位于<code>r</code>目录，而不是默认的<code>res</code>，在使用apktool反编译和打包的过程中出现了问题，没有将资源文件还原。一个简单的应对方案是直接将原来的<code>r</code>目录塞到打包好的apk中。</p>
+<ol>
+<li>
+<p>使用默认选项重新打包</p>
+<p><code>java -jar .\apktool\apktool_2.2.4.jar b weixin6514android1120</code></p>
+<p>其中会遇到报错</p>
+<p><code>[Fatal Error] :1:1: Content is not allowed in prolog.</code></p>
+<p>是正常显现，并没有影响</p>
+</li>
+<li>
+<p>使用解压缩工具解压原本的apk文件，取出其中的<code>r</code></p>
+</li>
+<li>
+<p>使用解压缩工具打开由apktool打包好的apk文件，将刚才的<code>r</code>目录直接塞到apk中并保存。</p>
+</li>
+<li>
+<p>签名，对齐，安装</p>
+</li>
+</ol>
+<p>这样修改后的微信就可以正常运行了。</p>
+<h3>下一步</h3>
+<p>微信的动态调试有问题，暂时只能使用插入日志的方式来调试。</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/monkeyrunner_input_unicode.html"><h2>MonkeyRunner利用剪贴板输入中文</h2></a>
+        <div class= "well small"> Mon 17 August 2015
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>参考：</p>
 <p><a href="http://developer.android.com/tools/help/MonkeyRunner.html">MonkeyRunner</a></p>
 <p><a href="http://stackoverflow.com/questions/14243427/set-clipboard-text-via-adb-shell-as-of-api-level-11">Set clipboard text via adb shell as of API level 11</a></p>
 <h3>Monkeyrunner不支持中文直接输入</h3>
@@ -88,62 +206,9 @@ by <a class="url fn" href="../author/x7.html">x7</a>
 <li>利用Android设备上的输入法输入中文，相对复杂。</li>
 <li>利用剪贴板复制粘贴。</li>
 </ol>
-<p>下文实现的是利用剪贴板的思路。</p>
-<h3>利用剪贴板输入中文</h3>
-<p>由PC机通过adb发送中文到Android设备，在设备上接收并将文字放入剪贴板，再通过monkeyrunner控制粘贴到文本框。</p>
-<h4>由adb传入中文字符</h4>
-<p><code>am startservice</code>命令可以启指定的Service并传入Extra参数，</p>
-<div class="highlight"><pre><span></span>adb shell am startservice -e <span class="s2">&quot;text&quot;</span> <span class="nv">$message</span> info.x7res.clip/.ClipService
-</pre></div>
-
-
-<p><code>info.x7res.clip</code>是应用包名，<code>ClipService</code>是接收文字的Service，<code>text</code>是传入的StringExtra的键。</p>
-<p>此处可以直接传入中文，不过为了考虑对Windows的字符编码的兼容性问题，这里传入的是经过<code>unicode-escape</code>编码后的ascii字符，在下一步设备上接收时再还原成中文。</p>
-<h4>Android应用接收并放入剪贴板</h4>
-<p>用Service在后台接收<code>am startservice</code>命令传入的Extra参数，需要实现<code>onStartCommand</code>方法，</p>
-<div class="highlight"><pre><span></span><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">onStartCommand</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="o">,</span> <span class="kt">int</span> <span class="n">startId</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onStartCommand</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">startId</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">);</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;text: &quot;</span> <span class="o">+</span> <span class="n">text</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">textConverted</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">unicodeEscape</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;textConverted: &quot;</span> <span class="o">+</span> <span class="n">textConverted</span><span class="o">);</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setClip</span><span class="o">(</span><span class="n">textConverted</span><span class="o">);</span>
-    <span class="n">stopSelf</span><span class="o">();</span>
-    <span class="k">return</span> <span class="n">START_NOT_STICKY</span><span class="o">;</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>unicode-escape的解码可以用<code>org.apache.commons.lang</code>库中的<code>StringEscapeUtils.unescapeJava(input)</code>方法。</p>
-<p>复制到剪贴板，</p>
-<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setClip</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ClipboardManager</span> <span class="n">clipboard</span> <span class="o">=</span> <span class="o">(</span><span class="n">ClipboardManager</span><span class="o">)</span><span class="n">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">CLIPBOARD_SERVICE</span><span class="o">);</span>
-    <span class="n">ClipData</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">ClipData</span><span class="o">.</span><span class="na">newPlainText</span><span class="o">(</span><span class="s">&quot;simple text&quot;</span><span class="o">,</span> <span class="n">text</span><span class="o">);</span>
-    <span class="n">clipboard</span><span class="o">.</span><span class="na">setPrimaryClip</span><span class="o">(</span><span class="n">clip</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<h4>monkeyrunner手势控制粘贴</h4>
-<p>在文本框上长按，出现粘贴按钮，点击按钮粘贴。</p>
-<div class="highlight"><pre><span></span><span class="n">view_point</span> <span class="o">=</span> <span class="n">HierarchyViewer</span><span class="o">.</span><span class="n">getAbsolutePositionOfView</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
-<span class="n">offset_x</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">offset_y</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">drag</span><span class="p">((</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">),</span>
-                <span class="p">(</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">offset_x</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">offset_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">touch</span><span class="p">(</span><span class="n">view_point</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">view_point</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">offset_y</span><span class="p">,</span> <span class="n">MonkeyDevice</span><span class="o">.</span><span class="n">DOWN_AND_UP</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1;32m-&gt; </span><span class="se">\033</span><span class="s1">[0m&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; text pasted&quot;</span>
-</pre></div>
-
-
-<p>长按是利用原地的<code>drag</code>实现的。如果利用<code>press</code>的<code>DOWN</code>和<code>UP</code>方法不能实现长按效果。</p>
-<p>其中的offset值都是经验值，文本框的编辑位置一般位于<code>getAbsolutePositionOfView</code>右下，而长按出现的粘贴按钮一般位于右上。</p></div>
-        <hr />
-    </div>
-		
+<p>下文实现的是利用剪贴板的思路 …</p> <a class="btn btn-info xsmall" href="../archives/monkeyrunner_input_unicode.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -454,7 +519,7 @@ by <a class="url fn" href="../author/x7.html">x7</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">x7's blog</a> &copy; x7 2015</p>
+<p><a href="..">x7's blog</a> &copy; x7 2017</p>
 </footer>
 
 </div> <!-- /container -->

@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog - x7</title><link href="https://x7blog.info/" rel="alternate"></link><link href="https://x7blog.info/feeds/x7.atom.xml" rel="self"></link><id>https://x7blog.info/</id><updated>2015-12-17T00:00:00+08:00</updated><entry><title>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</title><link href="https://x7blog.info/archives/php_emoji_to_unicode.html" rel="alternate"></link><published>2015-12-17T00:00:00+08:00</published><updated>2015-12-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2015-12-17:/archives/php_emoji_to_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>x7's blog - x7</title><link href="https://x7blog.info/" rel="alternate"></link><link href="https://x7blog.info/feeds/x7.atom.xml" rel="self"></link><id>https://x7blog.info/</id><updated>2017-12-12T00:00:00+08:00</updated><entry><title>反编译微信Android客户端并重新打包</title><link href="https://x7blog.info/archives/recompile_wechat_6513.html" rel="alternate"></link><published>2017-12-12T00:00:00+08:00</published><updated>2017-12-12T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2017-12-12:/archives/recompile_wechat_6513.html</id><summary type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://x-wei.github.io/pelican_github_blog.html"&gt;微信安卓客户端逆向分析 by impakho&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.jianshu.com/p/a0e6b3f15d78"&gt;微信的二次打包 by manmade&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;微信版本&lt;code&gt;6.5.13&lt;/code&gt;.&lt;a href="http://dldir1.qq.com/weixin/android/weixin6514android1120.apk"&gt;官方下载地址&lt;/a&gt;，文件名叫6514，实际在应用内显示版本为6.5.13。其他相近的版本原理相似，但是由于代码混淆机制，可能对应的包名类名不同。&lt;/li&gt;
+&lt;li&gt;Apktool &lt;code&gt;2.2.4&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jadx &lt;code&gt;0.6.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jdk &lt;code&gt;1.8.0_151&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;反编译&lt;/h3&gt;
+&lt;p&gt;如果直接默认选项反编译，那么在重新打包时会遇到资源文件错误的问题，所以尝试用&lt;code&gt;-r&lt;/code&gt;参数保留资源文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;java -jar .&lt;span class="se"&gt;\a&lt;/span&gt;pktool&lt;span class="se"&gt;\a&lt;/span&gt;pktool_2.2.4.jar  d -r .&lt;span class="se"&gt;\w …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://x-wei.github.io/pelican_github_blog.html"&gt;微信安卓客户端逆向分析 by impakho&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.jianshu.com/p/a0e6b3f15d78"&gt;微信的二次打包 by manmade&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;微信版本&lt;code&gt;6.5.13&lt;/code&gt;.&lt;a href="http://dldir1.qq.com/weixin/android/weixin6514android1120.apk"&gt;官方下载地址&lt;/a&gt;，文件名叫6514，实际在应用内显示版本为6.5.13。其他相近的版本原理相似，但是由于代码混淆机制，可能对应的包名类名不同。&lt;/li&gt;
+&lt;li&gt;Apktool &lt;code&gt;2.2.4&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jadx &lt;code&gt;0.6.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jdk &lt;code&gt;1.8.0_151&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;反编译&lt;/h3&gt;
+&lt;p&gt;如果直接默认选项反编译，那么在重新打包时会遇到资源文件错误的问题，所以尝试用&lt;code&gt;-r&lt;/code&gt;参数保留资源文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;java -jar .&lt;span class="se"&gt;\a&lt;/span&gt;pktool&lt;span class="se"&gt;\a&lt;/span&gt;pktool_2.2.4.jar  d -r .&lt;span class="se"&gt;\w&lt;/span&gt;eixin6514android1120.apk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;反编译后的目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;total &lt;span class="m"&gt;3057&lt;/span&gt;
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 ./
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:42 ../
+-rw-r--r-- &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;  &lt;span class="m"&gt;242032&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:42 AndroidManifest.xml
+-rw-r--r-- &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt; &lt;span class="m"&gt;379&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 apktool.yml
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 assets/
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 lib/
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 original/
+-rw-r--r-- &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt; &lt;span class="m"&gt;2831616&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:42 resources.arsc
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:44 smali/
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:44 smali_classes2/
+drwxr-xr-x &lt;span class="m"&gt;1&lt;/span&gt; Sec &lt;span class="m"&gt;197121&lt;/span&gt;   &lt;span class="m"&gt;0&lt;/span&gt; Dec &lt;span class="m"&gt;12&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;:45 smali_classes3/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;微信相关的代码位于&lt;code&gt;smali/com/tencent/mm/&lt;/code&gt;。&lt;/p&gt;
+&lt;h3&gt;签名检查&lt;/h3&gt;
+&lt;p&gt;位于&lt;code&gt;smali/com/tencent/mm/d/a.smali&lt;/code&gt;中的第&lt;code&gt;793&lt;/code&gt;行。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;if-eqz &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nl"&gt;:cond_2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;直接删掉就可以跳过检查。&lt;/p&gt;
+&lt;h3&gt;简单修改&lt;/h3&gt;
+&lt;p&gt;对代码做一些简单的修改，以打印内部日志为例。&lt;/p&gt;
+&lt;p&gt;对于日志输出的分析，参考&lt;a href="https://impakho.com/2017/02/22/wechat-android-client-hack/"&gt;这篇文章&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;日志类在&lt;code&gt;smali/com/tencent/mm/sdk/platformtools/v.smali&lt;/code&gt;，其中的&lt;code&gt;d&lt;/code&gt;、&lt;code&gt;i&lt;/code&gt;等方法中，都会调用&lt;code&gt;Lcom/tencent/mm/sdk/platformtools/v$a;-&amp;gt;getLogLevel()I&lt;/code&gt;方法，猜测是在检查日志输出级别的设置，
+如果我们想要输出全部级别的日志，则需要在每个日志方法中，去掉对日志级别的检查，并用&lt;code&gt;android.util.Log&lt;/code&gt;打印日志到logcat。&lt;/p&gt;
+&lt;p&gt;例如在&lt;code&gt;v&lt;/code&gt;方法中，第&lt;code&gt;532&lt;/code&gt;行的以下代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;.line&lt;/span&gt; &lt;span class="mi"&gt;265&lt;/span&gt;
+sget-object &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v&lt;/span&gt;;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;uqV&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v$a&lt;/span&gt;;
+
+if-eqz &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nl"&gt;:cond_1&lt;/span&gt;
+
+sget-object &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v&lt;/span&gt;;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;uqV&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v$a&lt;/span&gt;;
+
+invoke-interface &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v$a&lt;/span&gt;;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nf"&gt;getLogLevel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="kt"&gt;I&lt;/span&gt;
+
+move-result &lt;span class="nb"&gt;v0&lt;/span&gt;
+
+const/4 &lt;span class="nb"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;0x1&lt;/span&gt;
+
+if-gt &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nl"&gt;:cond_1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;检查loglevel如果不够&lt;code&gt;1&lt;/code&gt;，则认为不该输出&lt;code&gt;v&lt;/code&gt;级别的日志，就跳转到了&lt;code&gt;:cond_1&lt;/code&gt;处，直接结束。&lt;/p&gt;
+&lt;p&gt;时直接将这一段判断代码删除，以跳过检查。并且，找到第597行出现了一段代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke-interface/range &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;v0&lt;/span&gt; &lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="nb"&gt;v10&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kt"&gt;L&lt;/span&gt;com/tencent/mm/sdk/platformtools/&lt;span class="nc"&gt;v$a&lt;/span&gt;;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nf"&gt;logD&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;L&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="kt"&gt;L&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="kt"&gt;L&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="kt"&gt;IIJJL&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="kt"&gt;V&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;logD&lt;/code&gt;的调用明显是在输出日志内容，所以在此处插入一行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke-static &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;p0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;v10&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kt"&gt;L&lt;/span&gt;android/util/&lt;span class="nc"&gt;Log&lt;/span&gt;;&lt;span class="p"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;L&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="kt"&gt;L&lt;/span&gt;java/lang/&lt;span class="nc"&gt;String&lt;/span&gt;;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="kt"&gt;I&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出&lt;code&gt;v10&lt;/code&gt;的内容到logcat。&lt;/p&gt;
+&lt;p&gt;对于此类中的其他日志相关的方法，同样跳过检查并插入logcat输出，就可以在打包运行时看到内部的全部日志，能直接看到聊天显示内容和网络交互等内容，信息量很大。&lt;/p&gt;
+&lt;h3&gt;打包&lt;/h3&gt;
+&lt;p&gt;直接打包可以打包成功，并且可以安装，但是运行时会秒退，根据报错信息发现是缺少了资源文件。&lt;/p&gt;
+&lt;p&gt;微信的资源文件位于&lt;code&gt;r&lt;/code&gt;目录，而不是默认的&lt;code&gt;res&lt;/code&gt;，在使用apktool反编译和打包的过程中出现了问题，没有将资源文件还原。一个简单的应对方案是直接将原来的&lt;code&gt;r&lt;/code&gt;目录塞到打包好的apk中。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用默认选项重新打包&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;java -jar .\apktool\apktool_2.2.4.jar b weixin6514android1120&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中会遇到报错&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[Fatal Error] :1:1: Content is not allowed in prolog.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;是正常显现，并没有影响&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用解压缩工具解压原本的apk文件，取出其中的&lt;code&gt;r&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用解压缩工具打开由apktool打包好的apk文件，将刚才的&lt;code&gt;r&lt;/code&gt;目录直接塞到apk中并保存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;签名，对齐，安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这样修改后的微信就可以正常运行了。&lt;/p&gt;
+&lt;h3&gt;下一步&lt;/h3&gt;
+&lt;p&gt;微信的动态调试有问题，暂时只能使用插入日志的方式来调试。&lt;/p&gt;</content><category term="Android"></category></entry><entry><title>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</title><link href="https://x7blog.info/archives/php_emoji_to_unicode.html" rel="alternate"></link><published>2015-12-17T00:00:00+08:00</published><updated>2015-12-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2015-12-17:/archives/php_emoji_to_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/UTF-16"&gt;UTF-16&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Emoji"&gt;Emoji&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cenalulu.github.io/linux/character-encoding/"&gt;十分钟搞清字符集和字符编码&lt;/a&gt;&lt;/p&gt;

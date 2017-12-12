@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/</loc>
-<lastmod>2017-05-19T15:28:43-00:00</lastmod>
+<lastmod>2017-12-12T15:23:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/archives.html</loc>
-<lastmod>2017-05-19T15:28:43-00:00</lastmod>
+<lastmod>2017-12-12T15:23:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/tags.html</loc>
-<lastmod>2017-05-19T15:28:43-00:00</lastmod>
+<lastmod>2017-12-12T15:23:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/categories.html</loc>
-<lastmod>2017-05-19T15:28:43-00:00</lastmod>
+<lastmod>2017-12-12T15:23:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2013-09-17T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>https://x7blog.info/archives/recompile_wechat_6513.html</loc>
+<lastmod>2017-12-12T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -180,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/category/android.html</loc>
-<lastmod>2015-08-17T00:00:00+08:06</lastmod>
+<lastmod>2017-12-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -313,7 +320,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/tag/android.html</loc>
-<lastmod>2014-09-26T00:00:00+08:06</lastmod>
+<lastmod>2017-12-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -383,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/author/x7.html</loc>
-<lastmod>2015-12-17T00:00:00+08:06</lastmod>
+<lastmod>2017-12-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

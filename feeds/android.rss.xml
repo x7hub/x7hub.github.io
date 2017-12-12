@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>x7's blog - Android</title><link>https://x7blog.info/</link><description></description><lastBuildDate>Mon, 17 Aug 2015 00:00:00 +0800</lastBuildDate><item><title>MonkeyRunner利用剪贴板输入中文</title><link>https://x7blog.info/archives/monkeyrunner_input_unicode.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
+<rss version="2.0"><channel><title>x7's blog - Android</title><link>https://x7blog.info/</link><description></description><lastBuildDate>Tue, 12 Dec 2017 00:00:00 +0800</lastBuildDate><item><title>反编译微信Android客户端并重新打包</title><link>https://x7blog.info/archives/recompile_wechat_6513.html</link><description>&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://x-wei.github.io/pelican_github_blog.html"&gt;微信安卓客户端逆向分析 by impakho&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.jianshu.com/p/a0e6b3f15d78"&gt;微信的二次打包 by manmade&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;微信版本&lt;code&gt;6.5.13&lt;/code&gt;.&lt;a href="http://dldir1.qq.com/weixin/android/weixin6514android1120.apk"&gt;官方下载地址&lt;/a&gt;，文件名叫6514，实际在应用内显示版本为6.5.13。其他相近的版本原理相似，但是由于代码混淆机制，可能对应的包名类名不同。&lt;/li&gt;
+&lt;li&gt;Apktool &lt;code&gt;2.2.4&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jadx &lt;code&gt;0.6.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jdk &lt;code&gt;1.8.0_151&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;反编译&lt;/h3&gt;
+&lt;p&gt;如果直接默认选项反编译，那么在重新打包时会遇到资源文件错误的问题，所以尝试用&lt;code&gt;-r&lt;/code&gt;参数保留资源文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;java -jar .&lt;span class="se"&gt;\a&lt;/span&gt;pktool&lt;span class="se"&gt;\a&lt;/span&gt;pktool_2.2.4.jar  d -r .&lt;span class="se"&gt;\w …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 12 Dec 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:x7blog.info,2017-12-12:/archives/recompile_wechat_6513.html</guid><category>Android</category></item><item><title>MonkeyRunner利用剪贴板输入中文</title><link>https://x7blog.info/archives/monkeyrunner_input_unicode.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://developer.android.com/tools/help/MonkeyRunner.html"&gt;MonkeyRunner&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/14243427/set-clipboard-text-via-adb-shell-as-of-api-level-11"&gt;Set clipboard text via adb shell as of API level 11&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Monkeyrunner不支持中文直接输入&lt;/h3&gt;

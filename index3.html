@@ -2,7 +2,7 @@
 <html lang="zhs">
 <head>
     <meta charset="utf-8">
-    <title>x7's blog - Tags</title>
+    <title>x7's blog</title>
     <meta name="description" content="">
     <meta name="author" content="x7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,30 +53,69 @@
     <div class="row">
 
         <div class="span9">
+        
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="./archives/grub2_boot_from_iso.html"><h2>grub2直接引导iso镜像</h2></a>
+        <div class= "well small"> Sun 25 November 2012
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
+<p>参考：</p>
+<p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
+<p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
+<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?f=139&amp;t=393256">打造自己的多功能USB启动盘——grub2引导WinPE、Archlinux安装镜像和Ubuntu liveCD</a></p>
+<h3>U盘准备</h3>
+<p>格式fat32，卷标 zzz。</p>
+<div class="highlight"><pre><span></span>sudo grub-install --boot-directory<span class="o">=</span> --no-floppy --target<span class="o">=</span>i386-pc --recheck /dev/sd
+</pre></div>
+
+
+<h3>目录放置</h3>
 <ul>
-    <li><a href="./tag/android.html">Android</a></li>
-    <li><a href="./tag/android-monkeyrunner.html">Android MonkeyRunner</a></li>
-    <li><a href="./tag/blog.html">blog</a></li>
-    <li><a href="./tag/dns.html">dns</a></li>
-    <li><a href="./tag/emoji.html">Emoji</a></li>
-    <li><a href="./tag/github.html">GitHub</a></li>
-    <li><a href="./tag/grub2.html">grub2</a></li>
-    <li><a href="./tag/hadoop.html">Hadoop</a></li>
-    <li><a href="./tag/hosts.html">hosts</a></li>
-    <li><a href="./tag/ibeacon.html">IBeacon</a></li>
-    <li><a href="./tag/latex.html">LaTeX</a></li>
-    <li><a href="./tag/lfs.html">lfs</a></li>
-    <li><a href="./tag/linux.html">Linux</a></li>
-    <li><a href="./tag/lua.html">Lua</a></li>
-    <li><a href="./tag/pelican.html">Pelican</a></li>
-    <li><a href="./tag/php.html">PHP</a></li>
-    <li><a href="./tag/python.html">Python</a></li>
-    <li><a href="./tag/python2.html">Python2</a></li>
-    <li><a href="./tag/shell.html">shell</a></li>
-    <li><a href="./tag/sql.html">SQL</a></li>
-    <li><a href="./tag/unicode.html">Unicode</a></li>
-    <li><a href="./tag/voice.html">voice</a></li>
+<li>
+<p>考虑到方便win下使用没有分两个区。</p>
+</li>
+<li>
+<p><code>/livecd</code>需要引导的iso镜像 不必解压  暂时只用到arch ubuntu</p>
+</li>
+<li>
+<p><code>/livecd/grub</code>在arch中用grub-install安装的grub2文件</p>
+</li>
+<li>
+<p><code>/livecd/grub4dos</code>用于引导windows镜像</p>
+</li>
 </ul>
+<h3>配置文件</h3>
+<ul>
+<li><code>grub.cfg</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span># grub.cfg
+# for …</pre></div> <a class="btn btn-info xsmall" href="./archives/grub2_boot_from_iso.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev"><a href="./index2.html">&larr; Previous</a></li>
+
+    <li class=""><a href="./index.html">1</a></li>
+    <li class=""><a href="./index2.html">2</a></li>
+    <li class="active"><a href="./index3.html">3</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
         </div>
         
         <div class="span3">
