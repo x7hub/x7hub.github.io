@@ -110,7 +110,266 @@ if-gt &lt;span class="nb"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;/ol&gt;
 &lt;p&gt;这样修改后的微信就可以正常运行了。&lt;/p&gt;
 &lt;h3&gt;下一步&lt;/h3&gt;
-&lt;p&gt;微信的动态调试有问题，暂时只能使用插入日志的方式来调试。&lt;/p&gt;</content><category term="Android"></category></entry><entry><title>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</title><link href="https://x7blog.info/archives/php_emoji_to_unicode.html" rel="alternate"></link><published>2015-12-17T00:00:00+08:00</published><updated>2015-12-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2015-12-17:/archives/php_emoji_to_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;微信的动态调试有问题，暂时只能使用插入日志的方式来调试。&lt;/p&gt;</content><category term="Android"></category></entry><entry><title>利用shadowsocks在树莓派上搭建科学上网透明代理</title><link href="https://x7blog.info/archives/ss_transparent_proxy.html" rel="alternate"></link><published>2017-12-12T00:00:00+08:00</published><updated>2017-12-12T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2017-12-12:/archives/ss_transparent_proxy.html</id><summary type="html">&lt;p&gt;效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。&lt;/p&gt;
+&lt;p&gt;用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap&lt;/p&gt;
+&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/shadowsocks/shadowsocks-libev#advanced-usage"&gt;Advanced usage by shadowsocks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/whiler/whiler.github.io/blob/master/articles/bypass.md"&gt;绕开网络封锁访问敏感域名 by whiler&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;原理&lt;/h3&gt;
+&lt;p&gt;简单的iptables配置就可以满足全部流量直接走shadowsocks，但是这样对国内网站（包括cdn等）也会绕道国外，造成访问速度会大大下降。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先是dns问题，如果完全使用谷歌的dns解析，一些国内网站的地址会解析到其国外的备份。chinadns是一个dns工具，用他来实现国内外dns同时查询，对于需要科学上网的网站，才使用谷歌的解析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;另外是根据ip分流的问题，国内外不同的目的地址，分别走默认的路由和shadowsocks提供的代理。&lt;a href="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"&gt;APNIC&lt;/a&gt;提供了一个ip地址段和其对应的国家地区的列表，通过ipset配合iptables来实现分流。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;服务器搭建&lt;/h3&gt;
+&lt;p&gt;服务器就是普通的ss-server，此处使用了&lt;code&gt;shadowsocks-libev&lt;/code&gt;+&lt;code&gt;simple-obfs&lt;/code&gt;的方案。&lt;/p&gt;
+&lt;p&gt;对于Debian 9 的服务器，直接按照官方文档安装&lt;code&gt;shadowsocks-libev …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。&lt;/p&gt;
+&lt;p&gt;用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap&lt;/p&gt;
+&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/shadowsocks/shadowsocks-libev#advanced-usage"&gt;Advanced usage by shadowsocks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/whiler/whiler.github.io/blob/master/articles/bypass.md"&gt;绕开网络封锁访问敏感域名 by whiler&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;原理&lt;/h3&gt;
+&lt;p&gt;简单的iptables配置就可以满足全部流量直接走shadowsocks，但是这样对国内网站（包括cdn等）也会绕道国外，造成访问速度会大大下降。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先是dns问题，如果完全使用谷歌的dns解析，一些国内网站的地址会解析到其国外的备份。chinadns是一个dns工具，用他来实现国内外dns同时查询，对于需要科学上网的网站，才使用谷歌的解析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;另外是根据ip分流的问题，国内外不同的目的地址，分别走默认的路由和shadowsocks提供的代理。&lt;a href="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"&gt;APNIC&lt;/a&gt;提供了一个ip地址段和其对应的国家地区的列表，通过ipset配合iptables来实现分流。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;服务器搭建&lt;/h3&gt;
+&lt;p&gt;服务器就是普通的ss-server，此处使用了&lt;code&gt;shadowsocks-libev&lt;/code&gt;+&lt;code&gt;simple-obfs&lt;/code&gt;的方案。&lt;/p&gt;
+&lt;p&gt;对于Debian 9 的服务器，直接按照官方文档安装&lt;code&gt;shadowsocks-libev&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Debian 9 (Stretch) users, please install it from stretch-backports: We strongly encourage you to install shadowsocks-libev from stretch-backports. For more info about backports, you can refer Debian Backports.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo sh -c &amp;#39;printf &amp;quot;deb http://deb.debian.org/debian stretch-backports main&amp;quot; /etc/apt/sources.list.d/stretch-backports.list&amp;#39;
+sudo apt update
+sudo apt -t stretch-backports install shadowsocks-libev
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/blockquote&gt;
+&lt;p&gt;同时安装插件&lt;code&gt;simple-obfs&lt;/code&gt;用于混淆流量，躲避探测。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt -t stretch-backports install simple-obfs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;修改配置文件&lt;code&gt;/etc/shadowsocks-libev/config.json&lt;/code&gt;，配置如下，这里使用8080端口是为了配合&lt;code&gt;simple-obfs&lt;/code&gt;用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;YOUR_IP_OR_HOST_HERE&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;server_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;local_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;YOUR_PASSWORD_HERE&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;timeout&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;method&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;aes-256-cfb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;plugin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;obfs-server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;plugin_opts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;obfs=http;failover=127.0.0.1:8081;fast-open&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;obfs配置的failover是一个用于混淆流量的http服务器，如果是个能通的地址会伪装得更好。&lt;/p&gt;
+&lt;p&gt;对于Debian服务器，使用systemd来控制后台开启。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl start shadowsocks-libev.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;至此服务器配置完成。已经可以支持客户端来连接，包括Windows、Android、MacOS等平台的工具。&lt;/p&gt;
+&lt;h3&gt;wifi热点&lt;/h3&gt;
+&lt;p&gt;使用树莓派3作为网关。树莓派3有一个以太网接口，和一个内置的wifi芯片，可以使用以太网连接外网，用wifi开启热点供手机上网。&lt;/p&gt;
+&lt;p&gt;简单的脚本工具&lt;a href="https://github.com/oblique/create_ap"&gt;create_ap&lt;/a&gt;提供了方便的热点配置方案。默认会安装到&lt;code&gt;/usr&lt;/code&gt;目录。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/oblique/create_ap
+cd create_ap
+sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;配置文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CHANNEL=1
+GATEWAY=192.168.12.1
+WPA_VERSION=2
+ETC_HOSTS=0
+DHCP_DNS=192.168.12.1
+NO_DNS=1
+NO_DNSMASQ=0
+HIDDEN=0
+MAC_FILTER=0
+MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+ISOLATE_CLIENTS=0
+SHARE_METHOD=nat
+IEEE80211N=0
+IEEE80211AC=0
+HT_CAPAB=[HT40+]
+VHT_CAPAB=
+DRIVER=nl80211
+NO_VIRT=1
+COUNTRY=
+FREQ_BAND=2.4
+NEW_MACADDR=
+DAEMONIZE=0
+NO_HAVEGED=0
+WIFI_IFACE=wlan0
+INTERNET_IFACE=eth0
+SSID=MyAccessPoint
+PASSPHRASE=12345678
+USE_PSK=0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中关键是&lt;code&gt;DHCP_DNS&lt;/code&gt;，这里把手机上网时分配的
+地址是网关的地址，为了下一步科学上网时使用chinadns来区分国内外服务器。&lt;/p&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl start create_ap.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;科学上网&lt;/h3&gt;
+&lt;h4&gt;shadowsocks&lt;/h4&gt;
+&lt;p&gt;树莓派作为客户端，同样先安装&lt;code&gt;shadowsocks-libev&lt;/code&gt;和&lt;code&gt;simple-obfs&lt;/code&gt;，安装方法和服务器相同，或参考官方文档。&lt;/p&gt;
+&lt;p&gt;客户端的配置文件位于&lt;code&gt;/etc/shadowsocks-libev/tiny.json&lt;/code&gt;，文件名是自定义的，在systemd启动时可以指定。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;YOUR_IP_OR_HOST_HERE&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;server_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;local_address&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;local_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;YOUR_PASSWORD_HERE&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;timeout&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;method&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;aes-256-cfb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;plugin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;obfs-local&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;plugin_opts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;obfs=http;obfs-host=www.bing.com&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;用systemd启动&lt;code&gt;ss-redir&lt;/code&gt;，&lt;code&gt;@&lt;/code&gt;后的参数为对应的配置文件名.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl start shadowsocks-libev-redir@tiny.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;ipset&lt;/h4&gt;
+&lt;p&gt;下载并分析得到国内ip的范围，对于这些ip需要跳过shadowsocks的转发。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl &lt;span class="s1"&gt;&amp;#39;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; grep ipv4 &lt;span class="p"&gt;|&lt;/span&gt; grep CN &lt;span class="p"&gt;|&lt;/span&gt; awk -F&lt;span class="se"&gt;\|&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;{ printf(&amp;quot;%s/%d\n&amp;quot;, $4, 32-log($5)/log(2)) }&amp;#39;&lt;/span&gt; &amp;gt; chnroute.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;修改得到的&lt;code&gt;chnroute.txt&lt;/code&gt;文件，第一行加入&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ipset -N chnroute hash:net maxelem &lt;span class="m"&gt;65536&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;后续每行都修改为ipset命令，修改完成后的文件如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ipset -N chnroute hash:net maxelem &lt;span class="m"&gt;65536&lt;/span&gt;
+ipset add chnroute &lt;span class="m"&gt;1&lt;/span&gt;.0.1.0/24
+ipset add chnroute &lt;span class="m"&gt;1&lt;/span&gt;.0.2.0/23
+ipset add chnroute &lt;span class="m"&gt;1&lt;/span&gt;.0.8.0/21
+ipset add chnroute &lt;span class="m"&gt;1&lt;/span&gt;.0.32.0/19
+ipset add chnroute &lt;span class="m"&gt;1&lt;/span&gt;.1.0.0/24
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;保存为&lt;code&gt;chnroute.sh&lt;/code&gt;并执行。&lt;/p&gt;
+&lt;p&gt;这一步的作用，是将向国内的ip的流量，加上了&lt;code&gt;chnroute&lt;/code&gt;的标签，以供下一步iptables的配置来识别。&lt;/p&gt;
+&lt;p&gt;如果需要实现开机启动，可以导出和导入ipset的指令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo ipset save &amp;gt; /etc/iptables/ipset.conf
+sudo ipset restore &amp;lt; /etc/iptables/ipset.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;iptables&lt;/h4&gt;
+&lt;p&gt;添加iptables在&lt;code&gt;nat&lt;/code&gt;链的规则，将部分流量直接输出，剩余的全部接入到shadowsocks的代理中。需要直接输出的ip规则包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;shadowsocks服务器&lt;/li&gt;
+&lt;li&gt;内网&lt;/li&gt;
+&lt;li&gt;国内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo iptables -t nat -N SHADOWSOCKS
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;45&lt;/span&gt;.76.241.35 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;97&lt;/span&gt;.64.104.145 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;0&lt;/span&gt;.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;10&lt;/span&gt;.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;127&lt;/span&gt;.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;169&lt;/span&gt;.254.0.0/16 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;172&lt;/span&gt;.16.0.0/12 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;192&lt;/span&gt;.168.0.0/16 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;224&lt;/span&gt;.0.0.0/4 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d &lt;span class="m"&gt;240&lt;/span&gt;.0.0.0/4 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -p tcp -m &lt;span class="nb"&gt;set&lt;/span&gt; --match-set chnroute dst -j RETURN
+sudo iptables -t nat -A PREROUTING -p tcp -j SHADOWSOCKS
+sudo iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;chinadns&lt;/h4&gt;
+&lt;p&gt;安装参考&lt;a href="https://github.com/shadowsocks/ChinaDNS"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://github.com/shadowsocks/ChinaDNS/releases/download/1.3.2/chinadns-1.3.2.tar.gz
+tar xvf chinadns-1.3.2.tar.gz
+&lt;span class="nb"&gt;cd&lt;/span&gt; chinadns-1.3.2
+./configure
+make
+sudo cp src/chinadns /usr/local/bin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;另外还要用到刚才下载的chnroute.txt文件，用来区分国内外地址。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo cp ~/Download/chnroute.txt /usr/local/etc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;创建一个systemd服务，配置文件位于&lt;code&gt;/usr/lib/systemd/system/chinadns.service&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;Unit&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ChinaDNS Service
+&lt;span class="nv"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;network.target
+
+&lt;span class="o"&gt;[&lt;/span&gt;Service&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;simple
+&lt;span class="nv"&gt;User&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;nobody
+&lt;span class="nv"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/bin/chinadns -m -c /usr/local/etc/chnroute.txt -b &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1 -p &lt;span class="m"&gt;5353&lt;/span&gt; -s &lt;span class="m"&gt;219&lt;/span&gt;.141.140.10,219.141.136.10,8.8.8.8
+
+&lt;span class="o"&gt;[&lt;/span&gt;Install&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;multi-user.target
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中参数&lt;code&gt;-s&lt;/code&gt;指定多个dns服务器，前几个为运营商提供的默认dns，最后一个填写国外可靠的谷歌dns用于查询国外网站。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl restart chinadns.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;启动服务，这里将chinadns的端口放在5353，是为了再用bind9或dnsmasq等工具做一层dns缓存。&lt;/p&gt;
+&lt;p&gt;以bind9为例。&lt;/p&gt;
+&lt;p&gt;修改配置文件&lt;code&gt;/etc/bind/named.conf.options&lt;/code&gt;，将上游地址制定到chinadns配置的5353。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;options {
+    directory &amp;quot;/var/cache/bind&amp;quot;;
+    forwarders {
+        127.0.0.1 port 5353;
+    };
+    forward only;
+
+    dnssec-enable no;
+    dnssec-validation no;
+
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+
+    recursion yes;                 # enables resursive queries
+
+};
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;启动bind9服务&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl start bind9
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;完成&lt;/h3&gt;
+&lt;p&gt;自此，手机只需要连接热点即可实现科学上网。&lt;/p&gt;
+&lt;p&gt;由于使用了混淆机制，如果手机再独立使用shadowsocks连接另外的服务器，会造成多次混淆，可能会使网速大减。&lt;/p&gt;</content><category term="Linux"></category></entry><entry><title>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</title><link href="https://x7blog.info/archives/php_emoji_to_unicode.html" rel="alternate"></link><published>2015-12-17T00:00:00+08:00</published><updated>2015-12-17T00:00:00+08:00</updated><author><name>x7</name></author><id>tag:x7blog.info,2015-12-17:/archives/php_emoji_to_unicode.html</id><summary type="html">&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/UTF-16"&gt;UTF-16&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Emoji"&gt;Emoji&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://cenalulu.github.io/linux/character-encoding/"&gt;十分钟搞清字符集和字符编码&lt;/a&gt;&lt;/p&gt;

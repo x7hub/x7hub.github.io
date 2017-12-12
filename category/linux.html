@@ -60,8 +60,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../archives/zsh_array.html"><h1>对比zsh和bash中的数组与关联数组</h1></a>
-Sat 30 November 2013
+            <a href="../archives/ss_transparent_proxy.html"><h1>利用shadowsocks在树莓派上搭建科学上网透明代理</h1></a>
+Tue 12 December 2017
 
 by <a class="url fn" href="../author/x7.html">x7</a>
  
@@ -70,7 +70,268 @@ by <a class="url fn" href="../author/x7.html">x7</a>
  
         </div>
         
-        <div><p>参考：</p>
+        <div><p>效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。</p>
+<p>用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap</p>
+<p>参考:</p>
+<p><a href="https://github.com/shadowsocks/shadowsocks-libev#advanced-usage">Advanced usage by shadowsocks</a></p>
+<p><a href="https://github.com/whiler/whiler.github.io/blob/master/articles/bypass.md">绕开网络封锁访问敏感域名 by whiler</a></p>
+<h3>原理</h3>
+<p>简单的iptables配置就可以满足全部流量直接走shadowsocks，但是这样对国内网站（包括cdn等）也会绕道国外，造成访问速度会大大下降。</p>
+<ul>
+<li>
+<p>首先是dns问题，如果完全使用谷歌的dns解析，一些国内网站的地址会解析到其国外的备份。chinadns是一个dns工具，用他来实现国内外dns同时查询，对于需要科学上网的网站，才使用谷歌的解析。</p>
+</li>
+<li>
+<p>另外是根据ip分流的问题，国内外不同的目的地址，分别走默认的路由和shadowsocks提供的代理。<a href="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest">APNIC</a>提供了一个ip地址段和其对应的国家地区的列表，通过ipset配合iptables来实现分流。</p>
+</li>
+</ul>
+<h3>服务器搭建</h3>
+<p>服务器就是普通的ss-server，此处使用了<code>shadowsocks-libev</code>+<code>simple-obfs</code>的方案。</p>
+<p>对于Debian 9 的服务器，直接按照官方文档安装<code>shadowsocks-libev</code>。</p>
+<blockquote>
+<p>For Debian 9 (Stretch) users, please install it from stretch-backports: We strongly encourage you to install shadowsocks-libev from stretch-backports. For more info about backports, you can refer Debian Backports.</p>
+<div class="highlight"><pre><span></span>sudo sh -c &#39;printf &quot;deb http://deb.debian.org/debian stretch-backports main&quot; /etc/apt/sources.list.d/stretch-backports.list&#39;
+sudo apt update
+sudo apt -t stretch-backports install shadowsocks-libev
+</pre></div>
+
+
+</blockquote>
+<p>同时安装插件<code>simple-obfs</code>用于混淆流量，躲避探测。</p>
+<div class="highlight"><pre><span></span>sudo apt -t stretch-backports install simple-obfs
+</pre></div>
+
+
+<p>修改配置文件<code>/etc/shadowsocks-libev/config.json</code>，配置如下，这里使用8080端口是为了配合<code>simple-obfs</code>用。</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;YOUR_IP_OR_HOST_HERE&gt;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="mi">8080</span><span class="p">,</span>
+    <span class="nt">&quot;local_port&quot;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;YOUR_PASSWORD_HERE&gt;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;aes-256-cfb&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="s2">&quot;obfs-server&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin_opts&quot;</span><span class="p">:</span><span class="s2">&quot;obfs=http;failover=127.0.0.1:8081;fast-open&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>obfs配置的failover是一个用于混淆流量的http服务器，如果是个能通的地址会伪装得更好。</p>
+<p>对于Debian服务器，使用systemd来控制后台开启。</p>
+<div class="highlight"><pre><span></span>sudo systemctl start shadowsocks-libev.service
+</pre></div>
+
+
+<p>至此服务器配置完成。已经可以支持客户端来连接，包括Windows、Android、MacOS等平台的工具。</p>
+<h3>wifi热点</h3>
+<p>使用树莓派3作为网关。树莓派3有一个以太网接口，和一个内置的wifi芯片，可以使用以太网连接外网，用wifi开启热点供手机上网。</p>
+<p>简单的脚本工具<a href="https://github.com/oblique/create_ap">create_ap</a>提供了方便的热点配置方案。默认会安装到<code>/usr</code>目录。</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/oblique/create_ap
+cd create_ap
+sudo make install
+</pre></div>
+
+
+<p>配置文件</p>
+<div class="highlight"><pre><span></span>CHANNEL=1
+GATEWAY=192.168.12.1
+WPA_VERSION=2
+ETC_HOSTS=0
+DHCP_DNS=192.168.12.1
+NO_DNS=1
+NO_DNSMASQ=0
+HIDDEN=0
+MAC_FILTER=0
+MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+ISOLATE_CLIENTS=0
+SHARE_METHOD=nat
+IEEE80211N=0
+IEEE80211AC=0
+HT_CAPAB=[HT40+]
+VHT_CAPAB=
+DRIVER=nl80211
+NO_VIRT=1
+COUNTRY=
+FREQ_BAND=2.4
+NEW_MACADDR=
+DAEMONIZE=0
+NO_HAVEGED=0
+WIFI_IFACE=wlan0
+INTERNET_IFACE=eth0
+SSID=MyAccessPoint
+PASSPHRASE=12345678
+USE_PSK=0
+</pre></div>
+
+
+<p>其中关键是<code>DHCP_DNS</code>，这里把手机上网时分配的
+地址是网关的地址，为了下一步科学上网时使用chinadns来区分国内外服务器。</p>
+<p>启动</p>
+<div class="highlight"><pre><span></span>sudo systemctl start create_ap.service
+</pre></div>
+
+
+<h3>科学上网</h3>
+<h4>shadowsocks</h4>
+<p>树莓派作为客户端，同样先安装<code>shadowsocks-libev</code>和<code>simple-obfs</code>，安装方法和服务器相同，或参考官方文档。</p>
+<p>客户端的配置文件位于<code>/etc/shadowsocks-libev/tiny.json</code>，文件名是自定义的，在systemd启动时可以指定。</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;YOUR_IP_OR_HOST_HERE&gt;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="mi">8080</span><span class="p">,</span>
+    <span class="nt">&quot;local_address&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;local_port&quot;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;YOUR_PASSWORD_HERE&gt;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;aes-256-cfb&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin&quot;</span><span class="p">:</span><span class="s2">&quot;obfs-local&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;plugin_opts&quot;</span><span class="p">:</span><span class="s2">&quot;obfs=http;obfs-host=www.bing.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>用systemd启动<code>ss-redir</code>，<code>@</code>后的参数为对应的配置文件名.</p>
+<div class="highlight"><pre><span></span>sudo systemctl start shadowsocks-libev-redir@tiny.service
+</pre></div>
+
+
+<h4>ipset</h4>
+<p>下载并分析得到国内ip的范围，对于这些ip需要跳过shadowsocks的转发。</p>
+<div class="highlight"><pre><span></span>curl <span class="s1">&#39;http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest&#39;</span> <span class="p">|</span> grep ipv4 <span class="p">|</span> grep CN <span class="p">|</span> awk -F<span class="se">\|</span> <span class="s1">&#39;{ printf(&quot;%s/%d\n&quot;, $4, 32-log($5)/log(2)) }&#39;</span> &gt; chnroute.txt
+</pre></div>
+
+
+<p>修改得到的<code>chnroute.txt</code>文件，第一行加入</p>
+<div class="highlight"><pre><span></span>ipset -N chnroute hash:net maxelem <span class="m">65536</span>
+</pre></div>
+
+
+<p>后续每行都修改为ipset命令，修改完成后的文件如</p>
+<div class="highlight"><pre><span></span>ipset -N chnroute hash:net maxelem <span class="m">65536</span>
+ipset add chnroute <span class="m">1</span>.0.1.0/24
+ipset add chnroute <span class="m">1</span>.0.2.0/23
+ipset add chnroute <span class="m">1</span>.0.8.0/21
+ipset add chnroute <span class="m">1</span>.0.32.0/19
+ipset add chnroute <span class="m">1</span>.1.0.0/24
+</pre></div>
+
+
+<p>保存为<code>chnroute.sh</code>并执行。</p>
+<p>这一步的作用，是将向国内的ip的流量，加上了<code>chnroute</code>的标签，以供下一步iptables的配置来识别。</p>
+<p>如果需要实现开机启动，可以导出和导入ipset的指令</p>
+<div class="highlight"><pre><span></span>sudo ipset save &gt; /etc/iptables/ipset.conf
+sudo ipset restore &lt; /etc/iptables/ipset.conf
+</pre></div>
+
+
+<h4>iptables</h4>
+<p>添加iptables在<code>nat</code>链的规则，将部分流量直接输出，剩余的全部接入到shadowsocks的代理中。需要直接输出的ip规则包括：</p>
+<ul>
+<li>shadowsocks服务器</li>
+<li>内网</li>
+<li>国内</li>
+</ul>
+<div class="highlight"><pre><span></span>sudo iptables -t nat -N SHADOWSOCKS
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">45</span>.76.241.35 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">97</span>.64.104.145 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">0</span>.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">10</span>.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">127</span>.0.0.0/8 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">169</span>.254.0.0/16 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">172</span>.16.0.0/12 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">192</span>.168.0.0/16 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">224</span>.0.0.0/4 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -d <span class="m">240</span>.0.0.0/4 -j RETURN
+sudo iptables -t nat -A SHADOWSOCKS -p tcp -m <span class="nb">set</span> --match-set chnroute dst -j RETURN
+sudo iptables -t nat -A PREROUTING -p tcp -j SHADOWSOCKS
+sudo iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
+</pre></div>
+
+
+<h4>chinadns</h4>
+<p>安装参考<a href="https://github.com/shadowsocks/ChinaDNS">官方文档</a></p>
+<div class="highlight"><pre><span></span>wget https://github.com/shadowsocks/ChinaDNS/releases/download/1.3.2/chinadns-1.3.2.tar.gz
+tar xvf chinadns-1.3.2.tar.gz
+<span class="nb">cd</span> chinadns-1.3.2
+./configure
+make
+sudo cp src/chinadns /usr/local/bin
+</pre></div>
+
+
+<p>另外还要用到刚才下载的chnroute.txt文件，用来区分国内外地址。</p>
+<div class="highlight"><pre><span></span>sudo cp ~/Download/chnroute.txt /usr/local/etc
+</pre></div>
+
+
+<p>创建一个systemd服务，配置文件位于<code>/usr/lib/systemd/system/chinadns.service</code></p>
+<div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>ChinaDNS Service
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>simple
+<span class="nv">User</span><span class="o">=</span>nobody
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/chinadns -m -c /usr/local/etc/chnroute.txt -b <span class="m">127</span>.0.0.1 -p <span class="m">5353</span> -s <span class="m">219</span>.141.140.10,219.141.136.10,8.8.8.8
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre></div>
+
+
+<p>其中参数<code>-s</code>指定多个dns服务器，前几个为运营商提供的默认dns，最后一个填写国外可靠的谷歌dns用于查询国外网站。</p>
+<div class="highlight"><pre><span></span>sudo systemctl restart chinadns.service
+</pre></div>
+
+
+<p>启动服务，这里将chinadns的端口放在5353，是为了再用bind9或dnsmasq等工具做一层dns缓存。</p>
+<p>以bind9为例。</p>
+<p>修改配置文件<code>/etc/bind/named.conf.options</code>，将上游地址制定到chinadns配置的5353。</p>
+<div class="highlight"><pre><span></span>options {
+    directory &quot;/var/cache/bind&quot;;
+    forwarders {
+        127.0.0.1 port 5353;
+    };
+    forward only;
+
+    dnssec-enable no;
+    dnssec-validation no;
+
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+
+    recursion yes;                 # enables resursive queries
+
+};
+</pre></div>
+
+
+<p>启动bind9服务</p>
+<div class="highlight"><pre><span></span>sudo systemctl start bind9
+</pre></div>
+
+
+<h3>完成</h3>
+<p>自此，手机只需要连接热点即可实现科学上网。</p>
+<p>由于使用了混淆机制，如果手机再独立使用shadowsocks连接另外的服务器，会造成多次混淆，可能会使网速大减。</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../archives/zsh_array.html"><h2>对比zsh和bash中的数组与关联数组</h2></a>
+        <div class= "well small"> Sat 30 November 2013
+
+by <a class="url fn" href="../author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>参考：</p>
 <p>Linux Shell脚本攻略 人民邮电出版社</p>
 <h3>数组</h3>
 <p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
@@ -87,70 +348,9 @@ by <a class="url fn" href="../author/x7.html">x7</a>
 </pre></div>
 
 
-<p>但是，在<code>zsh</code>中，数组索引以<code>1</code>开始，索引<code>0</code>是空的，</p>
-<div class="highlight"><pre><span></span>~/workspace/shell % <span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
-
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[1]</span><span class="si">}</span>
-<span class="m">1</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[2]</span><span class="si">}</span>
-<span class="m">2</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[6]</span><span class="si">}</span>
-<span class="m">6</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[7]</span><span class="si">}</span> 
-
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[*]</span><span class="si">}</span> 
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[@]</span><span class="si">}</span> 
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
-~/workspace/shell % <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array_var</span><span class="p">[*]</span><span class="si">}</span>
-<span class="m">6</span>
-</pre></div>
-
-
-<h3>关联数组</h3>
-<p>在<code>bash</code>中，可以这样声明关联数组，</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">declare</span> -A ass_array
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nv">ass_array</span><span class="o">=([</span>index1<span class="o">]=</span><span class="s1">&#39;val1&#39;</span> <span class="o">[</span>index2<span class="o">]=</span><span class="s1">&#39;val2&#39;</span><span class="o">)</span>
-</pre></div>
-
-
-<p>但是在<code>zsh</code>中就不行，</p>
-<div class="highlight"><pre><span></span>~ % <span class="nb">declare</span> -A ass_array 
-~ % <span class="nv">ass_array</span><span class="o">=([</span>index1<span class="o">]=</span><span class="s1">&#39;val1&#39;</span> <span class="o">[</span>index2<span class="o">]=</span><span class="s1">&#39;val2&#39;</span><span class="o">)</span>
-zsh: no matches found: <span class="o">[</span>index1<span class="o">]=</span>val1
-</pre></div>
-
-
-<p>只能这样才行，</p>
-<div class="highlight"><pre><span></span>~ % <span class="nb">declare</span> -A ass_array
-~ % ass_array<span class="o">[</span>index1<span class="o">]=</span><span class="s1">&#39;val1&#39;</span>
-</pre></div>
-
-
-<p>另外，在<code>bash</code>访问数组需要加大括号，不加的话拿到的是奇怪的东西，</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="si">}</span>
-val1
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$ass_array</span><span class="o">[</span>index1<span class="o">]</span>
-<span class="o">[</span>index1<span class="o">]</span>
-</pre></div>
-
-
-<p>在<code>zsh</code>中就可以不用大括号直接拿，</p>
-<div class="highlight"><pre><span></span>~ % <span class="nb">echo</span> <span class="si">${</span><span class="nv">ass_array</span><span class="p">[index1]</span><span class="si">}</span>
-val1
-~ % <span class="nb">echo</span> <span class="nv">$ass_array</span><span class="o">[</span>index1<span class="o">]</span>
-val1
-</pre></div>
-
-
-<h3>暂时就这些</h3>
-<p>看来zsh和bash有好多不同啊，以前都没在意过。。。</p></div>
-        <hr />
-    </div>
-		
+<p>但是，在<code>zsh …</code></p> <a class="btn btn-info xsmall" href="../archives/zsh_array.html">read more</a></div>
+    </div>	
+				
 
  
         
@@ -441,7 +641,7 @@ by <a class="url fn" href="../author/x7.html">x7</a>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">x7's blog</a> &copy; x7 2013</p>
+<p><a href="..">x7's blog</a> &copy; x7 2017</p>
 </footer>
 
 </div> <!-- /container -->

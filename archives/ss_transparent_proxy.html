@@ -2,7 +2,7 @@
 <html lang="zhs">
 <head>
     <meta charset="utf-8">
-    <title>x7's blog - Linux</title>
+    <title>x7's blog - 利用shadowsocks在树莓派上搭建科学上网透明代理</title>
     <meta name="description" content="">
     <meta name="author" content="x7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,23 +53,17 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../archives/ss_transparent_proxy.html"><h1>利用shadowsocks在树莓派上搭建科学上网透明代理</h1></a>
+            <h1>利用shadowsocks在树莓派上搭建科学上网透明代理</h1>
 Tue 12 December 2017
 
 by <a class="url fn" href="../author/x7.html">x7</a>
  
 
 
- 
         </div>
-        
+	
         <div><p>效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。</p>
 <p>用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap</p>
 <p>参考:</p>
@@ -313,338 +307,23 @@ sudo cp src/chinadns /usr/local/bin
 <h3>完成</h3>
 <p>自此，手机只需要连接热点即可实现科学上网。</p>
 <p>由于使用了混淆机制，如果手机再独立使用shadowsocks连接另外的服务器，会造成多次混淆，可能会使网速大减。</p></div>
-        <hr />
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'x7qus'; 
+    var disqus_title = '利用shadowsocks在树莓派上搭建科学上网透明代理';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/latex_on_linux.html"><h2>Linux系统中LaTeX的安装与使用</h2></a>
-        <div class= "well small"> Mon 17 March 2014
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><h3>安装</h3>
-<p>针对Archlinux，需要<a href="https://wiki.archlinux.org/index.php/TeX_Live">TeX Live</a>，首先要编译LaTeX文件需要这个包<code>texlive-bin</code>，有一些图片字体之类的依赖，在这一组包里<code>texlive-most</code>。</p>
-<p>如果想用vim或者emacs编辑LaTeX文件的话，就不需要专门的编辑器了。</p>
-<p>Linux下的LaTeX编辑器<a href="https://wiki.archlinux.org/index.php/Latex">有很多</a>，我使用的是<code>Kile</code>，KDE的组件，在Gnome和xfce下也可以正常使用，虽然不能像retext编辑Markdown那样实时预览，不过比起vim需要配置一堆插件来说还是很方便的。</p>
-<h3>使用</h3>
-<p>LaTeX文件后缀通常为<code>.tex</code>。可以在命令行直接编译，</p>
-<div class="highlight"><pre><span></span>latex source.tex
-</pre></div>
-
-
-<p>用<code>Kile</code>编辑文件，可以直接通过''QuickBuild''编译生成pdf并直接打开预览。</p>
-<h4>Helloworld</h4>
-<p>简单测试代码，很容易理解，</p>
-<div class="highlight"><pre><span></span><span class="k">\documentclass</span><span class="na">[11pt]</span><span class="nb">{</span>article<span class="nb">}</span>
-<span class="k">\usepackage</span><span class="nb">{</span>cite<span class="nb">}</span>
-
-<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-
-<span class="k">\title</span><span class="nb">{</span>My Article<span class="nb">}</span>
-<span class="k">\author</span><span class="nb">{</span>Nobody Jr.<span class="nb">}</span>
-<span class="k">\date</span><span class="nb">{</span>Today<span class="nb">}</span>
-<span class="k">\maketitle …</span></pre></div> <a class="btn btn-info xsmall" href="../archives/latex_on_linux.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/zsh_array.html"><h2>对比zsh和bash中的数组与关联数组</h2></a>
-        <div class= "well small"> Sat 30 November 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>参考：</p>
-<p>Linux Shell脚本攻略 人民邮电出版社</p>
-<h3>数组</h3>
-<p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
-<div class="highlight"><pre><span></span><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
-</pre></div>
-
-
-<p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
-<span class="m">1</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
-<span class="m">1</span>
-</pre></div>
-
-
-<p>但是，在<code>zsh …</code></p> <a class="btn btn-info xsmall" href="../archives/zsh_array.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/local_dns.html"><h2>在本地建立DNS缓存</h2></a>
-        <div class= "well small"> Sun 29 September 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>参考：</p>
-<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq">dnsmasq - ArchWiki</a></p>
-<p><a href="http://tieba.baidu.com/p/1034963853">用dnsmasq加速你的网络!!!</a></p>
-<h3>dnsmasq</h3>
-<p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以为局域网电脑提供内网ip地址和路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
-<h3>配置</h3>
-<ul>
-<li>首先安装：</li>
-</ul>
-<div class="highlight"><pre><span></span>pacman -S dnsmasq
-</pre></div>
-
-
-<ul>
-<li>修改配置文件<code>/etc/dnsmasq.conf</code>。指定用于域名查询的配置文件，反注释并修改这一行：</li>
-</ul>
-<div class="highlight"><pre><span></span>resolv-file=/etc/resolv_dnsmasq.conf
-</pre></div>
-
-
-<ul>
-<li>这个文件不存在啊？当然是需要自己创建的，复制前要保证<code>/etc/resolv.conf</code>是原本配置好的或者被<code>networkmanager</code>等应用自动生成的 …</li></ul> <a class="btn btn-info xsmall" href="../archives/local_dns.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/github_hosts.html"><h2>修改hosts访问github</h2></a>
-        <div class= "well small"> Sun 08 September 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>学校不知道抽的什么风，突然就不让上github了，于是修改<code>/etc/hosts</code>加入：</p>
-<div class="highlight"><pre><span></span># github
-207.97.227.239 github.com
-65.74.177.129 www.github.com
-207.97.227.252 nodeload.github.com
-207.97.227.243 raw.github.com
-204.232.175.78 documentcloud.github.com
-204.232.175.78 pages.github.com
-</pre></div> <a class="btn btn-info xsmall" href="../archives/github_hosts.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/build_android_from_source.html"><h2>从源码编译Android系统</h2></a>
-        <div class= "well small"> Mon 29 July 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101oqvu.html">以前的新浪博客</a>～</p>
-<p>参考：</p>
-<p><a href="https://wiki.archlinux.org/index.php/Android">Android - ArchWiki</a></p>
-<p><a href="http://source.android.com/source/initializing.html">Initializing a Build Environment | Android Developers</a></p>
-<p><a href="http://forum.xda-developers.com/showthread.php?t=2259929">[TUT] Configuring Arch Linux to build Android - xda-developers</a></p>
-<p>首先在32位archlinux上尝试，最后发现必须要64位的才行。。。最后转战到ubuntu 10.04 server</p>
-<h3>arch上的尝试：</h3>
-<ul>
-<li>系统需求，32位系统需要这么一堆东西：</li>
-</ul>
-<div class="highlight"><pre><span></span>gcc git gnupg flex bison gperf sdl wxgtk squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt
-</pre></div>
-
-
-<p>64位系统还需要：</p>
-<div class="highlight"><pre><span></span>lib32-zlib lib32-ncurses lib32-readline gcc-libs-multilib …</pre></div> <a class="btn btn-info xsmall" href="../archives/build_android_from_source.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/hadoop_on_archlinux.html"><h2>hadoop on archlinux</h2></a>
-        <div class= "well small"> Fri 21 June 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101nu7o.html">以前的新浪博客</a>～</p>
-<p>参考：</p>
-<p><a href="https://wiki.archlinux.org/index.php/Hadoop">Hadoop - ArchWiki</a></p>
-<p><a href="http://hadoop.apache.org/docs/stable/single_node_setup.html">Single Node Setup</a></p>
-<ul>
-<li>安装：</li>
-</ul>
-<div class="highlight"><pre><span></span>yaourt hadoop
-</pre></div>
-
-
-<ul>
-<li>主要目录是这个：</li>
-</ul>
-<div class="highlight"><pre><span></span>/etc/hadoop/
-</pre></div>
-
-
-<ul>
-<li>当然配置文件还是在这里。</li>
-</ul>
-<div class="highlight"><pre><span></span>/etc/hadoop/
-</pre></div>
-
-
-<ul>
-<li>检查java环境配置。</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$JAVA_HOME</span>
-</pre></div>
-
-
-<ul>
-<li>
-<p>安装时生成了rsa密钥一对，还需要将本地用户的公钥添加到<code>/etc/hadoop/.ssh/authorized_keys</code>,用于<code>ssh</code>验证。</p>
-</li>
-<li>
-<p>格式化新的分布式文件系统</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span>hadoop namenode -format
-</pre></div>
-
-
-<ul>
-<li>启动服务,需要防火墙打开<code>9000</code>和<code>9001</code>端口，即使单机hadoop也需要，不明</li>
-</ul>
-<div class="highlight"><pre><span></span>bin/start-all.sh
-</pre></div>
-
-
-<p>或者启动<code>systemd</code>的一排service</p>
-<ul>
-<li>启动后运行example测试，首先把测试用的文件写到<code>hadoop …</code></li></ul> <a class="btn btn-info xsmall" href="../archives/hadoop_on_archlinux.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/lfs_root_passwd.html"><h2>LFS编译shadow之后设置root密码出错解决</h2></a>
-        <div class= "well small"> Tue 22 January 2013
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
-<p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
-<div class="highlight"><pre><span></span>root:/sources/shadow-4.1.5.1# passwd root
-Changing password for root
-Enter the new password (minimum of 5 characters)
-Please use a combination of upper and lower case letters and numbers.
-Bad password: too short.  
-Warning: weak password (enter it again …</pre></div> <a class="btn btn-info xsmall" href="../archives/lfs_root_passwd.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../archives/grub2_boot_from_iso.html"><h2>grub2直接引导iso镜像</h2></a>
-        <div class= "well small"> Sun 25 November 2012
-
-by <a class="url fn" href="../author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101f2an.html">以前的新浪博客</a>～</p>
-<p>参考：</p>
-<p><a href="https://wiki.archlinux.org/index.php/Grub">GRUB - ArchWiki</a></p>
-<p><a href="http://askubuntu.com/questions/141940/how-to-boot-live-iso-images">grub2 - How to boot live iso images? - Ask Ubuntu</a></p>
-<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?f=139&amp;t=393256">打造自己的多功能USB启动盘——grub2引导WinPE、Archlinux安装镜像和Ubuntu liveCD</a></p>
-<h3>U盘准备</h3>
-<p>格式fat32，卷标 zzz。</p>
-<div class="highlight"><pre><span></span>sudo grub-install --boot-directory<span class="o">=</span> --no-floppy --target<span class="o">=</span>i386-pc --recheck /dev/sd
-</pre></div>
-
-
-<h3>目录放置</h3>
-<ul>
-<li>
-<p>考虑到方便win下使用没有分两个区。</p>
-</li>
-<li>
-<p><code>/livecd</code>需要引导的iso镜像 不必解压  暂时只用到arch ubuntu</p>
-</li>
-<li>
-<p><code>/livecd/grub</code>在arch中用grub-install安装的grub2文件</p>
-</li>
-<li>
-<p><code>/livecd/grub4dos</code>用于引导windows镜像</p>
-</li>
-</ul>
-<h3>配置文件</h3>
-<ul>
-<li><code>grub.cfg</code>:</li>
-</ul>
-<div class="highlight"><pre><span></span># grub.cfg
-# for …</pre></div> <a class="btn btn-info xsmall" href="../archives/grub2_boot_from_iso.html">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../tag/linux.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">

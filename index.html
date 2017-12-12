@@ -180,6 +180,41 @@ if-gt <span class="nb">v0</span><span class="p">,</span> <span class="nb">v1</sp
  
 
     <div class='article'>
+        <a href="./archives/ss_transparent_proxy.html"><h2>利用shadowsocks在树莓派上搭建科学上网透明代理</h2></a>
+        <div class= "well small"> Tue 12 December 2017
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。</p>
+<p>用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap</p>
+<p>参考:</p>
+<p><a href="https://github.com/shadowsocks/shadowsocks-libev#advanced-usage">Advanced usage by shadowsocks</a></p>
+<p><a href="https://github.com/whiler/whiler.github.io/blob/master/articles/bypass.md">绕开网络封锁访问敏感域名 by whiler</a></p>
+<h3>原理</h3>
+<p>简单的iptables配置就可以满足全部流量直接走shadowsocks，但是这样对国内网站（包括cdn等）也会绕道国外，造成访问速度会大大下降。</p>
+<ul>
+<li>
+<p>首先是dns问题，如果完全使用谷歌的dns解析，一些国内网站的地址会解析到其国外的备份。chinadns是一个dns工具，用他来实现国内外dns同时查询，对于需要科学上网的网站，才使用谷歌的解析。</p>
+</li>
+<li>
+<p>另外是根据ip分流的问题，国内外不同的目的地址，分别走默认的路由和shadowsocks提供的代理。<a href="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest">APNIC</a>提供了一个ip地址段和其对应的国家地区的列表，通过ipset配合iptables来实现分流。</p>
+</li>
+</ul>
+<h3>服务器搭建</h3>
+<p>服务器就是普通的ss-server，此处使用了<code>shadowsocks-libev</code>+<code>simple-obfs</code>的方案。</p>
+<p>对于Debian 9 的服务器，直接按照官方文档安装<code>shadowsocks-libev …</code></p> <a class="btn btn-info xsmall" href="./archives/ss_transparent_proxy.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./archives/php_emoji_to_unicode.html"><h2>Emoji表情传输和保存：对非BMP范围的Unicode字符的处理</h2></a>
         <div class= "well small"> Thu 17 December 2015
 
@@ -416,41 +451,6 @@ by <a class="url fn" href="./author/x7.html">x7</a>
 <p>Sent:  Saturday, November 30, 2013 1:06:57 PM</p>
 <p>To:    x7hub (x7.0@outlook.com)</p>
 <p>The page build …</p></blockquote> <a class="btn btn-info xsmall" href="./archives/page_build_failed.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./archives/zsh_array.html"><h2>对比zsh和bash中的数组与关联数组</h2></a>
-        <div class= "well small"> Sat 30 November 2013
-
-by <a class="url fn" href="./author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>参考：</p>
-<p>Linux Shell脚本攻略 人民邮电出版社</p>
-<h3>数组</h3>
-<p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
-<div class="highlight"><pre><span></span><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
-</pre></div>
-
-
-<p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
-<span class="m">1</span>
-<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
-<span class="m">1</span>
-</pre></div>
-
-
-<p>但是，在<code>zsh …</code></p> <a class="btn btn-info xsmall" href="./archives/zsh_array.html">read more</a></div>
     </div>	
 				
 <div class="pagination">

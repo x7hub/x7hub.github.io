@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>x7's blog - Linux</title><link>https://x7blog.info/</link><description></description><lastBuildDate>Sat, 30 Nov 2013 00:00:00 +0800</lastBuildDate><item><title>对比zsh和bash中的数组与关联数组</title><link>https://x7blog.info/archives/zsh_array.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
+<rss version="2.0"><channel><title>x7's blog - Linux</title><link>https://x7blog.info/</link><description></description><lastBuildDate>Tue, 12 Dec 2017 00:00:00 +0800</lastBuildDate><item><title>利用shadowsocks在树莓派上搭建科学上网透明代理</title><link>https://x7blog.info/archives/ss_transparent_proxy.html</link><description>&lt;p&gt;效果是手机连接树莓派的wifi热点时，不需要任何设置，可以直接访问墙外网站，而且不影响对国内直连网站的访问速度。&lt;/p&gt;
+&lt;p&gt;用到的工具：shadowsocks-libev，simple-obfs，ipset，iptables，chinadns，bind9，create_ap&lt;/p&gt;
+&lt;p&gt;参考:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/shadowsocks/shadowsocks-libev#advanced-usage"&gt;Advanced usage by shadowsocks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/whiler/whiler.github.io/blob/master/articles/bypass.md"&gt;绕开网络封锁访问敏感域名 by whiler&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;原理&lt;/h3&gt;
+&lt;p&gt;简单的iptables配置就可以满足全部流量直接走shadowsocks，但是这样对国内网站（包括cdn等）也会绕道国外，造成访问速度会大大下降。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先是dns问题，如果完全使用谷歌的dns解析，一些国内网站的地址会解析到其国外的备份。chinadns是一个dns工具，用他来实现国内外dns同时查询，对于需要科学上网的网站，才使用谷歌的解析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;另外是根据ip分流的问题，国内外不同的目的地址，分别走默认的路由和shadowsocks提供的代理。&lt;a href="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"&gt;APNIC&lt;/a&gt;提供了一个ip地址段和其对应的国家地区的列表，通过ipset配合iptables来实现分流。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;服务器搭建&lt;/h3&gt;
+&lt;p&gt;服务器就是普通的ss-server，此处使用了&lt;code&gt;shadowsocks-libev&lt;/code&gt;+&lt;code&gt;simple-obfs&lt;/code&gt;的方案。&lt;/p&gt;
+&lt;p&gt;对于Debian 9 的服务器，直接按照官方文档安装&lt;code&gt;shadowsocks-libev …&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">x7</dc:creator><pubDate>Tue, 12 Dec 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:x7blog.info,2017-12-12:/archives/ss_transparent_proxy.html</guid><category>Linux</category></item><item><title>对比zsh和bash中的数组与关联数组</title><link>https://x7blog.info/archives/zsh_array.html</link><description>&lt;p&gt;参考：&lt;/p&gt;
 &lt;p&gt;Linux Shell脚本攻略 人民邮电出版社&lt;/p&gt;
 &lt;h3&gt;数组&lt;/h3&gt;
 &lt;p&gt;可以这样定义数组，在&lt;code&gt;bash&lt;/code&gt;和&lt;code&gt;zsh&lt;/code&gt;都可以，&lt;/p&gt;

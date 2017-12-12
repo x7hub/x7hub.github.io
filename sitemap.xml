@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/</loc>
-<lastmod>2017-12-12T15:23:51-00:00</lastmod>
+<lastmod>2017-12-12T18:57:29-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/archives.html</loc>
-<lastmod>2017-12-12T15:23:51-00:00</lastmod>
+<lastmod>2017-12-12T18:57:29-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/tags.html</loc>
-<lastmod>2017-12-12T15:23:51-00:00</lastmod>
+<lastmod>2017-12-12T18:57:29-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://x7blog.info/categories.html</loc>
-<lastmod>2017-12-12T15:23:51-00:00</lastmod>
+<lastmod>2017-12-12T18:57:29-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -40,6 +40,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/archives/recompile_wechat_6513.html</loc>
+<lastmod>2017-12-12T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://x7blog.info/archives/ss_transparent_proxy.html</loc>
 <lastmod>2017-12-12T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
@@ -208,7 +215,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/category/linux.html</loc>
-<lastmod>2013-11-30T00:00:00+08:06</lastmod>
+<lastmod>2017-12-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -264,7 +271,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://x7blog.info/tag/linux.html</loc>
-<lastmod>2014-03-17T00:00:00+08:06</lastmod>
+<lastmod>2017-12-12T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

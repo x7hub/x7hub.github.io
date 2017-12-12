@@ -60,6 +60,41 @@
  
 
     <div class='article'>
+        <a href="./archives/zsh_array.html"><h2>对比zsh和bash中的数组与关联数组</h2></a>
+        <div class= "well small"> Sat 30 November 2013
+
+by <a class="url fn" href="./author/x7.html">x7</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>参考：</p>
+<p>Linux Shell脚本攻略 人民邮电出版社</p>
+<h3>数组</h3>
+<p>可以这样定义数组，在<code>bash</code>和<code>zsh</code>都可以，</p>
+<div class="highlight"><pre><span></span><span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
+</pre></div>
+
+
+<p>但是，读数组的时候有区别，在<code>bash</code>中，数组索引以<code>0</code>开始，符合一般习惯，</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nv">array_var</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span><span class="o">)</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="si">}</span>
+<span class="m">1</span>
+<span class="o">[</span>x7@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">array_var</span><span class="p">[0]</span><span class="si">}</span>
+<span class="m">1</span>
+</pre></div>
+
+
+<p>但是，在<code>zsh …</code></p> <a class="btn btn-info xsmall" href="./archives/zsh_array.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./archives/android_service_dialog.html"><h2>对Service中弹出的Dialog设置主题</h2></a>
         <div class= "well small"> Tue 05 November 2013
 
@@ -406,31 +441,6 @@ by <a class="url fn" href="./author/x7.html">x7</a>
 <p>或者启动<code>systemd</code>的一排service</p>
 <ul>
 <li>启动后运行example测试，首先把测试用的文件写到<code>hadoop …</code></li></ul> <a class="btn btn-info xsmall" href="./archives/hadoop_on_archlinux.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./archives/lfs_root_passwd.html"><h2>LFS编译shadow之后设置root密码出错解决</h2></a>
-        <div class= "well small"> Tue 22 January 2013
-
-by <a class="url fn" href="./author/x7.html">x7</a>
- 
-
-
- </div>
-        <div class="summary"><p>搬迁自<a href="http://blog.sina.com.cn/s/blog_76db5e270101hvh1.html">以前的新浪博客</a>～</p>
-<p>按照<a href="http://www.linuxfromscratch.org/lfs/download.html">lfs book</a>编译安装配置<code>shadow</code>之后没法修改root密码：</p>
-<div class="highlight"><pre><span></span>root:/sources/shadow-4.1.5.1# passwd root
-Changing password for root
-Enter the new password (minimum of 5 characters)
-Please use a combination of upper and lower case letters and numbers.
-Bad password: too short.  
-Warning: weak password (enter it again …</pre></div> <a class="btn btn-info xsmall" href="./archives/lfs_root_passwd.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
