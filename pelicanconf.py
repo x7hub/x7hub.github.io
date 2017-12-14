@@ -54,6 +54,7 @@ PLUGINS = ["sitemap"]
 ## 配置sitemap 插件
 SITEMAP = {
     "format": "xml",
+    'exclude': ['tag/', 'category/', 'pages/', 'author/'],
     "priorities": {
         "articles": 0.8,
         "indexes": 0.1,
