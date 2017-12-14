@@ -2,3 +2,6 @@ Sitemap: https://x7blog.info/sitemap.xml
 User-agent: *
 Disallow: /pages/
 Disallow: /drafts/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /category/

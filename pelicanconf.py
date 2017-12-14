@@ -28,14 +28,16 @@ FEED_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 
 # Blogroll
-LINKS =  (('陌阁', 'http://www.blackmomo.com/'),)
+LINKS = (
+    ('陌阁', 'http://www.blackmomo.com/'),
+)
 
 # Social widget
 SOCIAL = (
-          ('GitHub', 'https://github.com/x7hub'),
-          ('Twitter', 'https://twitter.com/x7tter'),
-          ('Facebook', 'https://www.facebook.com/rong.feng.9484'),
-          )
+    ('GitHub', 'https://github.com/x7hub'),
+    ('Twitter', 'https://twitter.com/x7tter'),
+    ('Facebook', 'https://www.facebook.com/rong.feng.9484'),
+)
 
 #GITHUB_URL = 'https://github.com/x7hub'
 #TWITTER_USERNAME = 'x7tter'
@@ -48,21 +50,27 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-PLUGIN_PATHS = ["pelican-plugins"]
-PLUGINS = ["sitemap"]
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = ['sitemap']
 
 ## 配置sitemap 插件
 SITEMAP = {
-    "format": "xml",
-    'exclude': ['tag/', 'category/', 'pages/', 'author/'],
-    "priorities": {
-        "articles": 0.8,
-        "indexes": 0.1,
-        "pages": 0.1,
+    'format': 'xml',
+    'exclude': [
+        'tag/',
+        'category/',
+        'pages/',
+        'author/',
+        'drafts/'
+    ],
+    'priorities': {
+        'articles': 0.8,
+        'indexes': 0.1,
+        'pages': 0.1,
     },
-    "changefreqs": {
-        "articles": "daily",
-        "indexes": "monthly",
-        "pages": "monthly",
+    'changefreqs': {
+        'articles': 'daily',
+        'indexes': 'monthly',
+        'pages': 'monthly',
     }
 }
