@@ -55,13 +55,13 @@ PLUGINS = ["sitemap"]
 SITEMAP = {
     "format": "xml",
     "priorities": {
-        "articles": 0.7,
-        "indexes": 0.5,
-        "pages": 0.3,
+        "articles": 0.8,
+        "indexes": 0.1,
+        "pages": 0.1,
     },
     "changefreqs": {
-        "articles": "monthly",
-        "indexes": "daily",
+        "articles": "daily",
+        "indexes": "monthly",
         "pages": "monthly",
     }
 }
